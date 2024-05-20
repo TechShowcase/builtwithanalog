@@ -33,10 +33,9 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
+/* h1 {
+  font-size: 1.5rem;
+} */
 
 button {
   border-radius: 8px;
@@ -57,9 +56,24 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.header, .footer {
+  display: flex;
+  width: 100%;
+  padding: 0.5rem 0;
+  background-color: #1d1d1d;
+}
+
 .card {
   padding: 2em;
 }
+
+/* Dark mode */
+
+
+
+/* Light mode */
+
+
 
 @media (prefers-color-scheme: light) {
   :root {
