@@ -9,7 +9,7 @@ import { RouterLink } from "@angular/router";
 		<div class="header">
 			<div class="logo">
         <img src="{{analogLogo}}" alt="">
-        <a routerLink="/"><h1>Built With Analog</h1></a>
+        <a routerLink="/"><h1>Built with Analog</h1></a>
 			</div>
 		</div>
 	`,
