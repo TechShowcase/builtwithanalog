@@ -1,14 +1,15 @@
 import { Component, OnInit } from "@angular/core";
+import { RouterLink } from "@angular/router";
 
 @Component({
 	selector: "app-header",
 	standalone: true,
-	imports: [],
+	imports: [RouterLink],
 	template: `
 		<div class="header">
 			<div class="logo">
         <img src="{{analogLogo}}" alt="">
-				<h1>Built With Analog</h1>
+        <a routerLink="/"><h1>Built With Analog</h1></a>
 			</div>
 		</div>
 	`,
