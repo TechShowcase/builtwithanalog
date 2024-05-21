@@ -13,7 +13,7 @@ import { FormsModule } from "@angular/forms";
 				<div class="filtering-actions">
 					<select
 						[(ngModel)]="selectedCategory"
-						(selectionChange)="applyFilter()"
+						(change)="applyFilter()"
 					>
 						<option value="" disabled hidden>Category</option>
 						@for (category of categories; track category) {
@@ -22,7 +22,7 @@ import { FormsModule } from "@angular/forms";
 					</select>
 					<select
 						[(ngModel)]="selectedVersionGroup"
-						(selectionChange)="applyFilter()"
+						(change)="applyFilter()"
 					>
 						<option value="" disabled hidden>Angular Version</option>
 						@for (version of versionGroup; track version) {
@@ -31,7 +31,7 @@ import { FormsModule } from "@angular/forms";
 					</select>
 					<select
 						[(ngModel)]="selectedAnalogVersion"
-						(selectionChange)="applyFilter()"
+						(change)="applyFilter()"
 					>
 						<option value="" disabled hidden>Analog Version</option>
 						@for (analogVersion of analogVersions; track analogVersion) {
@@ -40,7 +40,7 @@ import { FormsModule } from "@angular/forms";
 					</select>
 					<select
 						[(ngModel)]="selectedUIlib"
-						(selectionChange)="applyFilter()"
+						(change)="applyFilter()"
 					>
 						<option value="" disabled hidden>UI Library</option>
 						@for (uiLib of projectsUIlib; track uiLib) {
