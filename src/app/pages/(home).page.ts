@@ -1,4 +1,6 @@
-import { Component } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Component, inject, OnInit } from "@angular/core";
+import { Project } from "../components/models/project";
 
 @Component({
 	selector: "app-home",
@@ -6,7 +8,7 @@ import { Component } from "@angular/core";
 	template: `
 		<div class="content">
 			<div class="filtering">
-				<form id="filter-form">
+				<form id="filter-form" class="filtering-actions">
 					<select name="type" id="type" value="type">
 						<option selected hidden disabled>Type</option>
 						<option value="open-source">Open Source</option>
@@ -132,4 +134,59 @@ import { Component } from "@angular/core";
 		`,
 	],
 })
-export default class HomeComponent {}
+export default class HomeComponent implements OnInit {
+  projects: Project[] = [];
+  filteredProjects: Project[] = [];
+  categories: string[] = [];
+  projectsStructure: string[] = [];
+  projectsUIlib: string[] = [];
+  versionGroup: string[] = [];
+  filterApplied: boolean = false;
+  selectedCategory: string = '';
+  selectedVersionGroup: string = '';
+  selectedStructure: string = '';
+  selectedUIlib: string = '';
+  showFree: boolean = false;
+  http = inject(HttpClient);
+
+  ngOnInit(): void {
+    this.http.get<Project[]>("https://builtwithanalog.dev/api/projects").subscribe((projects) => {
+      this.projects = projects;
+      console.log(this.projects);
+      this.categories = Array.from(new Set(this.projects.map((project) => project.category)));
+      this.projectsStructure = Array.from(new Set(this.projects.map((project) => project.structure)));
+      this.projectsUIlib = Array.from(new Set(this.projects
+        .map((project) => project.uiLib.split(', '))
+        .flat()
+      ));
+      this.versionGroup = Array.from(new Set(this.projects.map((project) => project.versionGroup)));
+    });
+  }
+
+  applyFilter(): void {
+    this.filterApplied = true;
+    this.filteredProjects = this.projects.filter(project => {
+      return (
+        (this.selectedCategory === '' || project.category === this.selectedCategory) &&
+        (this.selectedStructure === '' || project.structure === this.selectedStructure) &&
+        (this.selectedUIlib === '' || project.uiLib.split(', ').includes(this.selectedUIlib)) &&
+        (this.selectedVersionGroup === '' || project.versionGroup === this.selectedVersionGroup) &&
+        (!this.showFree || project.pricing === 'Free')
+      );
+    });
+  }
+
+  clearFilters(): void {
+    this.filterApplied = false;
+    this.selectedCategory = '';
+    this.selectedStructure = '';
+    this.selectedUIlib = '';
+    this.selectedVersionGroup = '';
+    this.showFree = false;
+  }
+
+  isVersion16OrAbove(version: string): boolean {
+    const majorVersion = parseInt(version.split('.')[0], 10);
+    return majorVersion >= 16;
+  }
+}
