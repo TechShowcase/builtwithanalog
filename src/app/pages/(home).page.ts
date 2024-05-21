@@ -40,17 +40,68 @@ import { Project } from "../components/models/project";
 					<button type="reset">Clear Filters</button>
 				</form>
 				<div class="total">
-					<p>Projects found: 100</p>
+					<p>Projects found: {{ projects.length }}</p>
 				</div>
 			</div>
 			<div class="cards-wrapper">
 				@for (project of projects; track project) {
-          <a href="{{project.url}}?source=builtwithangular.dev" target="_blank">
-          <div class="card">
-          <img src="{{project.imageSrc}}" alt="{{project.name}}">
-          </div>
-        </a>
-        }
+				<a href="{{ project.url }}?source=builtwithanalog.dev" target="_blank">
+					<div class="card">
+						<img src="{{ project.imageSrc }}" alt="{{ project.name }}" />
+						<div class="card-content">
+							<div class="details">
+								<div class="info">
+									<div class="main">
+										@if (project.category.includes("Open Source") ||
+										project.pricing === "Free") {
+										<h2>{{ project.name }}</h2>
+										} @else {
+										<span
+											class="material-symbols-outlined"
+											title="{{ project.pricing }}"
+										>
+											paid
+										</span>
+										<h2>{{ project.name }}</h2>
+										}
+									</div>
+									<div class="more">
+										<p>{{ project.category }} • {{ project.structure }}</p>
+									</div>
+								</div>
+								<div class="features">
+									<div class="version">
+										<img
+											class="analog"
+											title="{{ project.version }}"
+											src="https://raw.githubusercontent.com/TechShowcase/images/499181122a186d07a1ea115bdee6d5f206d6c6ab/icons/analog.svg"
+										/>
+										@if (isVersion16OrAbove(project.version)) {
+										<img
+											title="{{ project.version }}"
+											src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/angular.svg"
+										/>
+										} @else {
+										<img
+											title="{{ project.version }}"
+											src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/angular-old.svg"
+										/>
+										}
+									</div>
+									<div class="ui">
+										@if (project.uiLib.includes('Spartan UI')) {
+										<img
+											title="{{ project.uiLib }}"
+											src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/spartan.svg"
+										/>
+										}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				}
 			</div>
 		</div>
 	`,
@@ -118,11 +169,77 @@ import { Project } from "../components/models/project";
 
 				.cards-wrapper {
 					display: flex;
+					flex-wrap: wrap;
+					justify-content: center;
 					gap: 1.5rem;
-					margin-top: 1rem;
+					margin: 1rem 4rem 2rem;
 
 					.card {
+						display: flex;
+						flex-direction: column;
+						align-items: center;
 						width: 20rem;
+
+						img {
+							width: 100%;
+							border-radius: 0.8rem;
+							object-fit: cover;
+						}
+
+						.card-content {
+							width: 100%;
+							h2 {
+								font-size: 1.1rem;
+								font-weight: 500;
+								margin: 0.3rem 0;
+							}
+
+							p {
+								font-size: 0.9rem;
+								margin: 0;
+							}
+
+							.details {
+								display: flex;
+								justify-content: space-between;
+								align-items: center;
+
+								.info {
+									.main {
+										display: flex;
+										align-items: center;
+                    gap: 0.2rem;
+
+										span {
+											color: #36744c;
+										}
+									}
+								}
+
+								.features {
+									display: flex;
+									gap: 0.3rem;
+
+									img {
+										width: 1.5rem;
+										height: 1.5rem;
+										border-radius: 0;
+									}
+
+									.version {
+										display: flex;
+										align-items: center;
+										img {
+											&.analog {
+												width: 2rem;
+												height: 2rem;
+												border-radius: 0;
+											}
+										}
+									}
+								}
+							}
+						}
 					}
 				}
 			}
@@ -130,57 +247,70 @@ import { Project } from "../components/models/project";
 	],
 })
 export default class HomeComponent implements OnInit {
-  projects: Project[] = [];
-  filteredProjects: Project[] = [];
-  categories: string[] = [];
-  projectsStructure: string[] = [];
-  projectsUIlib: string[] = [];
-  versionGroup: string[] = [];
-  filterApplied: boolean = false;
-  selectedCategory: string = '';
-  selectedVersionGroup: string = '';
-  selectedStructure: string = '';
-  selectedUIlib: string = '';
-  showFree: boolean = false;
-  http = inject(HttpClient);
+	projects: Project[] = [];
+	filteredProjects: Project[] = [];
+	categories: string[] = [];
+	projectsStructure: string[] = [];
+	projectsUIlib: string[] = [];
+	versionGroup: string[] = [];
+	filterApplied: boolean = false;
+	selectedCategory: string = "";
+	selectedVersionGroup: string = "";
+	selectedStructure: string = "";
+	selectedUIlib: string = "";
+	showFree: boolean = false;
+	http = inject(HttpClient);
 
-  ngOnInit(): void {
-    this.http.get<Project[]>("http://localhost:5173/api/projects").subscribe((projects) => {
-      this.projects = projects;
-      this.categories = Array.from(new Set(this.projects.map((project) => project.category)));
-      this.projectsStructure = Array.from(new Set(this.projects.map((project) => project.structure)));
-      this.projectsUIlib = Array.from(new Set(this.projects
-        .map((project) => project.uiLib.split(', '))
-        .flat()
-      ));
-      this.versionGroup = Array.from(new Set(this.projects.map((project) => project.versionGroup)));
-    });
-  }
+	ngOnInit(): void {
+		this.http
+			.get<Project[]>("http://localhost:5173/api/projects")
+			.subscribe((projects) => {
+				this.projects = projects;
+				this.categories = Array.from(
+					new Set(this.projects.map((project) => project.category))
+				);
+				this.projectsStructure = Array.from(
+					new Set(this.projects.map((project) => project.structure))
+				);
+				this.projectsUIlib = Array.from(
+					new Set(
+						this.projects.map((project) => project.uiLib.split(", ")).flat()
+					)
+				);
+				this.versionGroup = Array.from(
+					new Set(this.projects.map((project) => project.versionGroup))
+				);
+			});
+	}
 
-  applyFilter(): void {
-    this.filterApplied = true;
-    this.filteredProjects = this.projects.filter(project => {
-      return (
-        (this.selectedCategory === '' || project.category === this.selectedCategory) &&
-        (this.selectedStructure === '' || project.structure === this.selectedStructure) &&
-        (this.selectedUIlib === '' || project.uiLib.split(', ').includes(this.selectedUIlib)) &&
-        (this.selectedVersionGroup === '' || project.versionGroup === this.selectedVersionGroup) &&
-        (!this.showFree || project.pricing === 'Free')
-      );
-    });
-  }
+	applyFilter(): void {
+		this.filterApplied = true;
+		this.filteredProjects = this.projects.filter((project) => {
+			return (
+				(this.selectedCategory === "" ||
+					project.category === this.selectedCategory) &&
+				(this.selectedStructure === "" ||
+					project.structure === this.selectedStructure) &&
+				(this.selectedUIlib === "" ||
+					project.uiLib.split(", ").includes(this.selectedUIlib)) &&
+				(this.selectedVersionGroup === "" ||
+					project.versionGroup === this.selectedVersionGroup) &&
+				(!this.showFree || project.pricing === "Free")
+			);
+		});
+	}
 
-  clearFilters(): void {
-    this.filterApplied = false;
-    this.selectedCategory = '';
-    this.selectedStructure = '';
-    this.selectedUIlib = '';
-    this.selectedVersionGroup = '';
-    this.showFree = false;
-  }
+	clearFilters(): void {
+		this.filterApplied = false;
+		this.selectedCategory = "";
+		this.selectedStructure = "";
+		this.selectedUIlib = "";
+		this.selectedVersionGroup = "";
+		this.showFree = false;
+	}
 
-  isVersion16OrAbove(version: string): boolean {
-    const majorVersion = parseInt(version.split('.')[0], 10);
-    return majorVersion >= 16;
-  }
+	isVersion16OrAbove(version: string): boolean {
+		const majorVersion = parseInt(version.split(".")[0], 10);
+		return majorVersion >= 16;
+	}
 }
