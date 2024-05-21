@@ -89,7 +89,7 @@ import { Component } from "@angular/core";
 				flex-direction: column;
 				align-items: center;
 				justify-content: flex-start;
-				min-height: 90vh;
+				min-height: 85vh;
 
 				.details-panel {
 					width: 50vw;
