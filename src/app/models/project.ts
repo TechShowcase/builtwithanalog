@@ -5,7 +5,7 @@ export interface Project {
   category: string;
   version: string;
   versionGroup: string;
-  structure: string;
+  analogVersion: string;
   uiLib: string;
   pricing: string;
   thereD?: boolean;

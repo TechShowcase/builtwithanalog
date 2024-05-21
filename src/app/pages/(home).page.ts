@@ -1,50 +1,74 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, inject, OnInit } from "@angular/core";
-import { Project } from "../components/models/project";
+import { Project } from "../models/project";
+import { FormsModule } from "@angular/forms";
 
 @Component({
 	selector: "app-home",
 	standalone: true,
+	imports: [FormsModule],
 	template: `
 		<div class="content">
 			<div class="filtering">
-				<form id="filter-form" class="filtering-actions">
-					<select name="type" id="type" value="type">
-						<option selected hidden disabled>Type</option>
-						<option value="open-source">Open Source</option>
-						<option value="productivity">Productivity</option>
-						<option value="template">Template</option>
+				<div class="filtering-actions">
+					<select
+						[(ngModel)]="selectedCategory"
+						(selectionChange)="applyFilter()"
+					>
+						<option value="" disabled hidden>Category</option>
+						@for (category of categories; track category) {
+						<option value="{{ category }}">{{ category }}</option>
+						}
 					</select>
-					<select name="angular-version" id="angular-version">
-						<option selected hidden disabled>Angular Version</option>
-						<option value="v15">v15 and up</option>
-						<option value="v10-v15">v10 - v15</option>
-						<option value="earlier-than-v10">earlier than v10</option>
+					<select
+						[(ngModel)]="selectedVersionGroup"
+						(selectionChange)="applyFilter()"
+					>
+						<option value="" disabled hidden>Angular Version</option>
+						@for (version of versionGroup; track version) {
+						<option value="{{ version }}">{{ version }}</option>
+						}
 					</select>
-					<select name="structure" id="structure">
-						<option selected hidden disabled>Angular Structure</option>
-						<option value="modules">Modules</option>
-						<option value="standalone">Standalone</option>
+					<select
+						[(ngModel)]="selectedAnalogVersion"
+						(selectionChange)="applyFilter()"
+					>
+						<option value="" disabled hidden>Analog Version</option>
+						@for (analogVersion of analogVersions; track analogVersion) {
+						<option value="{{ analogVersion }}">{{ analogVersion }}</option>
+						}
 					</select>
-					<select name="ui-lib" id="ui-lib">
-						<option selected hidden disabled>UI Library</option>
-						<option value="none">None</option>
-						<option value="angular-material">Angular Material</option>
-						<option value="primeng">PrimeNG</option>
-						<option value="spartan">Spartan UI</option>
+					<select
+						[(ngModel)]="selectedUIlib"
+						(selectionChange)="applyFilter()"
+					>
+						<option value="" disabled hidden>UI Library</option>
+						@for (uiLib of projectsUIlib; track uiLib) {
+						<option value="{{ uiLib }}">{{ uiLib }}</option>
+						}
 					</select>
-					<div class="checkbox-wrapper">
-						<input type="checkbox" name="checkbox" class="checkbox" />
-						<label for="checkbox">Free</label>
+					<div class="buttons-wrapper">
+						<div class="checkbox-wrapper">
+							<input type="checkbox" name="checkbox" class="checkbox" [(ngModel)]="showFree" (change)="applyFilter()"/>
+							<label for="checkbox">Free</label>
+						</div>
+						<div class="checkbox-wrapper">
+							<input type="checkbox" name="checkbox" class="checkbox" />
+							<label for="checkbox">3D</label>
+						</div>
 					</div>
-					<button type="reset">Clear Filters</button>
-				</form>
+					<button (click)="clearFilters()">Clear Filters</button>
+				</div>
 				<div class="total">
-					<p>Projects found: {{ projects.length }}</p>
+					@if (!filterApplied) {
+					<p>All Projects: {{ projects.length }}</p>
+					} @else {
+					<p>Projects found: {{ filteredProjects.length }}</p>
+					}
 				</div>
 			</div>
 			<div class="cards-wrapper">
-				@for (project of projects; track project) {
+				@if (!filterApplied) { @for (project of projects; track project) {
 				<a href="{{ project.url }}?source=builtwithanalog.dev" target="_blank">
 					<div class="card">
 						<img src="{{ project.imageSrc }}" alt="{{ project.name }}" />
@@ -62,11 +86,11 @@ import { Project } from "../components/models/project";
 										>
 											paid
 										</span>
-										<h2>{{ project.name }}</h2>
+										<h2 title="{{ project.name }}">{{ project.name }}</h2>
 										}
 									</div>
 									<div class="more">
-										<p>{{ project.category }} • {{ project.structure }}</p>
+										<p>{{ project.category }}</p>
 									</div>
 								</div>
 								<div class="features">
@@ -91,8 +115,9 @@ import { Project } from "../components/models/project";
 									<div class="ui">
 										@if (project.uiLib.includes('Spartan UI')) {
 										<img
+											class="spartan"
 											title="{{ project.uiLib }}"
-											src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/spartan.svg"
+											src="https://raw.githubusercontent.com/TechShowcase/images/main/icons/spartan.png"
 										/>
 										}
 									</div>
@@ -101,7 +126,65 @@ import { Project } from "../components/models/project";
 						</div>
 					</div>
 				</a>
-				}
+				} } @else { @for (project of filteredProjects; track project) {
+				<a href="{{ project.url }}?source=builtwithanalog.dev" target="_blank">
+					<div class="card">
+						<img src="{{ project.imageSrc }}" alt="{{ project.name }}" />
+						<div class="card-content">
+							<div class="details">
+								<div class="info">
+									<div class="main">
+										@if (project.category.includes("Open Source") ||
+										project.pricing === "Free") {
+										<h2>{{ project.name }}</h2>
+										} @else {
+										<span
+											class="material-symbols-outlined"
+											title="{{ project.pricing }}"
+										>
+											paid
+										</span>
+										<h2 title="{{ project.name }}">{{ project.name }}</h2>
+										}
+									</div>
+									<div class="more">
+										<p>{{ project.category }}</p>
+									</div>
+								</div>
+								<div class="features">
+									<div class="version">
+										<img
+											class="analog"
+											title="{{ project.version }}"
+											src="https://raw.githubusercontent.com/TechShowcase/images/499181122a186d07a1ea115bdee6d5f206d6c6ab/icons/analog.svg"
+										/>
+										@if (isVersion16OrAbove(project.version)) {
+										<img
+											title="{{ project.version }}"
+											src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/angular.svg"
+										/>
+										} @else {
+										<img
+											title="{{ project.version }}"
+											src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/angular-old.svg"
+										/>
+										}
+									</div>
+									<div class="ui">
+										@if (project.uiLib.includes('Spartan UI')) {
+										<img
+											class="spartan"
+											title="{{ project.uiLib }}"
+											src="https://raw.githubusercontent.com/TechShowcase/images/main/icons/spartan.png"
+										/>
+										}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				} }
 			</div>
 		</div>
 	`,
@@ -118,7 +201,8 @@ import { Project } from "../components/models/project";
 				.filtering {
 					display: flex;
 					flex-direction: column;
-					form {
+
+					.filtering-actions {
 						display: flex;
 						align-items: center;
 						gap: 1rem;
@@ -140,18 +224,26 @@ import { Project } from "../components/models/project";
 							}
 						}
 
-						.checkbox-wrapper {
+						.buttons-wrapper {
 							display: flex;
-							align-items: center;
+							flex-direction: column;
+							align-items: flex-start;
+							justify-content: center;
 							gap: 0.3rem;
 
-							.checkbox {
-								height: 1.1rem;
-								width: 1.1rem;
-								cursor: pointer;
-							}
-							label {
-								font-size: 1.1rem;
+							.checkbox-wrapper {
+								display: flex;
+								align-items: center;
+								gap: 0.3rem;
+
+								.checkbox {
+									height: 1.1rem;
+									width: 1.1rem;
+									cursor: pointer;
+								}
+								label {
+									font-size: 1.1rem;
+								}
 							}
 						}
 					}
@@ -191,7 +283,7 @@ import { Project } from "../components/models/project";
 							h2 {
 								font-size: 1.1rem;
 								font-weight: 500;
-								margin: 0.3rem 0;
+								margin: 0.6rem 0 0;
 							}
 
 							p {
@@ -208,7 +300,7 @@ import { Project } from "../components/models/project";
 									.main {
 										display: flex;
 										align-items: center;
-                    gap: 0.2rem;
+										gap: 0.2rem;
 
 										span {
 											color: #36744c;
@@ -224,12 +316,17 @@ import { Project } from "../components/models/project";
 										width: 1.5rem;
 										height: 1.5rem;
 										border-radius: 0;
+
+										&.spartan {
+											margin-top: 0.3rem;
+										}
 									}
 
 									.version {
 										display: flex;
 										align-items: center;
 										img {
+											object-fit: contain;
 											&.analog {
 												width: 2rem;
 												height: 2rem;
@@ -250,27 +347,27 @@ export default class HomeComponent implements OnInit {
 	projects: Project[] = [];
 	filteredProjects: Project[] = [];
 	categories: string[] = [];
-	projectsStructure: string[] = [];
+	analogVersions: string[] = [];
 	projectsUIlib: string[] = [];
 	versionGroup: string[] = [];
 	filterApplied: boolean = false;
 	selectedCategory: string = "";
 	selectedVersionGroup: string = "";
-	selectedStructure: string = "";
+	selectedAnalogVersion: string = "";
 	selectedUIlib: string = "";
 	showFree: boolean = false;
 	http = inject(HttpClient);
 
 	ngOnInit(): void {
 		this.http
-			.get<Project[]>("http://localhost:5173/api/projects")
+			.get<Project[]>("http://builtwithanalog.dev/api/projects")
 			.subscribe((projects) => {
 				this.projects = projects;
 				this.categories = Array.from(
 					new Set(this.projects.map((project) => project.category))
 				);
-				this.projectsStructure = Array.from(
-					new Set(this.projects.map((project) => project.structure))
+				this.analogVersions = Array.from(
+					new Set(this.projects.map((project) => project.analogVersion))
 				);
 				this.projectsUIlib = Array.from(
 					new Set(
@@ -289,8 +386,8 @@ export default class HomeComponent implements OnInit {
 			return (
 				(this.selectedCategory === "" ||
 					project.category === this.selectedCategory) &&
-				(this.selectedStructure === "" ||
-					project.structure === this.selectedStructure) &&
+				(this.selectedAnalogVersion === "" ||
+					project.analogVersion === this.selectedAnalogVersion) &&
 				(this.selectedUIlib === "" ||
 					project.uiLib.split(", ").includes(this.selectedUIlib)) &&
 				(this.selectedVersionGroup === "" ||
@@ -303,7 +400,7 @@ export default class HomeComponent implements OnInit {
 	clearFilters(): void {
 		this.filterApplied = false;
 		this.selectedCategory = "";
-		this.selectedStructure = "";
+		this.selectedAnalogVersion = "";
 		this.selectedUIlib = "";
 		this.selectedVersionGroup = "";
 		this.showFree = false;
