@@ -348,6 +348,24 @@ import { FormsModule } from "@angular/forms";
 					}
 				}
 			}
+
+			@media (max-width: 768px) {
+				.content {
+					.filtering-actions {
+						flex-direction: column;
+						gap: 0;
+					}
+
+					.cards-wrapper {
+						flex-direction: column;
+						align-items: center;
+
+						.card {
+							width: 90vw;
+						}
+					}
+				}
+			}
 		`,
 	],
 })

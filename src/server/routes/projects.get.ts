@@ -23,7 +23,7 @@ export default defineEventHandler(() => (
       "version": "17.3.0",
       "versionGroup": "v15 and up",
       "analogVersion": "1.2.0",
-      "uiLib": "Angular Material, PrimeNG, Spartan UI",
+      "uiLib": "Spartan UI",
       "pricing": "Free",
       "threeD": false,
       "developer": "Esther White"
