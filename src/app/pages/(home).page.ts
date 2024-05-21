@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnChanges, OnInit } from "@angular/core";
 import { Project } from "../models/project";
 import { FormsModule } from "@angular/forms";
 
@@ -53,7 +53,7 @@ import { FormsModule } from "@angular/forms";
 							<label for="checkbox">Free</label>
 						</div>
 						<div class="checkbox-wrapper">
-							<input type="checkbox" name="checkbox" class="checkbox" />
+							<input type="checkbox" name="checkbox" class="checkbox" [(ngModel)]="thereDElements" (change)="applyFilter()"/>
 							<label for="checkbox">3D</label>
 						</div>
 					</div>
@@ -343,7 +343,7 @@ import { FormsModule } from "@angular/forms";
 		`,
 	],
 })
-export default class HomeComponent implements OnInit {
+export default class HomeComponent implements OnInit, OnChanges {
 	projects: Project[] = [];
 	filteredProjects: Project[] = [];
 	categories: string[] = [];
@@ -356,9 +356,11 @@ export default class HomeComponent implements OnInit {
 	selectedAnalogVersion: string = "";
 	selectedUIlib: string = "";
 	showFree: boolean = false;
+  thereDElements: boolean = false;
 	http = inject(HttpClient);
 
 	ngOnInit(): void {
+    this.filterApplied = false;
 		this.http
 			.get<Project[]>("http://builtwithanalog.dev/api/projects")
 			.subscribe((projects) => {
@@ -380,6 +382,29 @@ export default class HomeComponent implements OnInit {
 			});
 	}
 
+  ngOnChanges(): void {
+    this.filterApplied = false;
+    this.http
+			.get<Project[]>("http://builtwithanalog.dev/api/projects")
+			.subscribe((projects) => {
+				this.projects = projects;
+				this.categories = Array.from(
+					new Set(this.projects.map((project) => project.category))
+				);
+				this.analogVersions = Array.from(
+					new Set(this.projects.map((project) => project.analogVersion))
+				);
+				this.projectsUIlib = Array.from(
+					new Set(
+						this.projects.map((project) => project.uiLib.split(", ")).flat()
+					)
+				);
+				this.versionGroup = Array.from(
+					new Set(this.projects.map((project) => project.versionGroup))
+				);
+			});
+  }
+
 	applyFilter(): void {
 		this.filterApplied = true;
 		this.filteredProjects = this.projects.filter((project) => {
@@ -392,7 +417,7 @@ export default class HomeComponent implements OnInit {
 					project.uiLib.split(", ").includes(this.selectedUIlib)) &&
 				(this.selectedVersionGroup === "" ||
 					project.versionGroup === this.selectedVersionGroup) &&
-				(!this.showFree || project.pricing === "Free")
+				(!this.showFree || project.pricing === "Free") && (!this.thereDElements || project.thereD === true)
 			);
 		});
 	}
