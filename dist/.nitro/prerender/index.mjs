@@ -652,40 +652,131 @@ const assets = {
     "size": 1497,
     "path": "../../analog/public/vite.svg"
   },
-  "/assets/analogjs-content-aNiBAnyk.js": {
+  "/assets/(home).page-BDiSFfpa.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"221a6-XCyimEzY+PZtSe1K5WoKYJd/gvg\"",
-    "mtime": "2024-05-20T13:13:47.801Z",
+    "etag": "\"131f-jJRXCik9gc0PpqHR9Rj6UxdM3E0\"",
+    "mtime": "2024-05-21T13:10:54.242Z",
+    "size": 4895,
+    "path": "../../analog/public/assets/(home).page-BDiSFfpa.js"
+  },
+  "/assets/about.page-DJZINY_z.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"bdf-XKDQE35ZFJz3qNbUB9KZGSYeeZU\"",
+    "mtime": "2024-05-21T13:10:54.242Z",
+    "size": 3039,
+    "path": "../../analog/public/assets/about.page-DJZINY_z.js"
+  },
+  "/assets/analogjs-content-aN0-fiot.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"221a6-YAdU2+m8c3SvBDZ3ljkEfNNZbnc\"",
+    "mtime": "2024-05-21T13:10:54.242Z",
     "size": 139686,
-    "path": "../../analog/public/assets/analogjs-content-aNiBAnyk.js"
+    "path": "../../analog/public/assets/analogjs-content-aN0-fiot.js"
   },
-  "/assets/favicon-BYy3mmNz.ico": {
+  "/assets/favicon-ozIGJLo5.ico": {
     "type": "image/vnd.microsoft.icon",
-    "etag": "\"3b4-Ivako7yq+vsCVODy+kzrieUF6LI\"",
-    "mtime": "2024-05-20T13:13:47.801Z",
-    "size": 948,
-    "path": "../../analog/public/assets/favicon-BYy3mmNz.ico"
+    "etag": "\"bb0-s6OeFNi9zSqDrxgeIIIUvb1T+j8\"",
+    "mtime": "2024-05-21T13:10:54.242Z",
+    "size": 2992,
+    "path": "../../analog/public/assets/favicon-ozIGJLo5.ico"
   },
-  "/assets/index-BY6XzHS1.css": {
+  "/assets/fqa.page-7_jBzoDS.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"cce-+Pu2R1WAWUCDrabrPA9Bbb68iys\"",
+    "mtime": "2024-05-21T13:10:54.242Z",
+    "size": 3278,
+    "path": "../../analog/public/assets/fqa.page-7_jBzoDS.js"
+  },
+  "/assets/index-HfV_Amhj.css": {
     "type": "text/css; charset=utf-8",
-    "etag": "\"3cb-sSsHkKuzrfJvVwSTbyJtOZAFlBg\"",
-    "mtime": "2024-05-20T13:13:47.801Z",
-    "size": 971,
-    "path": "../../analog/public/assets/index-BY6XzHS1.css"
+    "etag": "\"487-+Z+oeZFbRSdT3bUWngGTkJbrmow\"",
+    "mtime": "2024-05-21T13:10:54.242Z",
+    "size": 1159,
+    "path": "../../analog/public/assets/index-HfV_Amhj.css"
   },
-  "/assets/index-C9bZqWzn.js": {
+  "/assets/index-uoWLXK-0.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"43706-RxC2Z8SAWAKyNBJwwIWYmqVIUkw\"",
-    "mtime": "2024-05-20T13:13:47.801Z",
-    "size": 276230,
-    "path": "../../analog/public/assets/index-C9bZqWzn.js"
+    "etag": "\"46317-ibAYq8ZgFzuz8AzGe/W2A5OCSNc\"",
+    "mtime": "2024-05-21T13:10:54.242Z",
+    "size": 287511,
+    "path": "../../analog/public/assets/index-uoWLXK-0.js"
   },
-  "/assets/index.page-qCJpkdzt.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"4bc-JFPubSaqVetpIYFhyK8HqvLdBAI\"",
-    "mtime": "2024-05-20T13:13:47.801Z",
-    "size": 1212,
-    "path": "../../analog/public/assets/index.page-qCJpkdzt.js"
+  "/images/projects/anguhashblog.jpg": {
+    "type": "image/jpeg",
+    "etag": "\"547c6-W7h723l+itNnVsJyfox0EKF1BFU\"",
+    "mtime": "2024-03-13T22:08:47.218Z",
+    "size": 346054,
+    "path": "../../analog/public/images/projects/anguhashblog.jpg"
+  },
+  "/images/projects/angusciflix.jpg": {
+    "type": "image/jpeg",
+    "etag": "\"c723f-ntT894BXQHl32EyB7eWkwqgE83s\"",
+    "mtime": "2023-12-25T14:45:21.299Z",
+    "size": 815679,
+    "path": "../../analog/public/images/projects/angusciflix.jpg"
+  },
+  "/images/projects/clickup.jpg": {
+    "type": "image/jpeg",
+    "etag": "\"29e13-E7fyWOL42BzGG6kuWKNpuKAC66M\"",
+    "mtime": "2024-05-21T08:46:39.580Z",
+    "size": 171539,
+    "path": "../../analog/public/images/projects/clickup.jpg"
+  },
+  "/images/projects/delta.jpg": {
+    "type": "image/jpeg",
+    "etag": "\"42806-j0Okx08bFp8WkMNL/rZcImgLWB0\"",
+    "mtime": "2024-05-21T09:20:19.139Z",
+    "size": 272390,
+    "path": "../../analog/public/images/projects/delta.jpg"
+  },
+  "/images/projects/gemini.jpg": {
+    "type": "image/jpeg",
+    "etag": "\"2759b-hpRLgbxfXMUfqlIVnZz0CQHQ4tM\"",
+    "mtime": "2024-05-21T08:44:37.298Z",
+    "size": 161179,
+    "path": "../../analog/public/images/projects/gemini.jpg"
+  },
+  "/images/projects/google-domains.jpg": {
+    "type": "image/jpeg",
+    "etag": "\"34421-kZQ6NX3A+irA0Y7mLwAdNgRGX04\"",
+    "mtime": "2024-05-21T09:05:16.447Z",
+    "size": 214049,
+    "path": "../../analog/public/images/projects/google-domains.jpg"
+  },
+  "/images/projects/klm.jpg": {
+    "type": "image/jpeg",
+    "etag": "\"39f76-KAIc7yN/UwmFOzvKjUDLbq2K1Is\"",
+    "mtime": "2024-05-21T08:44:49.582Z",
+    "size": 237430,
+    "path": "../../analog/public/images/projects/klm.jpg"
+  },
+  "/images/projects/paidlancer.jpg": {
+    "type": "image/jpeg",
+    "etag": "\"cacef-KsIs+jRvdvNncYXRUrsOHrWKlkk\"",
+    "mtime": "2024-03-14T14:55:25.429Z",
+    "size": 830703,
+    "path": "../../analog/public/images/projects/paidlancer.jpg"
+  },
+  "/images/projects/techopensolve.jpg": {
+    "type": "image/jpeg",
+    "etag": "\"7476e-NhAtZMpEXeGGWX5VTVMnTsl8djg\"",
+    "mtime": "2024-05-08T15:02:34.805Z",
+    "size": 477038,
+    "path": "../../analog/public/images/projects/techopensolve.jpg"
+  },
+  "/images/projects/users-my-rest-api.jpg": {
+    "type": "image/jpeg",
+    "etag": "\"95da6-lL4NTTeNPHYAcu4qDAzYV/ABNfk\"",
+    "mtime": "2024-01-31T18:03:48.603Z",
+    "size": 613798,
+    "path": "../../analog/public/images/projects/users-my-rest-api.jpg"
+  },
+  "/images/projects/zoaib-themebuildercover.jpg": {
+    "type": "image/jpeg",
+    "etag": "\"27fc6-KeLulhNsR35n90k4vCemM5uiops\"",
+    "mtime": "2024-05-21T10:22:24.914Z",
+    "size": 163782,
+    "path": "../../analog/public/images/projects/zoaib-themebuildercover.jpg"
   }
 };
 
@@ -779,11 +870,13 @@ const _f4b49z = eventHandler((event) => {
   return readAsset(id);
 });
 
+const _lazy_YifxHs = () => import('./chunks/routes/projects.get.mjs');
 const _lazy_eVR5kI = () => import('./chunks/routes/v1/hello.mjs');
 const _lazy_XzqrwR = () => import('file://D:/Estee/Programming/My-Open-Source/TechShowcase/builtwithanalog/node_modules/@analogjs/vite-plugin-nitro/src/lib/runtime/renderer.mjs');
 
 const handlers = [
   { route: '', handler: _f4b49z, lazy: false, middleware: true, method: undefined },
+  { route: '/projects', handler: _lazy_YifxHs, lazy: true, middleware: false, method: "get" },
   { route: '/v1/hello', handler: _lazy_eVR5kI, lazy: true, middleware: false, method: undefined },
   { route: '', handler: _FskY57, lazy: false, middleware: true, method: undefined },
   { route: '/**', handler: _lazy_XzqrwR, lazy: true, middleware: false, method: undefined }

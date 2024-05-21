@@ -4,7 +4,7 @@ export default defineEventHandler(() => (
   [
     {
       "name": "Gemini",
-      "imageSrc": "../assets/images/projects/gemini.jpg",
+      "imageSrc": "https://builtwithanalog.dev/assets/images/projects/gemini.jpg",
       "url": "https://gemini.google.com/app",
       "category": "AI Language Model",
       "version": "17.3.0",
@@ -17,7 +17,7 @@ export default defineEventHandler(() => (
     },
     {
       "name": "Theme Builder App",
-      "imageSrc": "../assets/images/projects/zoaib-themebuildercover.jpg",
+      "imageSrc": "https://builtwithanalog.dev/assets/images/projects/gemini.jpg/assets/images/projects/zoaib-themebuildercover.jpg",
       "url": "https://buymeacoffee.com/zoaibkhan/e/254994",
       "category": "Template",
       "version": "18 rc",
@@ -30,7 +30,7 @@ export default defineEventHandler(() => (
     },
     {
       "name": "Google Domains",
-      "imageSrc": "../assets/images/projects/google-domains.jpg",
+      "imageSrc": "https://builtwithanalog.dev/assets/images/projects/gemini.jpg/assets/images/projects/google-domains.jpg",
       "url": "https://domains.google.com",
       "category": "AI Language Model",
       "version": "",
@@ -43,7 +43,7 @@ export default defineEventHandler(() => (
     },
     {
       "name": "Delta Air Lines",
-      "imageSrc": "../assets/images/projects/delta.jpg",
+      "imageSrc": "https://builtwithanalog.dev/assets/images/projects/gemini.jpg/assets/images/projects/delta.jpg",
       "url": "https://www.delta.com/eu/en",
       "category": "Travel",
       "version": "",
@@ -56,7 +56,7 @@ export default defineEventHandler(() => (
     },
     {
       "name": "Click Up",
-      "imageSrc": "../assets/images/projects/clickup.jpg",
+      "imageSrc": "https://builtwithanalog.dev/assets/images/projects/gemini.jpg/assets/images/projects/clickup.jpg",
       "url": "https://app.clickup.com",
       "category": "Productivity",
       "version": "17.3.0",
@@ -69,7 +69,7 @@ export default defineEventHandler(() => (
     },
     {
       "name": "KLM",
-      "imageSrc": "../assets/images/projects/klm.jpg",
+      "imageSrc": "https://builtwithanalog.dev/assets/images/projects/gemini.jpg/assets/images/projects/klm.jpg",
       "url": "https://www.klm.com",
       "category": "Travel",
       "version": "17.3.0",
@@ -82,7 +82,7 @@ export default defineEventHandler(() => (
     },
     {
       "name": "TechOpenSolve",
-      "imageSrc": "../assets/images/projects/techopensolve.jpg",
+      "imageSrc": "https://builtwithanalog.dev/assets/images/projects/gemini.jpg/assets/images/projects/techopensolve.jpg",
       "url": "https://techopensolve.com",
       "category": "Open Source",
       "version": "17.3.0",
@@ -95,7 +95,7 @@ export default defineEventHandler(() => (
     },
     {
       "name": "AnguHashBlog",
-      "imageSrc": "../assets/images/projects/anguhashblog.jpg",
+      "imageSrc": "https://builtwithanalog.dev/assets/images/projects/gemini.jpg/assets/images/projects/anguhashblog.jpg",
       "url": "https://anguhashblog.com",
       "category": "Open Source",
       "version": "17.3.0",
@@ -108,7 +108,7 @@ export default defineEventHandler(() => (
     },
     {
       "name": "Paidlancer",
-      "imageSrc": "../assets/images/projects/paidlancer.jpg",
+      "imageSrc": "https://builtwithanalog.dev/assets/images/projects/gemini.jpg/assets/images/projects/paidlancer.jpg",
       "url": "https://www.paidlancer.dev",
       "category": "Platform",
       "version": "17.2.0",
@@ -121,7 +121,7 @@ export default defineEventHandler(() => (
     },
     {
       "name": "AnguSciFlix",
-      "imageSrc": "../assets/images/projects/angusciflix.jpg",
+      "imageSrc": "https://builtwithanalog.dev/assets/images/projects/gemini.jpg/assets/images/projects/angusciflix.jpg",
       "url": "https://angusciflix.monacodelisa.com",
       "category": "Entertainment",
       "version": "17.2.0",
@@ -134,7 +134,7 @@ export default defineEventHandler(() => (
     },
     {
       "name": "Users",
-      "imageSrc": "../assets/images/projects/users-my-rest-api.jpg",
+      "imageSrc": "https://builtwithanalog.dev/assets/images/projects/gemini.jpg/assets/images/projects/users-my-rest-api.jpg",
       "url": "https://users-my-api.monacodelisa.com",
       "category": "Template",
       "version": "17.2.0",

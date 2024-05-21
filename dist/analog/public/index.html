@@ -1,27 +1,126 @@
 <!DOCTYPE html><html lang="en"><head>
     <meta charset="utf-8">
-    <title>MyApp</title>
+    <title>Built with Analog</title>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="/assets/favicon-BYy3mmNz.ico">
-    <script type="module" crossorigin="" src="/assets/index-C9bZqWzn.js"></script>
-    <link rel="stylesheet" crossorigin="" href="/assets/index-BY6XzHS1.css">
-  <style ng-app-id="ng">[_nghost-ng-c3984273398] {
-        max-width: 1280px;
+    <link rel="icon" type="image/x-icon" href="/assets/favicon-ozIGJLo5.ico">
+    <script type="module" crossorigin="" src="/assets/index-uoWLXK-0.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-HfV_Amhj.css">
+  <style ng-app-id="ng">[_nghost-ng-c582792440] {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 100vh;
+        width: 100vw;
         margin: 0 auto;
-        padding: 2rem;
-        text-align: center;
-      }</style><style ng-app-id="ng">.logo[_ngcontent-ng-c1047899640] {
-        will-change: filter;
-      }
-      .logo[_ngcontent-ng-c1047899640]:hover {
-        filter: drop-shadow(0 0 2em #646cffaa);
-      }
-      .read-the-docs[_ngcontent-ng-c1047899640] {
-        color: #888;
-      }</style></head>
+      }</style><style ng-app-id="ng">.header[_ngcontent-ng-c453601695] {
+				justify-content: space-between;
+
+        .logo {
+          display: flex;
+          align-items: center;
+          gap: 0.3rem;
+          margin: 0 0 0 1rem;
+          img {
+            width: 2rem;
+            height: 2rem;
+          }
+          h1 {
+            font-size: 1.2rem;
+            font-weight: 500;
+          }
+        }
+			}</style><style ng-app-id="ng">.footer[_ngcontent-ng-c1385892751] {
+				display: flex;
+				justify-content: center;
+
+				.info {
+					.links {
+						display: flex;
+						justify-content: center;
+						gap: 0.5rem;
+
+            a {
+              font-weight: 500;
+            }
+					}
+
+          small {
+            color: gray;
+          }
+				}
+			}</style><style ng-app-id="ng">.content[_ngcontent-ng-c2311037558] {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: flex-start;
+				min-height: 70vh;
+				margin: 1rem;
+
+				.filtering {
+					display: flex;
+					flex-direction: column;
+					form {
+						display: flex;
+						align-items: center;
+						gap: 1rem;
+
+						select {
+							padding: 0.8rem 0.5rem 0.8rem 0.4rem;
+							font-size: 1rem;
+							width: 10rem;
+							border-top: none;
+							border-right: none;
+							border-left: none;
+							border-bottom: 2px solid transparent;
+							border-radius: 0.5rem 0.5rem 0 0;
+							cursor: pointer;
+
+							&:focus {
+								outline: none;
+								border-bottom: 2px solid #646cff;
+							}
+						}
+
+						.checkbox-wrapper {
+							display: flex;
+							align-items: center;
+							gap: 0.3rem;
+
+							.checkbox {
+								height: 1.1rem;
+								width: 1.1rem;
+								cursor: pointer;
+							}
+							label {
+								font-size: 1.1rem;
+							}
+						}
+					}
+
+					.total {
+						display: flex;
+						justify-content: center;
+						padding: 0.5rem;
+
+						p {
+							font-size: 1rem;
+						}
+					}
+				}
+
+				.cards-wrapper {
+					display: flex;
+					gap: 1.5rem;
+					margin-top: 1rem;
+
+					.card {
+						width: 20rem;
+					}
+				}
+			}</style></head>
   <body><!--nghm-->
-    <app-root _nghost-ng-c3984273398="" ng-version="17.3.9" ngh="1" ng-server-context="ssr-analog"><router-outlet _ngcontent-ng-c3984273398=""></router-outlet><app-home _nghost-ng-c1047899640="" ngh="0"><div _ngcontent-ng-c1047899640=""><a _ngcontent-ng-c1047899640="" href="https://analogjs.org/" target="_blank"><img _ngcontent-ng-c1047899640="" alt="Analog Logo" src="/analog.svg" class="logo analog"></a></div><h2 _ngcontent-ng-c1047899640="">Analog</h2><h3 _ngcontent-ng-c1047899640="">The fullstack meta-framework for Angular!</h3><div _ngcontent-ng-c1047899640="" class="card"><button _ngcontent-ng-c1047899640="" type="button">Count 0</button></div><p _ngcontent-ng-c1047899640="" class="read-the-docs"> For guides on how to customize this project, visit the <a _ngcontent-ng-c1047899640="" href="https://analogjs.org" target="_blank">Analog documentation</a></p></app-home><!----></app-root>
+    <app-root _nghost-ng-c582792440="" ng-version="17.3.9" ngh="2" ng-server-context="ssr-analog"><app-header _ngcontent-ng-c582792440="" _nghost-ng-c453601695="" ngh="0"><div _ngcontent-ng-c453601695="" class="header"><div _ngcontent-ng-c453601695="" class="logo"><img _ngcontent-ng-c453601695="" alt="" src="https://analogjs.org/img/logos/analog-logo.svg"><a _ngcontent-ng-c453601695="" routerlink="/" href="/"><h1 _ngcontent-ng-c453601695="">Built with Analog</h1></a></div></div></app-header><router-outlet _ngcontent-ng-c582792440=""></router-outlet><app-home _nghost-ng-c2311037558="" ngh="1"><div _ngcontent-ng-c2311037558="" class="content"><div _ngcontent-ng-c2311037558="" class="filtering"><form _ngcontent-ng-c2311037558="" id="filter-form" class="filtering-actions"><select _ngcontent-ng-c2311037558="" name="type" id="type" value="type"><option _ngcontent-ng-c2311037558="" selected="" hidden="" disabled="">Type</option><option _ngcontent-ng-c2311037558="" value="open-source">Open Source</option><option _ngcontent-ng-c2311037558="" value="productivity">Productivity</option><option _ngcontent-ng-c2311037558="" value="template">Template</option></select><select _ngcontent-ng-c2311037558="" name="angular-version" id="angular-version"><option _ngcontent-ng-c2311037558="" selected="" hidden="" disabled="">Angular Version</option><option _ngcontent-ng-c2311037558="" value="v15">v15 and up</option><option _ngcontent-ng-c2311037558="" value="v10-v15">v10 - v15</option><option _ngcontent-ng-c2311037558="" value="earlier-than-v10">earlier than v10</option></select><select _ngcontent-ng-c2311037558="" name="structure" id="structure"><option _ngcontent-ng-c2311037558="" selected="" hidden="" disabled="">Angular Structure</option><option _ngcontent-ng-c2311037558="" value="modules">Modules</option><option _ngcontent-ng-c2311037558="" value="standalone">Standalone</option></select><select _ngcontent-ng-c2311037558="" name="ui-lib" id="ui-lib"><option _ngcontent-ng-c2311037558="" selected="" hidden="" disabled="">UI Library</option><option _ngcontent-ng-c2311037558="" value="none">None</option><option _ngcontent-ng-c2311037558="" value="angular-material">Angular Material</option><option _ngcontent-ng-c2311037558="" value="primeng">PrimeNG</option><option _ngcontent-ng-c2311037558="" value="spartan">Spartan UI</option></select><div _ngcontent-ng-c2311037558="" class="checkbox-wrapper"><input _ngcontent-ng-c2311037558="" type="checkbox" name="checkbox" class="checkbox"><label _ngcontent-ng-c2311037558="" for="checkbox">Free</label></div><button _ngcontent-ng-c2311037558="" type="reset">Clear Filters</button></form><div _ngcontent-ng-c2311037558="" class="total"><p _ngcontent-ng-c2311037558="">Projects found: 100</p></div></div><div _ngcontent-ng-c2311037558="" class="cards-wrapper"><a _ngcontent-ng-c2311037558="" target="_blank" href="https://gemini.google.com/app?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/gemini.jpg" alt="Gemini"></div></a><a _ngcontent-ng-c2311037558="" target="_blank" href="https://buymeacoffee.com/zoaibkhan/e/254994?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/zoaib-themebuildercover.jpg" alt="Theme Builder App"></div></a><a _ngcontent-ng-c2311037558="" target="_blank" href="https://domains.google.com?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/google-domains.jpg" alt="Google Domains"></div></a><a _ngcontent-ng-c2311037558="" target="_blank" href="https://www.delta.com/eu/en?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/delta.jpg" alt="Delta Air Lines"></div></a><a _ngcontent-ng-c2311037558="" target="_blank" href="https://app.clickup.com?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/clickup.jpg" alt="Click Up"></div></a><a _ngcontent-ng-c2311037558="" target="_blank" href="https://www.klm.com?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/klm.jpg" alt="KLM"></div></a><a _ngcontent-ng-c2311037558="" target="_blank" href="https://techopensolve.com?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/techopensolve.jpg" alt="TechOpenSolve"></div></a><a _ngcontent-ng-c2311037558="" target="_blank" href="https://anguhashblog.com?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/anguhashblog.jpg" alt="AnguHashBlog"></div></a><a _ngcontent-ng-c2311037558="" target="_blank" href="https://www.paidlancer.dev?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/paidlancer.jpg" alt="Paidlancer"></div></a><a _ngcontent-ng-c2311037558="" target="_blank" href="https://angusciflix.monacodelisa.com?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/angusciflix.jpg" alt="AnguSciFlix"></div></a><a _ngcontent-ng-c2311037558="" target="_blank" href="https://users-my-api.monacodelisa.com?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/users-my-rest-api.jpg" alt="Users"></div></a><!----></div></div></app-home><!----><app-footer _ngcontent-ng-c582792440="" _nghost-ng-c1385892751="" ngh="0"><div _ngcontent-ng-c1385892751="" class="footer"><div _ngcontent-ng-c1385892751="" class="social"></div><div _ngcontent-ng-c1385892751="" class="info"><div _ngcontent-ng-c1385892751="" class="links"><a _ngcontent-ng-c1385892751="" routerlink="/fqa" href="/fqa">FQA</a><a _ngcontent-ng-c1385892751="" routerlink="/about" href="/about">About</a></div><small _ngcontent-ng-c1385892751=""> This site is built with Analog </small></div></div></app-footer></app-root>
   
 
-<script id="ng-state" type="application/json">{"__nghData__":[{},{"c":{"0":[{"i":"c1047899640","r":1}]}}]}</script></body></html>
+<script id="ng-state" type="application/json">{"176560544":{"b":[{"name":"Gemini","imageSrc":"../assets/images/projects/gemini.jpg","url":"https://gemini.google.com/app","category":"AI Language Model","version":"17.3.0","versionGroup":"v15 and up","structure":"Standalone","uiLib":"Angular Material","pricing":"Free","threeD":false,"developer":"Google"},{"name":"Theme Builder App","imageSrc":"../assets/images/projects/zoaib-themebuildercover.jpg","url":"https://buymeacoffee.com/zoaibkhan/e/254994","category":"Template","version":"18 rc","versionGroup":"v15 and up","structure":"Standalone","uiLib":"Angular Material","pricing":"One-time Fee","threeD":false,"developer":"Zoaib Khan"},{"name":"Google Domains","imageSrc":"../assets/images/projects/google-domains.jpg","url":"https://domains.google.com","category":"AI Language Model","version":"","versionGroup":"v15 and up","structure":"Modular","uiLib":"Angular Material","pricing":"Free","threeD":false,"developer":"Google"},{"name":"Delta Air Lines","imageSrc":"../assets/images/projects/delta.jpg","url":"https://www.delta.com/eu/en","category":"Travel","version":"","versionGroup":"v15 and up","structure":"Modular","uiLib":"None","pricing":"Free","threeD":false,"developer":"Google"},{"name":"Click Up","imageSrc":"../assets/images/projects/clickup.jpg","url":"https://app.clickup.com","category":"Productivity","version":"17.3.0","versionGroup":"v15 and up","structure":"Standalone","uiLib":"None","pricing":"Free","threeD":false,"developer":"Google"},{"name":"KLM","imageSrc":"../assets/images/projects/klm.jpg","url":"https://www.klm.com","category":"Travel","version":"17.3.0","versionGroup":"v15 and up","structure":"Standalone","uiLib":"None","pricing":"Free","threeD":false,"developer":"Google"},{"name":"TechOpenSolve","imageSrc":"../assets/images/projects/techopensolve.jpg","url":"https://techopensolve.com","category":"Open Source","version":"17.3.0","versionGroup":"v15 and up","structure":"Standalone","uiLib":"Angular Material","pricing":"Free","threeD":false,"developer":"Esther White"},{"name":"AnguHashBlog","imageSrc":"../assets/images/projects/anguhashblog.jpg","url":"https://anguhashblog.com","category":"Open Source","version":"17.3.0","versionGroup":"v15 and up","structure":"Standalone","uiLib":"Angular Material, PrimeNG","pricing":"Free","threeD":false,"developer":"Esther White"},{"name":"Paidlancer","imageSrc":"../assets/images/projects/paidlancer.jpg","url":"https://www.paidlancer.dev","category":"Platform","version":"17.2.0","versionGroup":"v15 and up","structure":"Standalone","uiLib":"Angular Material","pricing":"Subscription","threeD":false,"developer":"Esther White"},{"name":"AnguSciFlix","imageSrc":"../assets/images/projects/angusciflix.jpg","url":"https://angusciflix.monacodelisa.com","category":"Entertainment","version":"17.2.0","versionGroup":"v15 and up","structure":"Standalone","uiLib":"Angular Material","pricing":"Free","threeD":false,"developer":"Esther White"},{"name":"Users","imageSrc":"../assets/images/projects/users-my-rest-api.jpg","url":"https://users-my-api.monacodelisa.com","category":"Template","version":"17.2.0","versionGroup":"v15 and up","structure":"Standalone","uiLib":"Angular Material","pricing":"One-time Fee","threeD":false,"developer":"Esther White"}],"h":{},"s":200,"st":"OK","u":"https://builtwithanalog.dev/api/projects","rt":"json"},"__nghData__":[{},{"t":{"50":"t0"},"c":{"50":[{"i":"t0","r":1,"x":11}]}},{"c":{"1":[{"i":"c2311037558","r":1}]}}]}</script></body></html>

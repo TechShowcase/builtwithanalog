@@ -2914,6 +2914,31 @@ function getParentInjectorLocation(tNode, lView) {
 function diPublicInInjector(injectorIndex, tView, token) {
   bloomAdd(injectorIndex, tView, token);
 }
+function injectAttributeImpl(tNode, attrNameToInject) {
+  const attrs = tNode.attrs;
+  if (attrs) {
+    const attrsLength = attrs.length;
+    let i = 0;
+    while (i < attrsLength) {
+      const value = attrs[i];
+      if (isNameOnlyAttributeMarker(value))
+        break;
+      if (value === 0) {
+        i = i + 2;
+      } else if (typeof value === "number") {
+        i++;
+        while (i < attrsLength && typeof attrs[i] === "string") {
+          i++;
+        }
+      } else if (value === attrNameToInject) {
+        return attrs[i + 1];
+      } else {
+        i = i + 2;
+      }
+    }
+  }
+  return null;
+}
 function notFoundValueOrThrow(notFoundValue, token, flags) {
   if (flags & InjectFlags.Optional || notFoundValue !== void 0) {
     return notFoundValue;
@@ -3219,6 +3244,9 @@ function getTNodeFromLView(lView) {
     return lView[T_HOST];
   }
   return null;
+}
+function ɵɵinjectAttribute(attrNameToInject) {
+  return injectAttributeImpl(getCurrentTNode(), attrNameToInject);
 }
 function createInjector(defType, parent = null, additionalProviders = null, name) {
   const injector = createInjectorWithoutInjectorInstances(defType, parent, additionalProviders, name);
@@ -4262,6 +4290,9 @@ function trustedHTMLFromString(html) {
 function trustedHTMLFromStringBypass(html) {
   return html;
 }
+function trustedScriptURLFromStringBypass(url) {
+  return url;
+}
 class SafeValueImpl {
   constructor(changingThisBreaksApplicationSecurity) {
     this.changingThisBreaksApplicationSecurity = changingThisBreaksApplicationSecurity;
@@ -4581,10 +4612,53 @@ function ɵɵsanitizeHtml(unsafeHtml) {
   }
   return _sanitizeHtml(getDocument(), renderStringify(unsafeHtml));
 }
+function ɵɵsanitizeUrl(unsafeUrl) {
+  const sanitizer = getSanitizer();
+  if (sanitizer) {
+    return sanitizer.sanitize(SecurityContext.URL, unsafeUrl) || "";
+  }
+  if (allowSanitizationBypassAndThrow(
+    unsafeUrl,
+    "URL"
+    /* BypassType.Url */
+  )) {
+    return unwrapSafeValue(unsafeUrl);
+  }
+  return _sanitizeUrl(renderStringify(unsafeUrl));
+}
+function ɵɵsanitizeResourceUrl(unsafeResourceUrl) {
+  const sanitizer = getSanitizer();
+  if (sanitizer) {
+    return trustedScriptURLFromStringBypass(sanitizer.sanitize(SecurityContext.RESOURCE_URL, unsafeResourceUrl) || "");
+  }
+  if (allowSanitizationBypassAndThrow(
+    unsafeResourceUrl,
+    "ResourceURL"
+    /* BypassType.ResourceUrl */
+  )) {
+    return trustedScriptURLFromStringBypass(unwrapSafeValue(unsafeResourceUrl));
+  }
+  throw new RuntimeError(904, false);
+}
+function getUrlSanitizer(tag, prop) {
+  if (tag === "base" || tag === "link") {
+    return ɵɵsanitizeResourceUrl;
+  }
+  return ɵɵsanitizeUrl;
+}
+function ɵɵsanitizeUrlOrResourceUrl(unsafeUrl, tag, prop) {
+  return getUrlSanitizer(tag)(unsafeUrl);
+}
 function validateAgainstEventProperties(name) {
   if (name.toLowerCase().startsWith("on")) {
     const errorMessage = `Binding to event property '${name}' is disallowed for security reasons, please use (${name.slice(2)})=...
 If '${name}' is a directive input, make sure the directive is imported by the current module.`;
+    throw new RuntimeError(306, errorMessage);
+  }
+}
+function validateAgainstEventAttributes(name) {
+  if (name.toLowerCase().startsWith("on")) {
+    const errorMessage = `Binding to event attribute '${name}' is disallowed for security reasons, please use (${name.slice(2)})=...`;
     throw new RuntimeError(306, errorMessage);
   }
 }
@@ -4855,9 +4929,6 @@ function applyToElementOrContainer(action, renderer, parent, lNodeToHandle, befo
 }
 function createTextNode(renderer, value) {
   return renderer.createText(value);
-}
-function updateTextNode(renderer, rNode, value) {
-  renderer.setValue(rNode, value);
 }
 function createElementNode(renderer, name, namespace) {
   return renderer.createElement(name, namespace);
@@ -6028,6 +6099,23 @@ function addComponentLogic(lView, hostTNode, def) {
   const componentView = addToViewTree(lView, createLView(lView, tView, null, lViewFlags, native, hostTNode, null, rendererFactory.createRenderer(native, def), null, null, null));
   lView[hostTNode.index] = componentView;
 }
+function elementAttributeInternal(tNode, lView, name, value, sanitizer, namespace) {
+  if (false) {
+    assertNotSame(value, NO_CHANGE, "Incoming value should never be NO_CHANGE.");
+    validateAgainstEventAttributes(name);
+    assertTNodeType(tNode, 2, `Attempted to set attribute \`${name}\` on a container node. Host bindings are not valid on ng-container or ng-template.`);
+  }
+  const element = getNativeByTNode(tNode, lView);
+  setElementAttribute(lView[RENDERER], element, namespace, tNode.value, name, value, sanitizer);
+}
+function setElementAttribute(renderer, element, namespace, tagName, name, value, sanitizer) {
+  if (value == null) {
+    renderer.removeAttribute(element, name, namespace);
+  } else {
+    const strValue = sanitizer == null ? renderStringify(value) : sanitizer(value, tagName || "", name);
+    renderer.setAttribute(element, name, strValue, namespace);
+  }
+}
 function setInputsFromAttrs(lView, directiveIndex, instance, def, tNode, initialInputData) {
   const initialInputs = initialInputData[directiveIndex];
   if (initialInputs !== null) {
@@ -6169,10 +6257,6 @@ function setInputsForProperty(tView, lView, inputs, publicName, value) {
     writeToDirectiveInput(def, instance, publicName, privateName, flags, value);
   }
 }
-function textBindingInternal(lView, index, value) {
-  const element = getNativeByIndex(index, lView);
-  updateTextNode(lView[RENDERER], element, value);
-}
 function renderComponent(hostLView, componentHostIdx) {
   const componentView = getComponentLViewByIndex(componentHostIdx, hostLView);
   const componentTView = componentView[TVIEW];
@@ -6248,6 +6332,14 @@ function createAndRenderEmbeddedLView(declarationLView, templateTNode, context, 
     setActiveConsumer(prevConsumer);
   }
 }
+function getLViewFromLContainer(lContainer, index) {
+  const adjustedIndex = CONTAINER_HEADER_OFFSET + index;
+  if (adjustedIndex < lContainer.length) {
+    const lView = lContainer[adjustedIndex];
+    return lView;
+  }
+  return void 0;
+}
 function shouldAddViewToDom(tNode, dehydratedView) {
   return !dehydratedView || dehydratedView.firstChild === null || hasInSkipHydrationBlockFlag(tNode);
 }
@@ -6266,6 +6358,13 @@ function addLViewToLContainer(lContainer, lView, index, addToDOM = true) {
   if (hydrationInfo !== null && hydrationInfo.firstChild !== null) {
     hydrationInfo.firstChild = null;
   }
+}
+function removeLViewFromLContainer(lContainer, index) {
+  const lView = detachView(lContainer, index);
+  if (lView !== void 0) {
+    destroyLView(lView[TVIEW], lView);
+  }
+  return lView;
 }
 function collectNativeNodes(tView, lView, tNode, result, isProjection = false) {
   while (tNode !== null) {
@@ -8641,6 +8740,9 @@ function insertAnchorNode(hostLView, hostTNode) {
 }
 let _locateOrCreateAnchorNode = createAnchorNode;
 let _populateDehydratedViewsInLContainer = () => false;
+function populateDehydratedViewsInLContainer(lContainer, tNode, hostLView) {
+  return _populateDehydratedViewsInLContainer(lContainer, tNode, hostLView);
+}
 function createAnchorNode(lContainer, hostLView, hostTNode, slotValue) {
   if (lContainer[NATIVE])
     return;
@@ -9148,6 +9250,19 @@ function validateMappings(bindingType, def, hostDirectiveBindings) {
     }
   }
 }
+function ɵɵInputTransformsFeature(definition) {
+  const inputs = definition.inputConfig;
+  const inputTransforms = {};
+  for (const minifiedKey in inputs) {
+    if (inputs.hasOwnProperty(minifiedKey)) {
+      const value = inputs[minifiedKey];
+      if (Array.isArray(value) && value[3]) {
+        inputTransforms[minifiedKey] = value[3];
+      }
+    }
+  }
+  definition.inputTransforms = inputTransforms;
+}
 class NgModuleRef$1 {
 }
 class NgModuleFactory$1 {
@@ -9333,7 +9448,97 @@ function bindingUpdated(lView, bindingIndex, value) {
 function isDetachedByI18n(tNode) {
   return (tNode.flags & 32) === 32;
 }
+function templateFirstCreatePass(index, tView, lView, templateFn, decls, vars, tagName, attrsIndex, localRefsIndex) {
+  const tViewConsts = tView.consts;
+  const tNode = getOrCreateTNode(tView, index, 4, tagName || null, getConstant(tViewConsts, attrsIndex));
+  resolveDirectives(tView, lView, tNode, getConstant(tViewConsts, localRefsIndex));
+  registerPostOrderHooks(tView, tNode);
+  const embeddedTView = tNode.tView = createTView(
+    2,
+    tNode,
+    templateFn,
+    decls,
+    vars,
+    tView.directiveRegistry,
+    tView.pipeRegistry,
+    null,
+    tView.schemas,
+    tViewConsts,
+    null
+    /* ssrId */
+  );
+  if (tView.queries !== null) {
+    tView.queries.template(tView, tNode);
+    embeddedTView.queries = tView.queries.embeddedTView(tNode);
+  }
+  return tNode;
+}
+function ɵɵtemplate(index, templateFn, decls, vars, tagName, attrsIndex, localRefsIndex, localRefExtractor) {
+  const lView = getLView();
+  const tView = getTView();
+  const adjustedIndex = index + HEADER_OFFSET;
+  const tNode = tView.firstCreatePass ? templateFirstCreatePass(adjustedIndex, tView, lView, templateFn, decls, vars, tagName, attrsIndex, localRefsIndex) : tView.data[adjustedIndex];
+  setCurrentTNode(tNode, false);
+  const comment = _locateOrCreateContainerAnchor(tView, lView, tNode, index);
+  if (wasLastNodeCreated()) {
+    appendChild(tView, lView, comment, tNode);
+  }
+  attachPatchData(comment, lView);
+  const lContainer = createLContainer(comment, lView, comment, tNode);
+  lView[adjustedIndex] = lContainer;
+  addToViewTree(lView, lContainer);
+  populateDehydratedViewsInLContainer(lContainer, tNode, lView);
+  if (isDirectiveHost(tNode)) {
+    createDirectivesInstances(tView, lView, tNode);
+  }
+  if (localRefsIndex != null) {
+    saveResolvedLocalsInData(lView, tNode, localRefExtractor);
+  }
+  return ɵɵtemplate;
+}
+let _locateOrCreateContainerAnchor = createContainerAnchorImpl;
+function createContainerAnchorImpl(tView, lView, tNode, index) {
+  lastNodeWasCreated(true);
+  return lView[RENDERER].createComment(false ? "container" : "");
+}
+function locateOrCreateContainerAnchorImpl(tView, lView, tNode, index) {
+  const hydrationInfo = lView[HYDRATION];
+  const isNodeCreationMode = !hydrationInfo || isInSkipHydrationBlock$1() || isDetachedByI18n(tNode) || isDisconnectedNode$1(hydrationInfo, index);
+  lastNodeWasCreated(isNodeCreationMode);
+  if (isNodeCreationMode) {
+    return createContainerAnchorImpl(tView, lView);
+  }
+  const ssrId = hydrationInfo.data[TEMPLATES]?.[index] ?? null;
+  if (ssrId !== null && tNode.tView !== null) {
+    if (tNode.tView.ssrId === null) {
+      tNode.tView.ssrId = ssrId;
+    } else {
+    }
+  }
+  const currentRNode = locateNextRNode(hydrationInfo, tView, lView, tNode);
+  setSegmentHead(hydrationInfo, index, currentRNode);
+  const viewContainerSize = calcSerializedContainerSize(hydrationInfo, index);
+  const comment = siblingAfter(viewContainerSize, currentRNode);
+  if (false) {
+    validateMatchingNode(comment, Node.COMMENT_NODE, null, lView, tNode);
+    markRNodeAsClaimedByHydration(comment);
+  }
+  return comment;
+}
+function enableLocateOrCreateContainerAnchorImpl() {
+  _locateOrCreateContainerAnchor = locateOrCreateContainerAnchorImpl;
+}
 /* @__PURE__ */ new InjectionToken(false ? "DEFER_BLOCK_CONFIG" : "");
+function ɵɵattribute(name, value, sanitizer, namespace) {
+  const lView = getLView();
+  const bindingIndex = nextBindingIndex();
+  if (bindingUpdated(lView, bindingIndex, value)) {
+    const tView = getTView();
+    const tNode = getSelectedTNode();
+    elementAttributeInternal(tNode, lView, name, value, sanitizer, namespace);
+  }
+  return ɵɵattribute;
+}
 function interpolation1(lView, prefix, v0, suffix) {
   const different = bindingUpdated(lView, nextBindingIndex(), v0);
   return different ? prefix + renderStringify(v0) + suffix : NO_CHANGE;
@@ -9774,6 +9979,359 @@ function isStylingValuePresent(value) {
 function hasStylingInputShadow(tNode, isClassBased) {
   return (tNode.flags & 8) !== 0;
 }
+class LiveCollection {
+  destroy(item) {
+  }
+  updateValue(index, value) {
+  }
+  // operations below could be implemented on top of the operations defined so far, but having
+  // them explicitly allow clear expression of intent and potentially more performant
+  // implementations
+  swap(index1, index2) {
+    const startIdx = Math.min(index1, index2);
+    const endIdx = Math.max(index1, index2);
+    const endItem = this.detach(endIdx);
+    if (endIdx - startIdx > 1) {
+      const startItem = this.detach(startIdx);
+      this.attach(startIdx, endItem);
+      this.attach(endIdx, startItem);
+    } else {
+      this.attach(startIdx, endItem);
+    }
+  }
+  move(prevIndex, newIdx) {
+    this.attach(newIdx, this.detach(prevIndex));
+  }
+}
+function valuesMatching(liveIdx, liveValue, newIdx, newValue, trackBy) {
+  if (liveIdx === newIdx && Object.is(liveValue, newValue)) {
+    return 1;
+  } else if (Object.is(trackBy(liveIdx, liveValue), trackBy(newIdx, newValue))) {
+    return -1;
+  }
+  return 0;
+}
+function reconcile(liveCollection, newCollection, trackByFn) {
+  let detachedItems = void 0;
+  let liveKeysInTheFuture = void 0;
+  let liveStartIdx = 0;
+  let liveEndIdx = liveCollection.length - 1;
+  if (Array.isArray(newCollection)) {
+    let newEndIdx = newCollection.length - 1;
+    while (liveStartIdx <= liveEndIdx && liveStartIdx <= newEndIdx) {
+      const liveStartValue = liveCollection.at(liveStartIdx);
+      const newStartValue = newCollection[liveStartIdx];
+      const isStartMatching = valuesMatching(liveStartIdx, liveStartValue, liveStartIdx, newStartValue, trackByFn);
+      if (isStartMatching !== 0) {
+        if (isStartMatching < 0) {
+          liveCollection.updateValue(liveStartIdx, newStartValue);
+        }
+        liveStartIdx++;
+        continue;
+      }
+      const liveEndValue = liveCollection.at(liveEndIdx);
+      const newEndValue = newCollection[newEndIdx];
+      const isEndMatching = valuesMatching(liveEndIdx, liveEndValue, newEndIdx, newEndValue, trackByFn);
+      if (isEndMatching !== 0) {
+        if (isEndMatching < 0) {
+          liveCollection.updateValue(liveEndIdx, newEndValue);
+        }
+        liveEndIdx--;
+        newEndIdx--;
+        continue;
+      }
+      const liveStartKey = trackByFn(liveStartIdx, liveStartValue);
+      const liveEndKey = trackByFn(liveEndIdx, liveEndValue);
+      const newStartKey = trackByFn(liveStartIdx, newStartValue);
+      if (Object.is(newStartKey, liveEndKey)) {
+        const newEndKey = trackByFn(newEndIdx, newEndValue);
+        if (Object.is(newEndKey, liveStartKey)) {
+          liveCollection.swap(liveStartIdx, liveEndIdx);
+          liveCollection.updateValue(liveEndIdx, newEndValue);
+          newEndIdx--;
+          liveEndIdx--;
+        } else {
+          liveCollection.move(liveEndIdx, liveStartIdx);
+        }
+        liveCollection.updateValue(liveStartIdx, newStartValue);
+        liveStartIdx++;
+        continue;
+      }
+      detachedItems ?? (detachedItems = new UniqueValueMultiKeyMap());
+      liveKeysInTheFuture ?? (liveKeysInTheFuture = initLiveItemsInTheFuture(liveCollection, liveStartIdx, liveEndIdx, trackByFn));
+      if (attachPreviouslyDetached(liveCollection, detachedItems, liveStartIdx, newStartKey)) {
+        liveCollection.updateValue(liveStartIdx, newStartValue);
+        liveStartIdx++;
+        liveEndIdx++;
+      } else if (!liveKeysInTheFuture.has(newStartKey)) {
+        const newItem = liveCollection.create(liveStartIdx, newCollection[liveStartIdx]);
+        liveCollection.attach(liveStartIdx, newItem);
+        liveStartIdx++;
+        liveEndIdx++;
+      } else {
+        detachedItems.set(liveStartKey, liveCollection.detach(liveStartIdx));
+        liveEndIdx--;
+      }
+    }
+    while (liveStartIdx <= newEndIdx) {
+      createOrAttach(liveCollection, detachedItems, trackByFn, liveStartIdx, newCollection[liveStartIdx]);
+      liveStartIdx++;
+    }
+  } else if (newCollection != null) {
+    const newCollectionIterator = newCollection[Symbol.iterator]();
+    let newIterationResult = newCollectionIterator.next();
+    while (!newIterationResult.done && liveStartIdx <= liveEndIdx) {
+      const liveValue = liveCollection.at(liveStartIdx);
+      const newValue = newIterationResult.value;
+      const isStartMatching = valuesMatching(liveStartIdx, liveValue, liveStartIdx, newValue, trackByFn);
+      if (isStartMatching !== 0) {
+        if (isStartMatching < 0) {
+          liveCollection.updateValue(liveStartIdx, newValue);
+        }
+        liveStartIdx++;
+        newIterationResult = newCollectionIterator.next();
+      } else {
+        detachedItems ?? (detachedItems = new UniqueValueMultiKeyMap());
+        liveKeysInTheFuture ?? (liveKeysInTheFuture = initLiveItemsInTheFuture(liveCollection, liveStartIdx, liveEndIdx, trackByFn));
+        const newKey = trackByFn(liveStartIdx, newValue);
+        if (attachPreviouslyDetached(liveCollection, detachedItems, liveStartIdx, newKey)) {
+          liveCollection.updateValue(liveStartIdx, newValue);
+          liveStartIdx++;
+          liveEndIdx++;
+          newIterationResult = newCollectionIterator.next();
+        } else if (!liveKeysInTheFuture.has(newKey)) {
+          liveCollection.attach(liveStartIdx, liveCollection.create(liveStartIdx, newValue));
+          liveStartIdx++;
+          liveEndIdx++;
+          newIterationResult = newCollectionIterator.next();
+        } else {
+          const liveKey = trackByFn(liveStartIdx, liveValue);
+          detachedItems.set(liveKey, liveCollection.detach(liveStartIdx));
+          liveEndIdx--;
+        }
+      }
+    }
+    while (!newIterationResult.done) {
+      createOrAttach(liveCollection, detachedItems, trackByFn, liveCollection.length, newIterationResult.value);
+      newIterationResult = newCollectionIterator.next();
+    }
+  }
+  while (liveStartIdx <= liveEndIdx) {
+    liveCollection.destroy(liveCollection.detach(liveEndIdx--));
+  }
+  detachedItems?.forEach((item) => {
+    liveCollection.destroy(item);
+  });
+}
+function attachPreviouslyDetached(prevCollection, detachedItems, index, key) {
+  if (detachedItems !== void 0 && detachedItems.has(key)) {
+    prevCollection.attach(index, detachedItems.get(key));
+    detachedItems.delete(key);
+    return true;
+  }
+  return false;
+}
+function createOrAttach(liveCollection, detachedItems, trackByFn, index, value) {
+  if (!attachPreviouslyDetached(liveCollection, detachedItems, index, trackByFn(index, value))) {
+    const newItem = liveCollection.create(index, value);
+    liveCollection.attach(index, newItem);
+  } else {
+    liveCollection.updateValue(index, value);
+  }
+}
+function initLiveItemsInTheFuture(liveCollection, start, end, trackByFn) {
+  const keys = /* @__PURE__ */ new Set();
+  for (let i = start; i <= end; i++) {
+    keys.add(trackByFn(i, liveCollection.at(i)));
+  }
+  return keys;
+}
+class UniqueValueMultiKeyMap {
+  constructor() {
+    this.kvMap = /* @__PURE__ */ new Map();
+    this._vMap = void 0;
+  }
+  has(key) {
+    return this.kvMap.has(key);
+  }
+  delete(key) {
+    if (!this.has(key))
+      return false;
+    const value = this.kvMap.get(key);
+    if (this._vMap !== void 0 && this._vMap.has(value)) {
+      this.kvMap.set(key, this._vMap.get(value));
+      this._vMap.delete(value);
+    } else {
+      this.kvMap.delete(key);
+    }
+    return true;
+  }
+  get(key) {
+    return this.kvMap.get(key);
+  }
+  set(key, value) {
+    if (this.kvMap.has(key)) {
+      let prevValue = this.kvMap.get(key);
+      if (this._vMap === void 0) {
+        this._vMap = /* @__PURE__ */ new Map();
+      }
+      const vMap = this._vMap;
+      while (vMap.has(prevValue)) {
+        prevValue = vMap.get(prevValue);
+      }
+      vMap.set(prevValue, value);
+    } else {
+      this.kvMap.set(key, value);
+    }
+  }
+  forEach(cb) {
+    for (let [key, value] of this.kvMap) {
+      cb(value, key);
+      if (this._vMap !== void 0) {
+        const vMap = this._vMap;
+        while (vMap.has(value)) {
+          value = vMap.get(value);
+          cb(value, key);
+        }
+      }
+    }
+  }
+}
+class RepeaterContext {
+  constructor(lContainer, $implicit, $index) {
+    this.lContainer = lContainer;
+    this.$implicit = $implicit;
+    this.$index = $index;
+  }
+  get $count() {
+    return this.lContainer.length - CONTAINER_HEADER_OFFSET;
+  }
+}
+function ɵɵrepeaterTrackByIdentity(_, value) {
+  return value;
+}
+class RepeaterMetadata {
+  constructor(hasEmptyBlock, trackByFn, liveCollection) {
+    this.hasEmptyBlock = hasEmptyBlock;
+    this.trackByFn = trackByFn;
+    this.liveCollection = liveCollection;
+  }
+}
+function ɵɵrepeaterCreate(index, templateFn, decls, vars, tagName, attrsIndex, trackByFn, trackByUsesComponentInstance, emptyTemplateFn, emptyDecls, emptyVars, emptyTagName, emptyAttrsIndex) {
+  performanceMarkFeature("NgControlFlow");
+  const hasEmptyBlock = emptyTemplateFn !== void 0;
+  const hostLView = getLView();
+  const boundTrackBy = trackByFn;
+  const metadata = new RepeaterMetadata(hasEmptyBlock, boundTrackBy);
+  hostLView[HEADER_OFFSET + index] = metadata;
+  ɵɵtemplate(index + 1, templateFn, decls, vars, tagName, attrsIndex);
+}
+class LiveCollectionLContainerImpl extends LiveCollection {
+  constructor(lContainer, hostLView, templateTNode) {
+    super();
+    this.lContainer = lContainer;
+    this.hostLView = hostLView;
+    this.templateTNode = templateTNode;
+    this.needsIndexUpdate = false;
+  }
+  get length() {
+    return this.lContainer.length - CONTAINER_HEADER_OFFSET;
+  }
+  at(index) {
+    return this.getLView(index)[CONTEXT].$implicit;
+  }
+  attach(index, lView) {
+    const dehydratedView = lView[HYDRATION];
+    this.needsIndexUpdate || (this.needsIndexUpdate = index !== this.length);
+    addLViewToLContainer(this.lContainer, lView, index, shouldAddViewToDom(this.templateTNode, dehydratedView));
+  }
+  detach(index) {
+    this.needsIndexUpdate || (this.needsIndexUpdate = index !== this.length - 1);
+    return detachExistingView(this.lContainer, index);
+  }
+  create(index, value) {
+    const dehydratedView = findMatchingDehydratedView(this.lContainer, this.templateTNode.tView.ssrId);
+    const embeddedLView = createAndRenderEmbeddedLView(this.hostLView, this.templateTNode, new RepeaterContext(this.lContainer, value, index), {
+      dehydratedView
+    });
+    return embeddedLView;
+  }
+  destroy(lView) {
+    destroyLView(lView[TVIEW], lView);
+  }
+  updateValue(index, value) {
+    this.getLView(index)[CONTEXT].$implicit = value;
+  }
+  reset() {
+    this.needsIndexUpdate = false;
+  }
+  updateIndexes() {
+    if (this.needsIndexUpdate) {
+      for (let i = 0; i < this.length; i++) {
+        this.getLView(i)[CONTEXT].$index = i;
+      }
+    }
+  }
+  getLView(index) {
+    return getExistingLViewFromLContainer(this.lContainer, index);
+  }
+}
+function ɵɵrepeater(collection) {
+  const prevConsumer = setActiveConsumer(null);
+  const metadataSlotIdx = getSelectedIndex();
+  try {
+    const hostLView = getLView();
+    const hostTView = hostLView[TVIEW];
+    const metadata = hostLView[metadataSlotIdx];
+    if (metadata.liveCollection === void 0) {
+      const containerIndex = metadataSlotIdx + 1;
+      const lContainer = getLContainer(hostLView, containerIndex);
+      const itemTemplateTNode = getExistingTNode(hostTView, containerIndex);
+      metadata.liveCollection = new LiveCollectionLContainerImpl(lContainer, hostLView, itemTemplateTNode);
+    } else {
+      metadata.liveCollection.reset();
+    }
+    const liveCollection = metadata.liveCollection;
+    reconcile(liveCollection, collection, metadata.trackByFn);
+    liveCollection.updateIndexes();
+    if (metadata.hasEmptyBlock) {
+      const bindingIndex = nextBindingIndex();
+      const isCollectionEmpty = liveCollection.length === 0;
+      if (bindingUpdated(hostLView, bindingIndex, isCollectionEmpty)) {
+        const emptyTemplateIndex = metadataSlotIdx + 2;
+        const lContainerForEmpty = getLContainer(hostLView, emptyTemplateIndex);
+        if (isCollectionEmpty) {
+          const emptyTemplateTNode = getExistingTNode(hostTView, emptyTemplateIndex);
+          const dehydratedView = findMatchingDehydratedView(lContainerForEmpty, emptyTemplateTNode.tView.ssrId);
+          const embeddedLView = createAndRenderEmbeddedLView(hostLView, emptyTemplateTNode, void 0, {
+            dehydratedView
+          });
+          addLViewToLContainer(lContainerForEmpty, embeddedLView, 0, shouldAddViewToDom(emptyTemplateTNode, dehydratedView));
+        } else {
+          removeLViewFromLContainer(lContainerForEmpty, 0);
+        }
+      }
+    }
+  } finally {
+    setActiveConsumer(prevConsumer);
+  }
+}
+function getLContainer(lView, index) {
+  const lContainer = lView[index];
+  return lContainer;
+}
+function detachExistingView(lContainer, index) {
+  const existingLView = detachView(lContainer, index);
+  return existingLView;
+}
+function getExistingLViewFromLContainer(lContainer, index) {
+  const existingLView = getLViewFromLContainer(lContainer, index);
+  return existingLView;
+}
+function getExistingTNode(tView, index) {
+  const tNode = getTNode(tView, index);
+  return tNode;
+}
 function elementStartFirstCreatePass(index, tView, lView, name, attrsIndex, localRefsIndex) {
   const tViewConsts = tView.consts;
   const attrs = getConstant(tViewConsts, attrsIndex);
@@ -9995,6 +10553,20 @@ function wrapListener(tNode, lView, context, listenerFn, wrapWithPreventDefault)
 function isOutputSubscribable(value) {
   return value != null && typeof value.subscribe === "function";
 }
+function ɵɵpropertyInterpolate(propName, v0, sanitizer) {
+  ɵɵpropertyInterpolate1(propName, "", v0, "", sanitizer);
+  return ɵɵpropertyInterpolate;
+}
+function ɵɵpropertyInterpolate1(propName, prefix, v0, suffix, sanitizer) {
+  const lView = getLView();
+  const interpolatedValue = interpolation1(lView, prefix, v0, suffix);
+  if (interpolatedValue !== NO_CHANGE) {
+    const tView = getTView();
+    const tNode = getSelectedTNode();
+    elementPropertyInternal(tView, tNode, lView, propName, interpolatedValue, lView[RENDERER], sanitizer);
+  }
+  return ɵɵpropertyInterpolate1;
+}
 function ɵɵviewQuery(predicate, flags, read) {
   createViewQuery(predicate, flags, read);
 }
@@ -10054,14 +10626,6 @@ function locateOrCreateTextNodeImpl(tView, lView, tNode, value, index) {
 }
 function enableLocateOrCreateTextNodeImpl() {
   _locateOrCreateTextNode = locateOrCreateTextNodeImpl;
-}
-function ɵɵtextInterpolate1(prefix, v0, suffix) {
-  const lView = getLView();
-  const interpolated = interpolation1(lView, prefix, v0, suffix);
-  if (interpolated !== NO_CHANGE) {
-    textBindingInternal(lView, getSelectedIndex(), interpolated);
-  }
-  return ɵɵtextInterpolate1;
 }
 let StandaloneService = /* @__PURE__ */ (() => {
   var _StandaloneService;
@@ -12059,6 +12623,7 @@ function enableHydrationRuntimeSupport() {
     enableRetrieveHydrationInfoImpl();
     enableLocateOrCreateElementNodeImpl();
     enableLocateOrCreateTextNodeImpl();
+    enableLocateOrCreateContainerAnchorImpl();
     enableLocateOrCreateContainerRefImpl();
     enableFindMatchingDehydratedViewImpl();
     enableApplyRootElementTransformImpl();
@@ -12419,6 +12984,9 @@ function isContentProjectedNode(tNode) {
     currentTNode = currentTNode.parent;
   }
   return false;
+}
+function booleanAttribute(value) {
+  return typeof value === "boolean" ? value : value != null && value !== "false";
 }
 function untracked(nonReactiveReadsFn) {
   const prevConsumer = setActiveConsumer(null);
@@ -41433,6 +42001,172 @@ function validateCommands(commands) {
 function isPublicRouterEvent(e) {
   return !(e instanceof BeforeActivateRoutes) && !(e instanceof RedirectRequest);
 }
+let RouterLink = /* @__PURE__ */ (() => {
+  var _RouterLink;
+  class RouterLink2 {
+    constructor(router, route, tabIndexAttribute, renderer, el, locationStrategy) {
+      this.router = router;
+      this.route = route;
+      this.tabIndexAttribute = tabIndexAttribute;
+      this.renderer = renderer;
+      this.el = el;
+      this.locationStrategy = locationStrategy;
+      this.href = null;
+      this.commands = null;
+      this.onChanges = new Subject();
+      this.preserveFragment = false;
+      this.skipLocationChange = false;
+      this.replaceUrl = false;
+      const tagName = el.nativeElement.tagName?.toLowerCase();
+      this.isAnchorElement = tagName === "a" || tagName === "area";
+      if (this.isAnchorElement) {
+        this.subscription = router.events.subscribe((s) => {
+          if (s instanceof NavigationEnd) {
+            this.updateHref();
+          }
+        });
+      } else {
+        this.setTabIndexIfNotOnNativeEl("0");
+      }
+    }
+    /**
+     * Modifies the tab index if there was not a tabindex attribute on the element during
+     * instantiation.
+     */
+    setTabIndexIfNotOnNativeEl(newTabIndex) {
+      if (this.tabIndexAttribute != null || this.isAnchorElement) {
+        return;
+      }
+      this.applyAttributeValue("tabindex", newTabIndex);
+    }
+    /** @nodoc */
+    ngOnChanges(changes) {
+      if (this.isAnchorElement) {
+        this.updateHref();
+      }
+      this.onChanges.next(this);
+    }
+    /**
+     * Commands to pass to {@link Router#createUrlTree}.
+     *   - **array**: commands to pass to {@link Router#createUrlTree}.
+     *   - **string**: shorthand for array of commands with just the string, i.e. `['/route']`
+     *   - **null|undefined**: effectively disables the `routerLink`
+     * @see {@link Router#createUrlTree}
+     */
+    set routerLink(commands) {
+      if (commands != null) {
+        this.commands = Array.isArray(commands) ? commands : [commands];
+        this.setTabIndexIfNotOnNativeEl("0");
+      } else {
+        this.commands = null;
+        this.setTabIndexIfNotOnNativeEl(null);
+      }
+    }
+    /** @nodoc */
+    onClick(button, ctrlKey, shiftKey, altKey, metaKey) {
+      const urlTree = this.urlTree;
+      if (urlTree === null) {
+        return true;
+      }
+      if (this.isAnchorElement) {
+        if (button !== 0 || ctrlKey || shiftKey || altKey || metaKey) {
+          return true;
+        }
+        if (typeof this.target === "string" && this.target != "_self") {
+          return true;
+        }
+      }
+      const extras = {
+        skipLocationChange: this.skipLocationChange,
+        replaceUrl: this.replaceUrl,
+        state: this.state,
+        info: this.info
+      };
+      this.router.navigateByUrl(urlTree, extras);
+      return !this.isAnchorElement;
+    }
+    /** @nodoc */
+    ngOnDestroy() {
+      this.subscription?.unsubscribe();
+    }
+    updateHref() {
+      const urlTree = this.urlTree;
+      this.href = urlTree !== null && this.locationStrategy ? this.locationStrategy?.prepareExternalUrl(this.router.serializeUrl(urlTree)) : null;
+      const sanitizedValue = this.href === null ? null : (
+        // This class represents a directive that can be added to both `<a>` elements,
+        // as well as other elements. As a result, we can't define security context at
+        // compile time. So the security context is deferred to runtime.
+        // The `ɵɵsanitizeUrlOrResourceUrl` selects the necessary sanitizer function
+        // based on the tag and property names. The logic mimics the one from
+        // `packages/compiler/src/schema/dom_security_schema.ts`, which is used at compile time.
+        //
+        // Note: we should investigate whether we can switch to using `@HostBinding('attr.href')`
+        // instead of applying a value via a renderer, after a final merge of the
+        // `RouterLinkWithHref` directive.
+        ɵɵsanitizeUrlOrResourceUrl(this.href, this.el.nativeElement.tagName.toLowerCase())
+      );
+      this.applyAttributeValue("href", sanitizedValue);
+    }
+    applyAttributeValue(attrName, attrValue) {
+      const renderer = this.renderer;
+      const nativeElement = this.el.nativeElement;
+      if (attrValue !== null) {
+        renderer.setAttribute(nativeElement, attrName, attrValue);
+      } else {
+        renderer.removeAttribute(nativeElement, attrName);
+      }
+    }
+    get urlTree() {
+      if (this.commands === null) {
+        return null;
+      }
+      return this.router.createUrlTree(this.commands, {
+        // If the `relativeTo` input is not defined, we want to use `this.route` by default.
+        // Otherwise, we should use the value provided by the user in the input.
+        relativeTo: this.relativeTo !== void 0 ? this.relativeTo : this.route,
+        queryParams: this.queryParams,
+        fragment: this.fragment,
+        queryParamsHandling: this.queryParamsHandling,
+        preserveFragment: this.preserveFragment
+      });
+    }
+  }
+  _RouterLink = RouterLink2;
+  _RouterLink.ɵfac = function _RouterLink_Factory(t) {
+    return new (t || _RouterLink)(ɵɵdirectiveInject(Router), ɵɵdirectiveInject(ActivatedRoute), ɵɵinjectAttribute("tabindex"), ɵɵdirectiveInject(Renderer2), ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(LocationStrategy));
+  };
+  _RouterLink.ɵdir = /* @__PURE__ */ ɵɵdefineDirective({
+    type: _RouterLink,
+    selectors: [["", "routerLink", ""]],
+    hostVars: 1,
+    hostBindings: function _RouterLink_HostBindings(rf, ctx) {
+      if (rf & 1) {
+        ɵɵlistener("click", function _RouterLink_click_HostBindingHandler($event) {
+          return ctx.onClick($event.button, $event.ctrlKey, $event.shiftKey, $event.altKey, $event.metaKey);
+        });
+      }
+      if (rf & 2) {
+        ɵɵattribute("target", ctx.target);
+      }
+    },
+    inputs: {
+      target: "target",
+      queryParams: "queryParams",
+      fragment: "fragment",
+      queryParamsHandling: "queryParamsHandling",
+      state: "state",
+      info: "info",
+      relativeTo: "relativeTo",
+      preserveFragment: [InputFlags.HasDecoratorInputTransform, "preserveFragment", "preserveFragment", booleanAttribute],
+      skipLocationChange: [InputFlags.HasDecoratorInputTransform, "skipLocationChange", "skipLocationChange", booleanAttribute],
+      replaceUrl: [InputFlags.HasDecoratorInputTransform, "replaceUrl", "replaceUrl", booleanAttribute],
+      routerLink: "routerLink"
+    },
+    standalone: true,
+    features: [ɵɵInputTransformsFeature, ɵɵNgOnChangesFeature]
+  });
+  return RouterLink2;
+})();
 const ROUTER_SCROLLER = /* @__PURE__ */ new InjectionToken("");
 function provideRouter(routes2, ...features) {
   return makeEnvironmentProviders([{
@@ -41658,7 +42392,7 @@ function toMarkdownModule(markdownFileFactory) {
 }
 var ENDPOINT_EXTENSION = ".server.ts";
 var APP_DIR = "src/app";
-var FILES = /* @__PURE__ */ Object.assign({ "/src/app/pages/index.page.ts": () => import("./assets/index.page-wu1TW5BM.js") });
+var FILES = /* @__PURE__ */ Object.assign({ "/src/app/pages/(home).page.ts": () => import("./assets/(home).page-DMWfoVPn.js"), "/src/app/pages/about.page.ts": () => import("./assets/about.page-9CexYhYn.js"), "/src/app/pages/fqa.page.ts": () => import("./assets/fqa.page-C0q000_S.js") });
 var CONTENT_FILES = /* @__PURE__ */ Object.assign({});
 function createRoutes(files) {
   var _a, _b;
@@ -41802,6 +42536,87 @@ const serverConfig = {
   }]
 };
 const config = mergeApplicationConfig(appConfig, serverConfig);
+let HeaderComponent = /* @__PURE__ */ (() => {
+  var _HeaderComponent;
+  class HeaderComponent2 {
+    constructor() {
+      this.analogLogo = "https://analogjs.org/img/logos/analog-logo.svg";
+    }
+    ngOnInit() {
+    }
+  }
+  _HeaderComponent = HeaderComponent2;
+  _HeaderComponent.ɵfac = function HeaderComponent_Factory(t) {
+    return new (t || _HeaderComponent)();
+  };
+  _HeaderComponent.ɵcmp = /* @__PURE__ */ ɵɵdefineComponent({
+    type: _HeaderComponent,
+    selectors: [["app-header"]],
+    standalone: true,
+    features: [ɵɵStandaloneFeature],
+    decls: 6,
+    vars: 1,
+    consts: [[1, "header"], [1, "logo"], ["alt", "", 3, "src"], ["routerLink", "/"]],
+    template: function HeaderComponent_Template(rf, ctx) {
+      if (rf & 1) {
+        ɵɵelementStart(0, "div", 0)(1, "div", 1);
+        ɵɵelement(2, "img", 2);
+        ɵɵelementStart(3, "a", 3)(4, "h1");
+        ɵɵtext(5, "Built with Analog");
+        ɵɵelementEnd()()()();
+      }
+      if (rf & 2) {
+        ɵɵadvance(2);
+        ɵɵpropertyInterpolate("src", ctx.analogLogo, ɵɵsanitizeUrl);
+      }
+    },
+    dependencies: [RouterLink],
+    styles: [".header[_ngcontent-%COMP%] {\n				justify-content: space-between;\n\n        .logo {\n          display: flex;\n          align-items: center;\n          gap: 0.3rem;\n          margin: 0 0 0 1rem;\n          img {\n            width: 2rem;\n            height: 2rem;\n          }\n          h1 {\n            font-size: 1.2rem;\n            font-weight: 500;\n          }\n        }\n			}"]
+  });
+  return HeaderComponent2;
+})();
+/* @__PURE__ */ (() => {
+})();
+let FooterComponent = /* @__PURE__ */ (() => {
+  var _FooterComponent;
+  class FooterComponent2 {
+    ngOnInit() {
+    }
+  }
+  _FooterComponent = FooterComponent2;
+  _FooterComponent.ɵfac = function FooterComponent_Factory(t) {
+    return new (t || _FooterComponent)();
+  };
+  _FooterComponent.ɵcmp = /* @__PURE__ */ ɵɵdefineComponent({
+    type: _FooterComponent,
+    selectors: [["app-footer"]],
+    standalone: true,
+    features: [ɵɵStandaloneFeature],
+    decls: 10,
+    vars: 0,
+    consts: [[1, "footer"], [1, "social"], [1, "info"], [1, "links"], ["routerLink", "/fqa"], ["routerLink", "/about"]],
+    template: function FooterComponent_Template(rf, ctx) {
+      if (rf & 1) {
+        ɵɵelementStart(0, "div", 0);
+        ɵɵelement(1, "div", 1);
+        ɵɵelementStart(2, "div", 2)(3, "div", 3)(4, "a", 4);
+        ɵɵtext(5, "FQA");
+        ɵɵelementEnd();
+        ɵɵelementStart(6, "a", 5);
+        ɵɵtext(7, "About");
+        ɵɵelementEnd()();
+        ɵɵelementStart(8, "small");
+        ɵɵtext(9, " This site is built with Analog ");
+        ɵɵelementEnd()()();
+      }
+    },
+    dependencies: [RouterLink],
+    styles: [".footer[_ngcontent-%COMP%] {\n				display: flex;\n				justify-content: center;\n\n				.info {\n					.links {\n						display: flex;\n						justify-content: center;\n						gap: 0.5rem;\n\n            a {\n              font-weight: 500;\n            }\n					}\n\n          small {\n            color: gray;\n          }\n				}\n			}"]
+  });
+  return FooterComponent2;
+})();
+/* @__PURE__ */ (() => {
+})();
 let AppComponent = /* @__PURE__ */ (() => {
   var _AppComponent;
   class AppComponent2 {
@@ -41815,15 +42630,15 @@ let AppComponent = /* @__PURE__ */ (() => {
     selectors: [["app-root"]],
     standalone: true,
     features: [ɵɵStandaloneFeature],
-    decls: 1,
+    decls: 3,
     vars: 0,
     template: function AppComponent_Template(rf, ctx) {
       if (rf & 1) {
-        ɵɵelement(0, "router-outlet");
+        ɵɵelement(0, "app-header")(1, "router-outlet")(2, "app-footer");
       }
     },
-    dependencies: [RouterOutlet],
-    styles: ["[_nghost-%COMP%] {\n        max-width: 1280px;\n        margin: 0 auto;\n        padding: 2rem;\n        text-align: center;\n      }"]
+    dependencies: [RouterOutlet, HeaderComponent, FooterComponent],
+    styles: ["[_nghost-%COMP%] {\n        display: flex;\n        flex-direction: column;\n        justify-content: space-between;\n        min-height: 100vh;\n        width: 100vw;\n        margin: 0 auto;\n      }"]
   });
   return AppComponent2;
 })();
@@ -41846,9 +42661,15 @@ function render(url, document2) {
 }
 export {
   ActivatedRoute as A,
-  ɵɵtextInterpolate1 as B,
+  ɵɵadvance as B,
+  ɵɵrepeater as C,
   DestroyRef as D,
+  ɵɵrepeaterTrackByIdentity as E,
+  ɵɵpropertyInterpolate1 as F,
+  ɵɵsanitizeUrl as G,
+  HttpClient as H,
   InjectionToken as I,
+  ɵɵpropertyInterpolate as J,
   Location as L,
   NgZone as N,
   PendingTasks as P,
@@ -41879,8 +42700,8 @@ export {
   isPlatformBrowser as u,
   ɵɵsanitizeHtml as v,
   ɵɵelementStart as w,
-  ɵɵelementEnd as x,
-  ɵɵtext as y,
-  ɵɵadvance as z,
+  ɵɵtext as x,
+  ɵɵelementEnd as y,
+  ɵɵrepeaterCreate as z,
   ɵɵdefineDirective as ɵ
 };
