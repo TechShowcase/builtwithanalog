@@ -362,7 +362,7 @@ export default class HomeComponent implements OnInit, OnChanges {
 	ngOnInit(): void {
     this.filterApplied = false;
 		this.http
-			.get<Project[]>("http://builtwithanalog.dev/api/projects")
+			.get<Project[]>("https://builtwithanalog.dev/api/projects")
 			.subscribe((projects) => {
 				this.projects = projects;
 				this.categories = Array.from(
@@ -385,7 +385,7 @@ export default class HomeComponent implements OnInit, OnChanges {
   ngOnChanges(): void {
     this.filterApplied = false;
     this.http
-			.get<Project[]>("http://builtwithanalog.dev/api/projects")
+			.get<Project[]>("https://builtwithanalog.dev/api/projects")
 			.subscribe((projects) => {
 				this.projects = projects;
 				this.categories = Array.from(
