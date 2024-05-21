@@ -456,6 +456,7 @@ export default class HomeComponent implements OnInit, OnChanges {
 		this.selectedUIlib = "";
 		this.selectedVersionGroup = "";
 		this.showFree = false;
+		this.thereDElements = false;
 	}
 
 	isVersion16OrAbove(version: string): boolean {
