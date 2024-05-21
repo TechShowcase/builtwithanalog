@@ -868,7 +868,7 @@ const projects_get = defineEventHandler(() => [
     "category": "Open Source",
     "version": "17.3.0",
     "versionGroup": "v15 and up",
-    "analogVersion": "1.3.5",
+    "analogVersion": "1.2.2",
     "uiLib": "Spartan UI",
     "pricing": "Free",
     "threeD": false,
