@@ -71,7 +71,7 @@ import { FormsModule } from "@angular/forms";
 				@if (!filterApplied) { @for (project of projects; track project) {
 				<a href="{{ project.url }}?source=builtwithanalog.dev" target="_blank">
 					<div class="card">
-						<img src="{{ project.imageSrc }}" alt="{{ project.name }}" />
+						<img class="main-image" src="{{ project.imageSrc }}" alt="{{ project.name }}" />
 						<div class="card-content">
 							<div class="details">
 								<div class="info">
@@ -129,7 +129,7 @@ import { FormsModule } from "@angular/forms";
 				} } @else { @for (project of filteredProjects; track project) {
 				<a href="{{ project.url }}?source=builtwithanalog.dev" target="_blank">
 					<div class="card">
-						<img src="{{ project.imageSrc }}" alt="{{ project.name }}" />
+						<img class="main-image" src="{{ project.imageSrc }}" alt="{{ project.name }}" />
 						<div class="card-content">
 							<div class="details">
 								<div class="info">
