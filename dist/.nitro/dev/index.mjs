@@ -862,9 +862,22 @@ parentPort.on("message", async (msg) => {
 
 const projects_get = defineEventHandler(() => [
   {
+    "name": "Spartan UI",
+    "imageSrc": "https://raw.githubusercontent.com/TechShowcase/images/main/projects/spartan-ui.jpg",
+    "url": "https://www.spartan.ng",
+    "category": "Open Source",
+    "version": "17.3.0",
+    "versionGroup": "v15 and up",
+    "analogVersion": "1.3.5",
+    "uiLib": "Spartan UI",
+    "pricing": "Free",
+    "threeD": false,
+    "developer": "Robin Goetz"
+  },
+  {
     "name": "AngleBrackets",
     "imageSrc": "https://raw.githubusercontent.com/TechShowcase/images/main/projects/anglebrackets.jpg",
-    "url": "https://anglebrackets.dev/",
+    "url": "https://anglebrackets.dev",
     "category": "Personal Website",
     "version": "17.3.0",
     "versionGroup": "v15 and up",
