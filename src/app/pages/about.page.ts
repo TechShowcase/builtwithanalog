@@ -43,23 +43,23 @@ import { Component } from "@angular/core";
 					showcase your projects and for others to discover them.
 				</p>
 				<p>
-					But BuiltWithAnalog is more than just a showcase. It's also a
-					platform where developers can market their Analog apps. We believe in
+					But BuiltWithAnalog is more than just a showcase. It's also a platform
+					where developers can market their Analog apps. We believe in
 					empowering developers by providing more opportunities to monetize
 					their creations. So, if you have a remarkable Analog app that you've
 					built and you're looking for ways to make it profitable, Built with
 					Analog is the place for you.
 				</p>
 				<p>
-					This website itself is built with Analog,
-					demonstrating the power and versatility of the Analog framework.
-					We're continuously improving and expanding our platform to better
-					serve the needs of the Angular & Analog community.
+					This website itself is built with Analog, demonstrating the power and
+					versatility of the Analog framework. We're continuously improving and
+					expanding our platform to better serve the needs of the Angular &
+					Analog community.
 				</p>
 				<p>
 					Join us in celebrating the creativity and innovation of Analog
-					developers around the world. Explore, showcase, and market your
-					Analog projects on builtwithanalog.dev today!
+					developers around the world. Explore, showcase, and market your Analog
+					projects on builtwithanalog.dev today!
 				</p>
 			</div>
 		</div>
