@@ -889,13 +889,13 @@ const projects_get = defineEventHandler(() => [
   },
   {
     "name": "AnguHashBlog",
-    "imageSrc": "https://raw.githubusercontent.com/TechShowcase/images/main/projects/anguhashblog.jpg",
-    "url": "https://anguhashblog.com",
+    "imageSrc": "https://raw.githubusercontent.com/TechShowcase/images/main/projects/analog-anguhashblog.jpg",
+    "url": "https://analog.anguhashblog.com",
     "category": "Open Source",
     "version": "17.3.0",
     "versionGroup": "v15 and up",
     "analogVersion": "1.2.0",
-    "uiLib": "Spartan UI",
+    "uiLib": "None",
     "pricing": "Free",
     "threeD": false,
     "developer": "Esther White"
