@@ -11,37 +11,25 @@ import { FormsModule } from "@angular/forms";
 		<div class="content">
 			<div class="filtering">
 				<div class="filtering-actions">
-					<select
-						[(ngModel)]="selectedCategory"
-						(change)="applyFilter()"
-					>
+					<select [(ngModel)]="selectedCategory" (change)="applyFilter()">
 						<option value="" disabled hidden>Category</option>
 						@for (category of categories; track category) {
 						<option value="{{ category }}">{{ category }}</option>
 						}
 					</select>
-					<select
-						[(ngModel)]="selectedVersionGroup"
-						(change)="applyFilter()"
-					>
+					<select [(ngModel)]="selectedVersionGroup" (change)="applyFilter()">
 						<option value="" disabled hidden>Angular Version</option>
 						@for (version of versionGroup; track version) {
 						<option value="{{ version }}">{{ version }}</option>
 						}
 					</select>
-					<select
-						[(ngModel)]="selectedAnalogVersion"
-						(change)="applyFilter()"
-					>
+					<select [(ngModel)]="selectedAnalogVersion" (change)="applyFilter()">
 						<option value="" disabled hidden>Analog Version</option>
 						@for (analogVersion of analogVersions; track analogVersion) {
 						<option value="{{ analogVersion }}">{{ analogVersion }}</option>
 						}
 					</select>
-					<select
-						[(ngModel)]="selectedUIlib"
-						(change)="applyFilter()"
-					>
+					<select [(ngModel)]="selectedUIlib" (change)="applyFilter()">
 						<option value="" disabled hidden>UI Library</option>
 						@for (uiLib of projectsUIlib; track uiLib) {
 						<option value="{{ uiLib }}">{{ uiLib }}</option>
@@ -49,11 +37,23 @@ import { FormsModule } from "@angular/forms";
 					</select>
 					<div class="buttons-wrapper">
 						<div class="checkbox-wrapper">
-							<input type="checkbox" name="checkbox" class="checkbox" [(ngModel)]="showFree" (change)="applyFilter()"/>
+							<input
+								type="checkbox"
+								name="checkbox"
+								class="checkbox"
+								[(ngModel)]="showFree"
+								(change)="applyFilter()"
+							/>
 							<label for="checkbox">Free</label>
 						</div>
 						<div class="checkbox-wrapper">
-							<input type="checkbox" name="checkbox" class="checkbox" [(ngModel)]="thereDElements" (change)="applyFilter()"/>
+							<input
+								type="checkbox"
+								name="checkbox"
+								class="checkbox"
+								[(ngModel)]="thereDElements"
+								(change)="applyFilter()"
+							/>
 							<label for="checkbox">3D</label>
 						</div>
 					</div>
@@ -71,7 +71,11 @@ import { FormsModule } from "@angular/forms";
 				@if (!filterApplied) { @for (project of projects; track project) {
 				<a href="{{ project.url }}?source=builtwithanalog.dev" target="_blank">
 					<div class="card">
-						<img class="main-image" src="{{ project.imageSrc }}" alt="{{ project.name }}" />
+						<img
+							class="main-image"
+							src="{{ project.imageSrc }}"
+							alt="{{ project.name }}"
+						/>
 						<div class="card-content">
 							<div class="details">
 								<div class="info">
@@ -129,7 +133,11 @@ import { FormsModule } from "@angular/forms";
 				} } @else { @for (project of filteredProjects; track project) {
 				<a href="{{ project.url }}?source=builtwithanalog.dev" target="_blank">
 					<div class="card">
-						<img class="main-image" src="{{ project.imageSrc }}" alt="{{ project.name }}" />
+						<img
+							class="main-image"
+							src="{{ project.imageSrc }}"
+							alt="{{ project.name }}"
+						/>
 						<div class="card-content">
 							<div class="details">
 								<div class="info">
@@ -356,11 +364,11 @@ export default class HomeComponent implements OnInit, OnChanges {
 	selectedAnalogVersion: string = "";
 	selectedUIlib: string = "";
 	showFree: boolean = false;
-  thereDElements: boolean = false;
+	thereDElements: boolean = false;
 	http = inject(HttpClient);
 
 	ngOnInit(): void {
-    this.filterApplied = false;
+		this.filterApplied = false;
 		this.http
 			.get<Project[]>("https://builtwithanalog.dev/api/projects")
 			.subscribe((projects) => {
@@ -382,9 +390,9 @@ export default class HomeComponent implements OnInit, OnChanges {
 			});
 	}
 
-  ngOnChanges(): void {
-    this.filterApplied = false;
-    this.http
+	ngOnChanges(): void {
+		this.filterApplied = false;
+		this.http
 			.get<Project[]>("https://builtwithanalog.dev/api/projects")
 			.subscribe((projects) => {
 				this.projects = projects;
@@ -403,7 +411,7 @@ export default class HomeComponent implements OnInit, OnChanges {
 					new Set(this.projects.map((project) => project.versionGroup))
 				);
 			});
-  }
+	}
 
 	applyFilter(): void {
 		this.filterApplied = true;
@@ -417,7 +425,8 @@ export default class HomeComponent implements OnInit, OnChanges {
 					project.uiLib.split(", ").includes(this.selectedUIlib)) &&
 				(this.selectedVersionGroup === "" ||
 					project.versionGroup === this.selectedVersionGroup) &&
-				(!this.showFree || project.pricing === "Free") && (!this.thereDElements || project.thereD === true)
+				(!this.showFree || project.pricing === "Free") &&
+				(!this.thereDElements || project.thereD === true)
 			);
 		});
 	}
