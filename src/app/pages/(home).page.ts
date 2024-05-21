@@ -44,18 +44,13 @@ import { Project } from "../components/models/project";
 				</div>
 			</div>
 			<div class="cards-wrapper">
-				<div class="card">
-					<h2>Project Name</h2>
-					<p>Details</p>
-				</div>
-				<div class="card">
-					<h2>Project Name</h2>
-					<p>Details</p>
-				</div>
-				<div class="card">
-					<h2>Project Name</h2>
-					<p>Details</p>
-				</div>
+				@for (project of projects; track project) {
+          <a href="{{project.url}}?source=builtwithangular.dev" target="_blank">
+          <div class="card">
+          <img src="{{project.imageSrc}}" alt="{{project.name}}">
+          </div>
+        </a>
+        }
 			</div>
 		</div>
 	`,
@@ -152,7 +147,6 @@ export default class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.http.get<Project[]>("https://builtwithanalog.dev/api/projects").subscribe((projects) => {
       this.projects = projects;
-      console.log(this.projects);
       this.categories = Array.from(new Set(this.projects.map((project) => project.category)));
       this.projectsStructure = Array.from(new Set(this.projects.map((project) => project.structure)));
       this.projectsUIlib = Array.from(new Set(this.projects
