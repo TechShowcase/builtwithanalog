@@ -145,7 +145,7 @@ export default class HomeComponent implements OnInit {
   http = inject(HttpClient);
 
   ngOnInit(): void {
-    this.http.get<Project[]>("https://builtwithanalog.dev/api/projects").subscribe((projects) => {
+    this.http.get<Project[]>("http://localhost:5173/api/projects").subscribe((projects) => {
       this.projects = projects;
       this.categories = Array.from(new Set(this.projects.map((project) => project.category)));
       this.projectsStructure = Array.from(new Set(this.projects.map((project) => project.structure)));
