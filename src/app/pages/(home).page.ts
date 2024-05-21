@@ -101,7 +101,7 @@ import { FormsModule } from "@angular/forms";
 									<div class="version">
 										<img
 											class="analog"
-											title="{{ project.version }}"
+											title="{{ project.analogVersion }}"
 											src="https://raw.githubusercontent.com/TechShowcase/images/499181122a186d07a1ea115bdee6d5f206d6c6ab/icons/analog.svg"
 										/>
 										@if (isVersion16OrAbove(project.version)) {
@@ -163,7 +163,7 @@ import { FormsModule } from "@angular/forms";
 									<div class="version">
 										<img
 											class="analog"
-											title="{{ project.version }}"
+											title="{{ project.analogVersion }}"
 											src="https://raw.githubusercontent.com/TechShowcase/images/499181122a186d07a1ea115bdee6d5f206d6c6ab/icons/analog.svg"
 										/>
 										@if (isVersion16OrAbove(project.version)) {
