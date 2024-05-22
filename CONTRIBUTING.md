@@ -1,4 +1,4 @@
-# Contributing to BuiltWithAngular
+# Contributing to BuiltWithAnalog
 
 First off, thanks for taking the time to contribute! ❤️
 
@@ -79,13 +79,13 @@ If the chosen issue has already been resolved - no further PRs would be accepted
 
 Before you submit your Pull Request (PR) consider the following guidelines:
 
-1. Search [BuiltWithAngular](https://github.com/TechShowcase/builtwithangular/pulls) for an open or closed PR that relates to your submission.
+1. Search [BuiltWithAnalog](https://github.com/TechShowcase/builtwithanalog/pulls) for an open or closed PR that relates to your submission.
    You don't want to duplicate existing efforts.
 
 2. Be sure that there is an issue that describes the problem you're fixing, or documents the design for the feature you'd like to add.
    Discussing the design upfront helps to ensure that we're ready to accept your work.
 
-3. [Fork](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) the `builtwithangular` repo.
+3. [Fork](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) the `builtwithanalog` repo.
 
 4. In your forked repository, make your changes in a new git branch:
 
@@ -113,7 +113,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
    git push origin my-fix-branch
    ```
 
-10. In GitHub, send a pull request to `TechShowcase/builtwithangular:main`.
+10. In GitHub, send a pull request to `TechShowcase/builtwithanalog:main`.
 
 **DO NOT** erase the provided PR template! It is intended for you to use, not to replace it with random text.
 
@@ -121,7 +121,7 @@ It is always a good practice to look up already merged PRs and ensure your new P
 
 ## Adding a Project
 
-If the issue you are working on is an approved request for adding a new project to be featured in BuiltWithAngular, follow these steps:
+If the issue you are working on is an approved request for adding a new project to be featured in BuiltWithAnalog, follow these steps:
 
 1. Make sure that an issue exists for the project and it has been approved by looking for the `approved` label on the issue.
 
