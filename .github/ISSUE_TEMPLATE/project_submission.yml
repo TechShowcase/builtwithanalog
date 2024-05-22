@@ -1,0 +1,81 @@
+name: 🌐 Project Submission
+description: Submit a project to be featured on BuiltWithAnalog
+title: "Project Name: "
+labels: [👀 needs triage, 🌐 project submission]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Provide the details of the project you'd like to submit for consideration to be featured on BuiltWithAnalog.
+  - type: input
+    attributes:
+      label: Cover Image
+      description: Cover image can be attached as a file during PR submission, or you can provide a link to the image here.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Project URL
+      description: Provide the URL of the project.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Project Category
+      description: Is this an open-source project,  a productivity tool, a personal website, or something else?
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Angular Version
+      description: What version of Angular is the project using?
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Analog Version
+      description: What version of Analog is the project using?
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: UI Library
+      description: Provide the name of the UI library, if you haven't used any, please write "None".
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Pricing
+      description: Is this a free to use project, or does it have a pricing model such as one-time fee or subscription?
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: 3D
+      description: Does the project include 3D elements?
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Developer
+      description: Who is the developer of the project?
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: awareness
+    attributes:
+      label: I am aware that if the project is not free to use, there will be a fee to feature it on BuiltWithAnalog
+      description: Terms will be discussed after the project is reviewed and approved
+      options:
+        - label: "Yes I am aware"
+        - label: 'No'
+
+  - type: checkboxes
+    id: assistance
+    attributes:
+      label: I would be willing to submit a PR to add the project to BuiltWithAngular, if approved
+      description: Assistance is provided if you need help submitting a pull request
+      options:
+        - label: "Yes and I have read the [Contribution Guide](https://github.com/TechShowcase/builtwithanalog/blob/main/CONTRIBUTING.md) and I agree to follow this project's [Code of Conduct](https://github.com/TechShowcase/builtwithanalog/blob/main/CODE_OF_CONDUCT.md)"
+        - label: 'No'

@@ -12,11 +12,7 @@ import { Component } from "@angular/core";
 					<h2>TechShowcase GitHub Organization.</h2>
 				</a>
 				<p>
-					TechShowcase is a public organization dedicated to showcasing various
-					projects built with our favorite technologies. All code within
-					TechShowcase is public, we're also considering the possibility of
-					making TechShowcase an open-source project in the future, promoting
-					transparency and collaboration within the developer community.
+        TechShowcase is an open source project dedicated to showcasing various projects built with our favorite technologies. All code within TechShowcase is public, promoting transparency and collaboration within the developer community.
 				</p>
 				<p>
 					TechShowcase features two main repositories, each with its own
