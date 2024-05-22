@@ -22,7 +22,6 @@ We welcome contributions to BuiltWithAnalog! If you would like to feature your p
 
 Thank you for your interest in **BuiltWithAnalog**. We look forward to seeing your amazing projects and contributions!
 
-
 # Analog App
 
 This project was generated with [Analog](https://analogjs.org), the fullstack meta-framework for Angular.
