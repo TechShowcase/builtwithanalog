@@ -42,6 +42,19 @@ export default defineEventHandler(() => (
       "developer": "Angular Macedonia"
     },
     {
+      "name": "MrRobot",
+      "imageSrc": "https://raw.githubusercontent.com/TechShowcase/images/main/projects/mrrobot.jpg",
+      "url": "https://mrrobot.dev",
+      "category": "Personal Website",
+      "version": "17.3.2",
+      "versionGroup": "v15 and up",
+      "analogVersion": "1.2.0",
+      "uiLib": "None",
+      "pricing": "Free",
+      "threeD": false,
+      "developer": "Luis Castro"
+    },
+    {
       "name": "AnguHashBlog",
       "imageSrc": "https://raw.githubusercontent.com/TechShowcase/images/main/projects/analog-anguhashblog.jpg",
       "url": "https://analog.anguhashblog.com",
