@@ -877,15 +877,28 @@ const projects_get = defineEventHandler(() => [
   {
     "name": "AngleBrackets",
     "imageSrc": "https://raw.githubusercontent.com/TechShowcase/images/main/projects/anglebrackets.jpg",
-    "url": "https://anglebrackets.dev",
-    "category": "Personal Website",
-    "version": "17.3.0",
+    "url": "https://www.angularmacedonia.org",
+    "category": "Community",
+    "version": "17.2.3",
     "versionGroup": "v15 and up",
-    "analogVersion": "1.3.1",
+    "analogVersion": "0.2.0",
     "uiLib": "None",
     "pricing": "Free",
     "threeD": false,
-    "developer": "Duncan Faulkner"
+    "developer": "Angular Macedonia"
+  },
+  {
+    "name": "Angular Macedonia",
+    "imageSrc": "https://raw.githubusercontent.com/TechShowcase/images/main/projects/angular-macedonia.jpg",
+    "url": "https://analog.anguhashblog.com",
+    "category": "Open Source",
+    "version": "17.3.0",
+    "versionGroup": "v15 and up",
+    "analogVersion": "1.2.0",
+    "uiLib": "None",
+    "pricing": "Free",
+    "threeD": false,
+    "developer": "Esther White"
   },
   {
     "name": "AnguHashBlog",

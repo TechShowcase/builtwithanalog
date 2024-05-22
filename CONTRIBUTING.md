@@ -125,7 +125,7 @@ If the issue you are working on is an approved request for adding a new project 
 
 1. Make sure that an issue exists for the project and it has been approved by looking for the `approved` label on the issue.
 
-2. Add the project at the end of the JSON array of projects in the `projects.json` file located in `src/assets/data`.
+2. Add the project at the end of the JSON array of projects in the `projects.get.ts` file located in `src/server/routes`.
 
 3. Ensure the project details are correctly formatted and include all necessary information as per the existing entries.
 
