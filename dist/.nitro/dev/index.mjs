@@ -890,7 +890,7 @@ const projects_get = defineEventHandler(() => [
   {
     "name": "Angular Macedonia",
     "imageSrc": "https://raw.githubusercontent.com/TechShowcase/images/main/projects/angular-macedonia.jpg",
-    "url": "https://analog.anguhashblog.com",
+    "url": "https://www.angularmacedonia.org",
     "category": "Community",
     "version": "17.2.0",
     "versionGroup": "v15 and up",
