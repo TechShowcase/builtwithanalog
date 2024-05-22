@@ -18,7 +18,20 @@ export default defineEventHandler(() => (
     {
       "name": "AngleBrackets",
       "imageSrc": "https://raw.githubusercontent.com/TechShowcase/images/main/projects/anglebrackets.jpg",
-      "url": "https://www.angularmacedonia.org",
+      "url": "https://anglebrackets.dev",
+      "category": "Personal Website",
+      "version": "17.3.0",
+      "versionGroup": "v15 and up",
+      "analogVersion": "1.3.1",
+      "uiLib": "None",
+      "pricing": "Free",
+      "threeD": false,
+      "developer": "Duncan Faulkner"
+    },
+    {
+      "name": "Angular Macedonia",
+      "imageSrc": "https://raw.githubusercontent.com/TechShowcase/images/main/projects/angular-macedonia.jpg",
+      "url": "https://analog.anguhashblog.com",
       "category": "Community",
       "version": "17.2.3",
       "versionGroup": "v15 and up",
@@ -27,19 +40,6 @@ export default defineEventHandler(() => (
       "pricing": "Free",
       "threeD": false,
       "developer": "Angular Macedonia"
-    },
-    {
-      "name": "Angular Macedonia",
-      "imageSrc": "https://raw.githubusercontent.com/TechShowcase/images/main/projects/angular-macedonia.jpg",
-      "url": "https://analog.anguhashblog.com",
-      "category": "Open Source",
-      "version": "17.3.0",
-      "versionGroup": "v15 and up",
-      "analogVersion": "1.2.0",
-      "uiLib": "None",
-      "pricing": "Free",
-      "threeD": false,
-      "developer": "Esther White"
     },
     {
       "name": "AnguHashBlog",
