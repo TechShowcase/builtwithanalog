@@ -33,7 +33,7 @@ export default defineEventHandler(() => (
       "imageSrc": "https://raw.githubusercontent.com/TechShowcase/images/main/projects/angular-macedonia.jpg",
       "url": "https://analog.anguhashblog.com",
       "category": "Community",
-      "version": "17.2.3",
+      "version": "17.2.0",
       "versionGroup": "v15 and up",
       "analogVersion": "0.2.0",
       "uiLib": "None",
