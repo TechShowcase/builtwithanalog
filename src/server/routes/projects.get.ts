@@ -66,6 +66,19 @@ export default defineEventHandler(() => (
       "pricing": "Free",
       "threeD": false,
       "developer": "Esther White"
+    },
+    {
+      "name": "Angular HUB",
+      "imageSrc": "https://raw.githubusercontent.com/TechShowcase/images/main/projects/angular-hub.png",
+      "url": "https://angular-hub.com/",
+      "category": "Community",
+      "version": "18.0.0",
+      "versionGroup": "v15 and up",
+      "analogVersion": "1.4.0",
+      "uiLib": "PrimeNG",
+      "pricing": "Free",
+      "threeD": false,
+      "developer": "Gerome Grignon"
     }
   ]
 ));
