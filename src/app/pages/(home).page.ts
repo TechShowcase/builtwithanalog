@@ -4,12 +4,20 @@ import { Project } from "../models/project";
 import { FormsModule } from "@angular/forms";
 
 import { DropdownModule } from "primeng/dropdown";
+import { CardModule } from "primeng/card";
 import { ButtonModule } from "primeng/button";
+import { CheckboxModule } from "primeng/checkbox";
 
 @Component({
 	selector: "app-home",
 	standalone: true,
-	imports: [FormsModule, DropdownModule, ButtonModule],
+	imports: [
+		FormsModule,
+		DropdownModule,
+		CardModule,
+		ButtonModule,
+		CheckboxModule,
+	],
 	template: `
 		<div class="content">
 			<div class="filtering">
@@ -19,7 +27,7 @@ import { ButtonModule } from "primeng/button";
 						[(ngModel)]="selectedCategory"
 						optionLabel="name"
 						(onChange)="applyFilter()"
-						placeholder="Select a Category"
+						placeholder="Category"
 					/>
 					<p-dropdown
 						[options]="versionGroup"
@@ -44,24 +52,22 @@ import { ButtonModule } from "primeng/button";
 					/>
 					<div class="buttons-wrapper">
 						<div class="checkbox-wrapper">
-							<input
-								type="checkbox"
-								name="checkbox"
-								class="checkbox"
+							<p-checkbox
 								[(ngModel)]="showFree"
-								(change)="applyFilter()"
+								label="Free"
+								[binary]="true"
+								name="free"
+								(onChange)="applyFilter()"
 							/>
-							<label for="checkbox">Free</label>
 						</div>
 						<div class="checkbox-wrapper">
-							<input
-								type="checkbox"
-								name="checkbox"
-								class="checkbox"
+							<p-checkbox
 								[(ngModel)]="thereDElements"
-								(change)="applyFilter()"
+								label="3D"
+								[binary]="true"
+								name="3D"
+								(onChange)="applyFilter()"
 							/>
-							<label for="checkbox">3D</label>
 						</div>
 					</div>
 					<p-button label="Clear Filters" (click)="clearFilters()" />
@@ -77,7 +83,7 @@ import { ButtonModule } from "primeng/button";
 			<div class="cards-wrapper">
 				@if (!filterApplied) { @for (project of projects; track project) {
 				<a href="{{ project.url }}?source=builtwithanalog.dev" target="_blank">
-					<div class="card">
+					<p-card>
 						<img
 							class="main-image"
 							src="{{ project.imageSrc }}"
@@ -141,11 +147,11 @@ import { ButtonModule } from "primeng/button";
 								</div>
 							</div>
 						</div>
-					</div>
+					</p-card>
 				</a>
 				} } @else { @for (project of filteredProjects; track project) {
 				<a href="{{ project.url }}?source=builtwithanalog.dev" target="_blank">
-					<div class="card">
+					<p-card>
 						<img
 							class="main-image"
 							src="{{ project.imageSrc }}"
@@ -209,7 +215,7 @@ import { ButtonModule } from "primeng/button";
 								</div>
 							</div>
 						</div>
-					</div>
+					</p-card>
 				</a>
 				} }
 			</div>
@@ -222,7 +228,7 @@ import { ButtonModule } from "primeng/button";
 				flex-direction: column;
 				align-items: center;
 				justify-content: flex-start;
-				min-height: 70vh;
+				min-height: 80vh;
 				margin: 1rem;
 
 				.filtering {
@@ -235,21 +241,8 @@ import { ButtonModule } from "primeng/button";
 						align-items: center;
 						gap: 1rem;
 
-						select {
-							padding: 0.8rem 0.5rem 0.8rem 0.4rem;
-							font-size: 1rem;
-							width: 10rem;
-							border-top: none;
-							border-right: none;
-							border-left: none;
-							border-bottom: 2px solid transparent;
-							border-radius: 0.5rem 0.5rem 0 0;
-							cursor: pointer;
-
-							&:focus {
-								outline: none;
-								border-bottom: 2px solid #646cff;
-							}
+						.p-dropdown {
+							width: 13rem;
 						}
 
 						.buttons-wrapper {
@@ -263,8 +256,9 @@ import { ButtonModule } from "primeng/button";
 								display: flex;
 								align-items: center;
 								gap: 0.3rem;
+								margin: 0 0.5rem;
 
-								.checkbox {
+								.p- checkbox {
 									height: 1.1rem;
 									width: 1.1rem;
 									cursor: pointer;
@@ -294,7 +288,7 @@ import { ButtonModule } from "primeng/button";
 					gap: 1.5rem;
 					margin: 1rem 4rem 2rem;
 
-					.card {
+					.p-card {
 						display: flex;
 						flex-direction: column;
 						align-items: center;
@@ -420,12 +414,16 @@ export default class HomeComponent implements OnInit, OnChanges {
 				this.analogVersions = Array.from(
 					new Set(this.projects.map((project) => project.analogVersion))
 				).map((analogVersion) => ({ name: analogVersion }));
-				this.projectsUIlib = Array.from(new Set(
-						this.projects.map((project) => project.uiLib.split(", ")).flat())).map((uiLib) => ({ name: uiLib }));
-            console.log(this.projectsUIlib);
+				this.projectsUIlib = Array.from(
+					new Set(
+						this.projects.map((project) => project.uiLib.split(", ")).flat()
+					)
+				).map((uiLib) => ({ name: uiLib }));
 			});
 	}
 
+  // this is related to the content not loading after I return from visiting one of the pages
+  // I tried ngAfterViewInit, but both options are not resolving it
 	ngOnChanges(): void {
 		this.filterApplied = false;
 		this.http
@@ -441,8 +439,11 @@ export default class HomeComponent implements OnInit, OnChanges {
 				this.analogVersions = Array.from(
 					new Set(this.projects.map((project) => project.analogVersion))
 				).map((analogVersion) => ({ name: analogVersion }));
-				this.projectsUIlib = Array.from(new Set(
-          this.projects.map((project) => project.uiLib.split(", ")).flat())).map((uiLib) => ({ name: uiLib }));
+				this.projectsUIlib = Array.from(
+					new Set(
+						this.projects.map((project) => project.uiLib.split(", ")).flat()
+					)
+				).map((uiLib) => ({ name: uiLib }));
 			});
 	}
 

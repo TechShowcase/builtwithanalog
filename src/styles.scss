@@ -1,6 +1,7 @@
 @import "primeng/resources/themes/lara-dark-purple/theme.css";
 // @import "primeng/resources/themes/lara-light-purple/theme.css";
 @import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
 
 :root {
 	font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
@@ -10,7 +11,7 @@
 
 	color-scheme: light dark;
 	color: #eaeaeade;
-	background-color: #393939;
+	background-color: #2d2d2d;
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -19,16 +20,8 @@
 	-webkit-text-size-adjust: 100%;
 }
 
-a,
-h1,
-h2 {
-	font-weight: 500;
-	color: #797ddc;
-	text-decoration: inherit;
-}
-
 body {
-	margin: 0;
+  margin: 0;
 	display: flex;
 	place-items: center;
 	min-width: 320px;
@@ -36,33 +29,50 @@ body {
 	overflow-x: hidden;
 }
 
+a,
+h1,
+h2 {
+  font-weight: 500;
+  color: #797ddc;
+  text-decoration: inherit;
+}
 
-.header,
+.p-card {
+	border-radius: 1rem;
+	box-shadow: 0 0 0.5rem #00000065;
+
+  &:hover {
+    background-color: #111827;
+    box-shadow: 0 0.1rem 0.3rem #000000b7;
+
+    .main-image {
+      box-shadow: 0 0.1rem 0.5rem #000000be;
+    }
+  }
+
+  .main-image {
+    box-shadow: 0 0.1rem 0.5rem #00000070;
+  }
+
+  .p-card-content {
+    padding: 0;
+  }
+}
+
+.p-accordion-tab {
+
+  a {
+    &:hover {
+      background-color: #111827;
+    }
+  }
+}
+
 .footer {
 	display: flex;
 	width: 100%;
 	padding: 0.5rem 0;
-	background-color: #272727;
-}
-
-.card {
-	background-color: #272727;
-	padding: 1rem;
-	border-radius: 1rem;
-	box-shadow: 0 0 0.5rem #00000065;
-}
-
-.card:hover {
-	background-color: #222122;
-	box-shadow: 0 0.1rem 0.3rem #000000a2;
-}
-
-.card .main-image {
-  box-shadow: 0 0.1rem 0.5rem #00000070;
-}
-
-select {
-  background-color: #272727;
+	background-color: #1f2937;
 }
 
 /* Light mode */
