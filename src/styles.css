@@ -7,7 +7,7 @@
 
 	color-scheme: light dark;
 	color: #eaeaeade;
-	background-color: #242424;
+	background-color: #393939;
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -40,7 +40,7 @@ button {
 	font-size: 1em;
 	font-weight: 500;
 	font-family: inherit;
-	background-color: #1a1a1a;
+	background-color: #272727;
 	cursor: pointer;
 	transition: border-color 0.25s;
 }
@@ -57,11 +57,11 @@ button:focus-visible {
 	display: flex;
 	width: 100%;
 	padding: 0.5rem 0;
-	background-color: #1d1d1d;
+	background-color: #272727;
 }
 
 .card {
-	background-color: #1d1d1d;
+	background-color: #272727;
 	padding: 1rem;
 	border-radius: 1rem;
 	box-shadow: 0 0 0.5rem #00000065;
@@ -70,6 +70,14 @@ button:focus-visible {
 .card:hover {
 	background-color: #222122;
 	box-shadow: 0 0.1rem 0.3rem #000000a2;
+}
+
+.card .main-image {
+  box-shadow: 0 0.1rem 0.5rem #00000070;
+}
+
+select {
+  background-color: #272727;
 }
 
 /* Light mode */
