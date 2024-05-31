@@ -105,7 +105,7 @@ export default defineEventHandler(() => [
 			"https://raw.githubusercontent.com/TechShowcase/images/main/projects/angular-belgrade.jpg",
 		url: "https://angularbelgrade.org",
 		category: "Community",
-		version: "17.2.0",
+		version: "16.2.2",
 		versionGroup: "v15 and up",
 		analogVersion: "0.2.0",
 		uiLib: "None",
