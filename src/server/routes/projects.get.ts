@@ -99,7 +99,7 @@ export default defineEventHandler(() => [
 		threeD: false,
 		developer: "Dale Nguyen",
 	},
-  {
+	{
 		name: "Angular Belgrade",
 		imageSrc:
 			"https://raw.githubusercontent.com/TechShowcase/images/main/projects/angular-belgrade.jpg",
