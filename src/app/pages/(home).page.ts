@@ -124,6 +124,13 @@ import { FormsModule } from "@angular/forms";
 											src="https://raw.githubusercontent.com/TechShowcase/images/main/icons/spartan.png"
 										/>
 										}
+										@if (project.uiLib.includes('PrimeNG')) {
+										<img
+											class="spartan"
+											title="{{ project.uiLib }}"
+											src="https://raw.githubusercontent.com/TechShowcase/images/080dcd98dafae9552bf7b6f8f29afebdbc5a95c0/icons/primeng.svg"
+										/>
+										}
 									</div>
 								</div>
 							</div>
@@ -184,6 +191,13 @@ import { FormsModule } from "@angular/forms";
 											class="spartan"
 											title="{{ project.uiLib }}"
 											src="https://raw.githubusercontent.com/TechShowcase/images/main/icons/spartan.png"
+										/>
+										}
+                    @if (project.uiLib.includes('PrimeNG')) {
+										<img
+											class="spartan"
+											title="{{ project.uiLib }}"
+											src="https://raw.githubusercontent.com/TechShowcase/images/080dcd98dafae9552bf7b6f8f29afebdbc5a95c0/icons/primeng.svg"
 										/>
 										}
 									</div>
