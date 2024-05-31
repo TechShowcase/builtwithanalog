@@ -135,6 +135,9 @@ If the issue you are working on is an approved request for adding a new project 
 
 6. Include any relevant tests to verify the new project entry if applicable.
 
+* Images that are served from the analog endpoint are currently hosted in the repo called `images` under the `projects` folder. If the image of the project doesn't load verify the path and that the image is present in that repo. This is a temporary solution since the images from the regular location - `assets/images/projects` are not loading.
+[Issue #17](https://github.com/TechShowcase/builtwithanalog/issues/17)
+
 Following these steps will ensure that new projects are added correctly and maintain the integrity of the data used by the application.
 
 ## Reviewing a Pull Request

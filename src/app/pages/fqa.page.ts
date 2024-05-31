@@ -63,10 +63,7 @@ import { Component } from "@angular/core";
 						How can I update information about my showcased project?
 					</summary>
 					<p>
-						>If you need to update information about your showcased project,
-						simply send an email to [contact email], detailing the changes you'd
-						like to make. Our team will review your request and update the
-						information accordingly.
+          If you need to update information about your showcased project, just head over to our GitHub organization and navigate to the <a href="https://github.com/orgs/TechShowcase/discussions" target="_blank">Discussions</a> section, and follow the instructions.
 					</p>
 				</details>
 				<details class="card">
@@ -74,9 +71,7 @@ import { Component } from "@angular/core";
 						Can I remove my project from the showcase once it's been listed?
 					</summary>
 					<p>
-						Yes, you can request to remove your project from the showcase at any
-						time. Simply send us an email at [contact email] with your request,
-						and we'll remove your project from the listing promptly.
+          Yes, you can request to remove your project from the showcase at any time. just head over to our GitHub organization and navigate to the <a href="https://github.com/orgs/TechShowcase/discussions" target="_blank">Discussions</a> section, and follow the instructions.
 					</p>
 				</details>
 			</div>
