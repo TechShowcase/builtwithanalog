@@ -1,11 +1,14 @@
 import { Component } from "@angular/core";
 
+import { CardModule } from "primeng/card";
+
 @Component({
 	standalone: true,
+  imports: [CardModule],
 	template: `
 		<div class="content">
 			<h1>About</h1>
-			<div class="card">
+			<p-card>
 				<h2>builtwithanalog.dev</h2>
 				<p>is part of the</p>
 				<a href="https://github.com/TechShowcase" target="_blank">
@@ -57,7 +60,7 @@ import { Component } from "@angular/core";
 					developers around the world. Explore, showcase, and market your Analog
 					projects on builtwithanalog.dev today!
 				</p>
-			</div>
+			</p-card>
 		</div>
 	`,
 	styles: [
@@ -69,7 +72,7 @@ import { Component } from "@angular/core";
 				justify-content: flex-start;
 				min-height: 90vh;
 
-				.card {
+				.p-card {
 					width: 50vw;
 					padding: 2rem;
 					margin-bottom: 3rem;

@@ -2,7 +2,7 @@ import { defineEventHandler } from "h3";
 
 export default defineEventHandler(() => [
 	{
-		name: "AnalogJS",
+		name: "AnalogJS Official Docs",
 		imageSrc:
 			"https://raw.githubusercontent.com/TechShowcase/images/main/projects/analogjs.jpg",
 		url: "https://analogjs.org/",

@@ -862,7 +862,7 @@ parentPort.on("message", async (msg) => {
 
 const projects_get = defineEventHandler(() => [
   {
-    name: "AnalogJS",
+    name: "AnalogJS Official Docs",
     imageSrc: "https://raw.githubusercontent.com/TechShowcase/images/main/projects/analogjs.jpg",
     url: "https://analogjs.org/",
     category: "Educational",
