@@ -2,20 +2,6 @@ import { defineEventHandler } from "h3";
 
 export default defineEventHandler(() => [
 	{
-		name: "AnalogJS Official Docs",
-		imageSrc:
-			"https://raw.githubusercontent.com/TechShowcase/images/main/projects/analogjs.jpg",
-		url: "https://analogjs.org/",
-		category: "Educational",
-		version: "18.0.0",
-		versionGroup: "v15 and up",
-		analogVersion: "1.5.0",
-		uiLib: "None",
-		pricing: "Free",
-		threeD: false,
-		developer: "Brandon Roberts",
-	},
-	{
 		name: "Spartan UI",
 		imageSrc:
 			"https://raw.githubusercontent.com/TechShowcase/images/main/projects/spartan-ui.jpg",
@@ -112,5 +98,19 @@ export default defineEventHandler(() => [
 		pricing: "Free",
 		threeD: false,
 		developer: "Dale Nguyen",
+	},
+  {
+		name: "Angular Belgrade",
+		imageSrc:
+			"https://raw.githubusercontent.com/TechShowcase/images/main/projects/angular-belgrade.jpg",
+		url: "https://angularbelgrade.org",
+		category: "Community",
+		version: "17.2.0",
+		versionGroup: "v15 and up",
+		analogVersion: "0.2.0",
+		uiLib: "None",
+		pricing: "Free",
+		threeD: false,
+		developer: "Angular Belgrade",
 	},
 ]);
