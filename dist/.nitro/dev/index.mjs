@@ -869,7 +869,7 @@ const projects_get = defineEventHandler(() => [
     version: "18.0.0",
     versionGroup: "v15 and up",
     analogVersion: "1.5.0",
-    uiLib: "",
+    uiLib: "None",
     pricing: "Free",
     threeD: false,
     developer: "Brandon Roberts"

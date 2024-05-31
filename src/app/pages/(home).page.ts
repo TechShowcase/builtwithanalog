@@ -3,38 +3,45 @@ import { Component, inject, OnChanges, OnInit } from "@angular/core";
 import { Project } from "../models/project";
 import { FormsModule } from "@angular/forms";
 
+import { DropdownModule } from "primeng/dropdown";
+import { ButtonModule } from "primeng/button";
+
 @Component({
 	selector: "app-home",
 	standalone: true,
-	imports: [FormsModule],
+	imports: [FormsModule, DropdownModule, ButtonModule],
 	template: `
 		<div class="content">
 			<div class="filtering">
 				<div class="filtering-actions">
-					<select [(ngModel)]="selectedCategory" (change)="applyFilter()">
-						<option value="" disabled hidden>Category</option>
-						@for (category of categories; track category) {
-						<option value="{{ category }}">{{ category }}</option>
-						}
-					</select>
-					<select [(ngModel)]="selectedVersionGroup" (change)="applyFilter()">
-						<option value="" disabled hidden>Angular Version</option>
-						@for (version of versionGroup; track version) {
-						<option value="{{ version }}">{{ version }}</option>
-						}
-					</select>
-					<select [(ngModel)]="selectedAnalogVersion" (change)="applyFilter()">
-						<option value="" disabled hidden>Analog Version</option>
-						@for (analogVersion of analogVersions; track analogVersion) {
-						<option value="{{ analogVersion }}">{{ analogVersion }}</option>
-						}
-					</select>
-					<select [(ngModel)]="selectedUIlib" (change)="applyFilter()">
-						<option value="" disabled hidden>UI Library</option>
-						@for (uiLib of projectsUIlib; track uiLib) {
-						<option value="{{ uiLib }}">{{ uiLib }}</option>
-						}
-					</select>
+					<p-dropdown
+						[options]="categories"
+						[(ngModel)]="selectedCategory"
+						optionLabel="name"
+						(onChange)="applyFilter()"
+						placeholder="Select a Category"
+					/>
+					<p-dropdown
+						[options]="versionGroup"
+						[(ngModel)]="selectedVersionGroup"
+						optionLabel="name"
+						(onChange)="applyFilter()"
+						placeholder="Angular Version"
+					/>
+					<p-dropdown
+						[options]="analogVersions"
+						[(ngModel)]="selectedAnalogVersion"
+						optionLabel="name"
+						(onChange)="applyFilter()"
+						placeholder="Analog Version"
+					/>
+					<p-dropdown
+						[options]="projectsUIlib"
+						[(ngModel)]="selectedUIlib"
+						optionLabel="name"
+						(onChange)="applyFilter()"
+						placeholder="UI Library"
+					/>
 					<div class="buttons-wrapper">
 						<div class="checkbox-wrapper">
 							<input
@@ -57,7 +64,7 @@ import { FormsModule } from "@angular/forms";
 							<label for="checkbox">3D</label>
 						</div>
 					</div>
-					<button (click)="clearFilters()">Clear Filters</button>
+					<p-button label="Clear Filters" (click)="clearFilters()" />
 				</div>
 				<div class="total">
 					@if (!filterApplied) {
@@ -123,8 +130,7 @@ import { FormsModule } from "@angular/forms";
 											title="{{ project.uiLib }}"
 											src="https://raw.githubusercontent.com/TechShowcase/images/main/icons/spartan.png"
 										/>
-										}
-										@if (project.uiLib.includes('PrimeNG')) {
+										} @if (project.uiLib.includes('PrimeNG')) {
 										<img
 											class="spartan"
 											title="{{ project.uiLib }}"
@@ -192,8 +198,7 @@ import { FormsModule } from "@angular/forms";
 											title="{{ project.uiLib }}"
 											src="https://raw.githubusercontent.com/TechShowcase/images/main/icons/spartan.png"
 										/>
-										}
-                    @if (project.uiLib.includes('PrimeNG')) {
+										} @if (project.uiLib.includes('PrimeNG')) {
 										<img
 											class="spartan"
 											title="{{ project.uiLib }}"
@@ -387,15 +392,15 @@ import { FormsModule } from "@angular/forms";
 export default class HomeComponent implements OnInit, OnChanges {
 	projects: Project[] = [];
 	filteredProjects: Project[] = [];
-	categories: string[] = [];
-	analogVersions: string[] = [];
-	projectsUIlib: string[] = [];
-	versionGroup: string[] = [];
+	categories: { name: string }[] = [];
+	versionGroup: { name: string }[] = [];
+	analogVersions: { name: string }[] = [];
+	projectsUIlib: { name: string }[] = [];
 	filterApplied: boolean = false;
-	selectedCategory: string = "";
-	selectedVersionGroup: string = "";
-	selectedAnalogVersion: string = "";
-	selectedUIlib: string = "";
+	selectedCategory: { name: "" } = { name: "" };
+	selectedVersionGroup: { name: "" } = { name: "" };
+	selectedAnalogVersion: { name: "" } = { name: "" };
+	selectedUIlib: { name: "" } = { name: "" };
 	showFree: boolean = false;
 	thereDElements: boolean = false;
 	http = inject(HttpClient);
@@ -408,18 +413,16 @@ export default class HomeComponent implements OnInit, OnChanges {
 				this.projects = projects;
 				this.categories = Array.from(
 					new Set(this.projects.map((project) => project.category))
-				);
-				this.analogVersions = Array.from(
-					new Set(this.projects.map((project) => project.analogVersion))
-				);
-				this.projectsUIlib = Array.from(
-					new Set(
-						this.projects.map((project) => project.uiLib.split(", ")).flat()
-					)
-				);
+				).map((category) => ({ name: category }));
 				this.versionGroup = Array.from(
 					new Set(this.projects.map((project) => project.versionGroup))
-				);
+				).map((versionGroup) => ({ name: versionGroup }));
+				this.analogVersions = Array.from(
+					new Set(this.projects.map((project) => project.analogVersion))
+				).map((analogVersion) => ({ name: analogVersion }));
+				this.projectsUIlib = Array.from(new Set(
+						this.projects.map((project) => project.uiLib.split(", ")).flat())).map((uiLib) => ({ name: uiLib }));
+            console.log(this.projectsUIlib);
 			});
 	}
 
@@ -431,18 +434,15 @@ export default class HomeComponent implements OnInit, OnChanges {
 				this.projects = projects;
 				this.categories = Array.from(
 					new Set(this.projects.map((project) => project.category))
-				);
-				this.analogVersions = Array.from(
-					new Set(this.projects.map((project) => project.analogVersion))
-				);
-				this.projectsUIlib = Array.from(
-					new Set(
-						this.projects.map((project) => project.uiLib.split(", ")).flat()
-					)
-				);
+				).map((category) => ({ name: category }));
 				this.versionGroup = Array.from(
 					new Set(this.projects.map((project) => project.versionGroup))
-				);
+				).map((versionGroup) => ({ name: versionGroup }));
+				this.analogVersions = Array.from(
+					new Set(this.projects.map((project) => project.analogVersion))
+				).map((analogVersion) => ({ name: analogVersion }));
+				this.projectsUIlib = Array.from(new Set(
+          this.projects.map((project) => project.uiLib.split(", ")).flat())).map((uiLib) => ({ name: uiLib }));
 			});
 	}
 
@@ -450,14 +450,14 @@ export default class HomeComponent implements OnInit, OnChanges {
 		this.filterApplied = true;
 		this.filteredProjects = this.projects.filter((project) => {
 			return (
-				(this.selectedCategory === "" ||
-					project.category === this.selectedCategory) &&
-				(this.selectedAnalogVersion === "" ||
-					project.analogVersion === this.selectedAnalogVersion) &&
-				(this.selectedUIlib === "" ||
-					project.uiLib.split(", ").includes(this.selectedUIlib)) &&
-				(this.selectedVersionGroup === "" ||
-					project.versionGroup === this.selectedVersionGroup) &&
+				(this.selectedCategory.name === "" ||
+					project.category === this.selectedCategory.name) &&
+				(this.selectedAnalogVersion.name === "" ||
+					project.analogVersion === this.selectedAnalogVersion.name) &&
+				(this.selectedUIlib.name === "" ||
+					project.uiLib.split(", ").includes(this.selectedUIlib.name)) &&
+				(this.selectedVersionGroup.name === "" ||
+					project.versionGroup === this.selectedVersionGroup.name) &&
 				(!this.showFree || project.pricing === "Free") &&
 				(!this.thereDElements || project.thereD === true)
 			);
@@ -466,10 +466,10 @@ export default class HomeComponent implements OnInit, OnChanges {
 
 	clearFilters(): void {
 		this.filterApplied = false;
-		this.selectedCategory = "";
-		this.selectedAnalogVersion = "";
-		this.selectedUIlib = "";
-		this.selectedVersionGroup = "";
+		this.selectedCategory = { name: "" };
+		this.selectedAnalogVersion = { name: "" };
+		this.selectedUIlib = { name: "" };
+		this.selectedVersionGroup = { name: "" };
 		this.showFree = false;
 		this.thereDElements = false;
 	}
