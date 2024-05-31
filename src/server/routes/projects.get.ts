@@ -6,7 +6,7 @@ export default defineEventHandler(() => [
 		imageSrc:
 			"https://raw.githubusercontent.com/TechShowcase/images/main/projects/analogjs.jpg",
 		url: "https://analogjs.org/",
-		category: "Open Source",
+		category: "Educational",
 		version: "18.0.0",
 		versionGroup: "v15 and up",
 		analogVersion: "1.5.0",
