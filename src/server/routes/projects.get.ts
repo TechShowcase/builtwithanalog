@@ -79,6 +79,19 @@ export default defineEventHandler(() => (
       "pricing": "Free",
       "threeD": false,
       "developer": "Gerome Grignon"
-    }
-  ]
-));
+    },
+  {
+    name: 'PDFun',
+    imageSrc:
+      'https://raw.githubusercontent.com/TechShowcase/images/main/projects/pdfun.jpg',
+    url: 'https://pdfun.xyz',
+    category: 'Open Source',
+    version: '18.0.0',
+    versionGroup: 'v15 and up',
+    analogVersion: '1.3.1',
+    uiLib: 'PrimeNG',
+    pricing: 'Free',
+    threeD: false,
+    developer: 'Dale Nguyen',
+  },
+]);
