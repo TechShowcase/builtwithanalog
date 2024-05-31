@@ -209,7 +209,7 @@ import { FormsModule } from "@angular/forms";
 				.filtering {
 					display: flex;
 					flex-direction: column;
-          margin-top: 1.5rem;
+					margin-top: 1.5rem;
 
 					.filtering-actions {
 						display: flex;
