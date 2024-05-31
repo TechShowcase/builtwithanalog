@@ -72,11 +72,11 @@ import { AccordionModule } from "primeng/accordion";
 						section, and follow the instructions.
 					</p>
 				</p-accordionTab>
-        <p-accordionTab
+				<p-accordionTab
 					header="Can I remove my project from the showcase once it's been listed?"
 				>
 					<p>
-          Yes, you can request to remove your project from the showcase at any
+						Yes, you can request to remove your project from the showcase at any
 						time. just head over to our GitHub organization and navigate to the
 						<a
 							href="https://github.com/orgs/TechShowcase/discussions"
