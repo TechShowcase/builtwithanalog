@@ -7,6 +7,7 @@ import { DropdownModule } from "primeng/dropdown";
 import { CardModule } from "primeng/card";
 import { ButtonModule } from "primeng/button";
 import { CheckboxModule } from "primeng/checkbox";
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
 	selector: "app-home",
@@ -17,6 +18,7 @@ import { CheckboxModule } from "primeng/checkbox";
 		CardModule,
 		ButtonModule,
 		CheckboxModule,
+    TooltipModule
 	],
 	template: `
 		<div class="content">
@@ -114,33 +116,38 @@ import { CheckboxModule } from "primeng/checkbox";
 									<div class="version">
 										<img
 											class="analog"
-											title="{{ project.analogVersion }}"
 											src="https://raw.githubusercontent.com/TechShowcase/images/499181122a186d07a1ea115bdee6d5f206d6c6ab/icons/analog.svg"
+                      pTooltip="{{ project.analogVersion }}"
+                      tooltipPosition="top"
 										/>
 										@if (isVersion16OrAbove(project.version)) {
 										<img
-											title="{{ project.version }}"
 											src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/angular.svg"
+                      pTooltip="{{ project.version }}"
+                      tooltipPosition="top"
 										/>
 										} @else {
 										<img
-											title="{{ project.version }}"
 											src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/angular-old.svg"
+                      pTooltip="{{ project.version }}"
+                      tooltipPosition="top"
 										/>
 										}
 									</div>
 									<div class="ui">
 										@if (project.uiLib.includes('Spartan UI')) {
 										<img
-											class="spartan"
-											title="{{ project.uiLib }}"
+											class="ui-lib"
 											src="https://raw.githubusercontent.com/TechShowcase/images/main/icons/spartan.png"
+                      pTooltip="{{ project.uiLib }}"
+                      tooltipPosition="top"
 										/>
 										} @if (project.uiLib.includes('PrimeNG')) {
 										<img
-											class="spartan"
-											title="{{ project.uiLib }}"
+											class="ui-lib"
 											src="https://raw.githubusercontent.com/TechShowcase/images/080dcd98dafae9552bf7b6f8f29afebdbc5a95c0/icons/primeng.svg"
+                      pTooltip="{{ project.uiLib }}"
+                      tooltipPosition="top"
 										/>
 										}
 									</div>
@@ -339,7 +346,7 @@ import { CheckboxModule } from "primeng/checkbox";
 										height: 1.5rem;
 										border-radius: 0;
 
-										&.spartan {
+										&.ui-lib {
 											margin-top: 0.3rem;
 										}
 									}
