@@ -75,6 +75,15 @@ h2 {
 	background-color: #1f2937;
 }
 
+.p-tooltip {
+
+  .p-tooltip-text {
+    font-size: 0.8rem;
+    padding: 0 0.3rem;
+  }
+}
+
+
 /* Light mode */
 @media (prefers-color-scheme: light) {
 
