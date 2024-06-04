@@ -90,7 +90,7 @@ import { TooltipModule } from 'primeng/tooltip';
 							class="main-image"
 							src="{{ project.imageSrc }}"
 							alt="{{ project.name }}"
-              pTooltip="{{ project.url }}"
+              pTooltip="by {{ project.developer }}"
               tooltipPosition="bottom"
 						/>
 						<div class="card-content">
@@ -111,8 +111,7 @@ import { TooltipModule } from 'primeng/tooltip';
 										}
 									</div>
 									<div class="more">
-										<h4 pTooltip="by {{ project.developer }}"
-                      tooltipPosition="bottom">{{ project.category }}</h4>
+										<p>{{ project.category }}</p>
 									</div>
 								</div>
 								<div class="features">
@@ -166,7 +165,7 @@ import { TooltipModule } from 'primeng/tooltip';
 							class="main-image"
 							src="{{ project.imageSrc }}"
 							alt="{{ project.name }}"
-              pTooltip="{{ project.url }}"
+              pTooltip="by {{ project.developer }}"
               tooltipPosition="bottom"
 						/>
 						<div class="card-content">
@@ -187,8 +186,7 @@ import { TooltipModule } from 'primeng/tooltip';
 										}
 									</div>
 									<div class="more">
-										<h4 pTooltip="by {{ project.developer }}"
-                      tooltipPosition="bottom">{{ project.category }}</h4>
+										<p>{{ project.category }}</p>
 									</div>
 								</div>
 								<div class="features">
@@ -316,21 +314,16 @@ import { TooltipModule } from 'primeng/tooltip';
 							width: 100%;
 							border-radius: 0.8rem;
 							object-fit: cover;
+              margin-bottom: 0.1rem;
 						}
 
 						.card-content {
 							width: 100%;
 							h2 {
-								font-size: 1.2rem;
+								font-size: 1.1rem;
 								font-weight: 500;
 								margin: 0.6rem 0 0;
 							}
-
-              h4 {
-                font-size: 1rem;
-								font-weight: 500;
-								margin: 0.2rem 0;
-              }
 
 							p {
 								font-size: 0.9rem;
