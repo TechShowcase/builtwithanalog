@@ -19,7 +19,7 @@ import { RouterLink } from "@angular/router";
 						<i class="pi pi-github"></i>
 					</a>
 				</div>
-				<small> This site is built with Analog </small>
+				<small> This site is built with <a href="https://analogjs.org/" target="_blank">Analog</a> </small>
 			</div>
 		</div>
 	`,

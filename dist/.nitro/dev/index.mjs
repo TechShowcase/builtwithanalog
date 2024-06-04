@@ -863,7 +863,7 @@ parentPort.on("message", async (msg) => {
 const projects_get = defineEventHandler(() => [
   {
     name: "Spartan UI",
-    imageSrc: "https://raw.githubusercontent.com/TechShowcase/images/main/projects/spartan-ui.jpg",
+    imageSrc: "/images/projects/spartan-ui.jpg",
     url: "https://www.spartan.ng",
     category: "Open Source",
     version: "17.3.0",
@@ -876,7 +876,7 @@ const projects_get = defineEventHandler(() => [
   },
   {
     name: "AngleBrackets",
-    imageSrc: "https://raw.githubusercontent.com/TechShowcase/images/main/projects/anglebrackets.jpg",
+    imageSrc: "/images/projects/anglebrackets.jpg",
     url: "https://anglebrackets.dev",
     category: "Personal Website",
     version: "17.3.0",
@@ -889,7 +889,7 @@ const projects_get = defineEventHandler(() => [
   },
   {
     name: "Angular Macedonia",
-    imageSrc: "https://raw.githubusercontent.com/TechShowcase/images/main/projects/angular-macedonia.jpg",
+    imageSrc: "/images/projects/angular-macedonia.jpg",
     url: "https://www.angularmacedonia.org",
     category: "Community",
     version: "17.2.0",
@@ -902,7 +902,7 @@ const projects_get = defineEventHandler(() => [
   },
   {
     name: "MrRobot",
-    imageSrc: "https://raw.githubusercontent.com/TechShowcase/images/main/projects/mrrobot.jpg",
+    imageSrc: "/images/projects/mrrobot.jpg",
     url: "https://mrrobot.dev",
     category: "Personal Website",
     version: "17.3.2",
@@ -915,7 +915,7 @@ const projects_get = defineEventHandler(() => [
   },
   {
     name: "AnguHashBlog",
-    imageSrc: "https://raw.githubusercontent.com/TechShowcase/images/main/projects/analog-anguhashblog.jpg",
+    imageSrc: "/images/projects/analog-anguhashblog.jpg",
     url: "https://analog.anguhashblog.com",
     category: "Open Source",
     version: "17.3.0",
@@ -928,7 +928,7 @@ const projects_get = defineEventHandler(() => [
   },
   {
     name: "Angular HUB",
-    imageSrc: "https://raw.githubusercontent.com/TechShowcase/images/main/projects/angular-hub.jpg",
+    imageSrc: "/images/projects/angular-hub.jpg",
     url: "https://angular-hub.com",
     category: "Community",
     version: "18.0.0",
@@ -941,7 +941,7 @@ const projects_get = defineEventHandler(() => [
   },
   {
     name: "PDFun",
-    imageSrc: "https://raw.githubusercontent.com/TechShowcase/images/main/projects/pdfun.jpg",
+    imageSrc: "/images/projects/pdfun.jpg",
     url: "https://pdfun.xyz",
     category: "Open Source",
     version: "18.0.0",
@@ -954,7 +954,7 @@ const projects_get = defineEventHandler(() => [
   },
   {
     name: "Angular Belgrade",
-    imageSrc: "https://raw.githubusercontent.com/TechShowcase/images/main/projects/angular-belgrade.jpg",
+    imageSrc: "/images/projects/angular-belgrade.jpg",
     url: "https://angularbelgrade.org",
     category: "Community",
     version: "16.2.2",

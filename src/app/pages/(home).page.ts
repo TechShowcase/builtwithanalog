@@ -90,6 +90,8 @@ import { TooltipModule } from 'primeng/tooltip';
 							class="main-image"
 							src="{{ project.imageSrc }}"
 							alt="{{ project.name }}"
+              pTooltip="{{ project.url }}"
+              tooltipPosition="bottom"
 						/>
 						<div class="card-content">
 							<div class="details">
@@ -105,11 +107,12 @@ import { TooltipModule } from 'primeng/tooltip';
 										>
 											paid
 										</span>
-										<h2 title="{{ project.name }}">{{ project.name }}</h2>
+										<h2>{{ project.name }}</h2>
 										}
 									</div>
 									<div class="more">
-										<p>{{ project.category }}</p>
+										<h4 pTooltip="by {{ project.developer }}"
+                      tooltipPosition="bottom">{{ project.category }}</h4>
 									</div>
 								</div>
 								<div class="features">
@@ -163,6 +166,8 @@ import { TooltipModule } from 'primeng/tooltip';
 							class="main-image"
 							src="{{ project.imageSrc }}"
 							alt="{{ project.name }}"
+              pTooltip="{{ project.url }}"
+              tooltipPosition="bottom"
 						/>
 						<div class="card-content">
 							<div class="details">
@@ -178,29 +183,33 @@ import { TooltipModule } from 'primeng/tooltip';
 										>
 											paid
 										</span>
-										<h2 title="{{ project.name }}">{{ project.name }}</h2>
+										<h2>{{ project.name }}</h2>
 										}
 									</div>
 									<div class="more">
-										<p>{{ project.category }}</p>
+										<h4 pTooltip="by {{ project.developer }}"
+                      tooltipPosition="bottom">{{ project.category }}</h4>
 									</div>
 								</div>
 								<div class="features">
 									<div class="version">
 										<img
 											class="analog"
-											title="{{ project.analogVersion }}"
 											src="https://raw.githubusercontent.com/TechShowcase/images/499181122a186d07a1ea115bdee6d5f206d6c6ab/icons/analog.svg"
+                      pTooltip="{{ project.analogVersion }}"
+                      tooltipPosition="top"
 										/>
 										@if (isVersion16OrAbove(project.version)) {
 										<img
-											title="{{ project.version }}"
 											src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/angular.svg"
+                      pTooltip="{{ project.version }}"
+                      tooltipPosition="top"
 										/>
 										} @else {
 										<img
-											title="{{ project.version }}"
 											src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/angular-old.svg"
+                      pTooltip="{{ project.uiLib }}"
+                      tooltipPosition="top"
 										/>
 										}
 									</div>
@@ -208,14 +217,16 @@ import { TooltipModule } from 'primeng/tooltip';
 										@if (project.uiLib.includes('Spartan UI')) {
 										<img
 											class="spartan"
-											title="{{ project.uiLib }}"
 											src="https://raw.githubusercontent.com/TechShowcase/images/main/icons/spartan.png"
+                      pTooltip="{{ project.uiLib }}"
+                      tooltipPosition="top"
 										/>
 										} @if (project.uiLib.includes('PrimeNG')) {
 										<img
 											class="spartan"
-											title="{{ project.uiLib }}"
 											src="https://raw.githubusercontent.com/TechShowcase/images/080dcd98dafae9552bf7b6f8f29afebdbc5a95c0/icons/primeng.svg"
+                      pTooltip="{{ project.uiLib }}"
+                      tooltipPosition="top"
 										/>
 										}
 									</div>
@@ -310,10 +321,16 @@ import { TooltipModule } from 'primeng/tooltip';
 						.card-content {
 							width: 100%;
 							h2 {
-								font-size: 1.1rem;
+								font-size: 1.2rem;
 								font-weight: 500;
 								margin: 0.6rem 0 0;
 							}
+
+              h4 {
+                font-size: 1rem;
+								font-weight: 500;
+								margin: 0.2rem 0;
+              }
 
 							p {
 								font-size: 0.9rem;
