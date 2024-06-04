@@ -3,9 +3,16 @@
     <title>Built with Analog</title>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:image" content="https://raw.githubusercontent.com/TechShowcase/images/main/projects/builtwithanalog.jpg">
+    <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/TechShowcase/images/main/projects/builtwithanalog.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <link rel="icon" type="image/x-icon" href="/assets/favicon-ozIGJLo5.ico">
-    <script type="module" crossorigin="" src="/assets/index-uoWLXK-0.js"></script>
-    <link rel="stylesheet" crossorigin="" href="/assets/index-HfV_Amhj.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+
+    <script type="module" crossorigin="" src="/assets/index-CofSVcJW.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-_1exa9sb.css">
   <style ng-app-id="ng">[_nghost-ng-c582792440] {
         display: flex;
         flex-direction: column;
@@ -13,87 +20,98 @@
         min-height: 100vh;
         width: 100vw;
         margin: 0 auto;
-      }</style><style ng-app-id="ng">.header[_ngcontent-ng-c453601695] {
-				justify-content: space-between;
+      }</style><style ng-app-id="ng">p-toolbar[_ngcontent-ng-c2629265650] {
+				.p-toolbar {
+					padding: 0.5rem;
+				}
 
-        .logo {
-          display: flex;
-          align-items: center;
-          gap: 0.3rem;
-          margin: 0 0 0 1rem;
-          img {
-            width: 2rem;
-            height: 2rem;
-          }
-          h1 {
-            font-size: 1.2rem;
-            font-weight: 500;
-          }
-        }
-			}</style><style ng-app-id="ng">.footer[_ngcontent-ng-c1385892751] {
+				.logo {
+					display: flex;
+					align-items: center;
+					gap: 0.3rem;
+					margin: 0 0 0 1rem;
+					img {
+						width: 2rem;
+						height: 2rem;
+					}
+					h1 {
+						font-size: 1.2rem;
+						font-weight: 500;
+					}
+				}
+			}</style><style ng-app-id="ng">.footer[_ngcontent-ng-c3850962784] {
 				display: flex;
 				justify-content: center;
 
 				.info {
 					.links {
 						display: flex;
+						align-items: center;
 						justify-content: center;
 						gap: 0.5rem;
 
-            a {
-              font-weight: 500;
-            }
-					}
+						a {
+							font-size: 0.9rem;
+							font-weight: 600;
+							text-transform: uppercase;
 
-          small {
-            color: gray;
-          }
+							&.github {
+								font-size: 1.2rem;
+								line-height: 1.2rem;
+								height: 1.2rem;
+								width: 1.2rem;
+							}
+						}
+					}
 				}
-			}</style><style ng-app-id="ng">.content[_ngcontent-ng-c2311037558] {
+
+				small {
+					color: gray;
+				}
+			}</style><style ng-app-id="ng">@layer primeng{.p-toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap}.p-toolbar-group-start,.p-toolbar-group-center,.p-toolbar-group-end,.p-toolbar-group-left,.p-toolbar-group-right{display:flex;align-items:center}}
+</style><style ng-app-id="ng">.content[_ngcontent-ng-c3688202499] {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
 				justify-content: flex-start;
-				min-height: 70vh;
+				min-height: 80vh;
 				margin: 1rem;
 
 				.filtering {
 					display: flex;
 					flex-direction: column;
-					form {
+					margin-top: 1.5rem;
+
+					.filtering-actions {
 						display: flex;
 						align-items: center;
 						gap: 1rem;
 
-						select {
-							padding: 0.8rem 0.5rem 0.8rem 0.4rem;
-							font-size: 1rem;
-							width: 10rem;
-							border-top: none;
-							border-right: none;
-							border-left: none;
-							border-bottom: 2px solid transparent;
-							border-radius: 0.5rem 0.5rem 0 0;
-							cursor: pointer;
-
-							&:focus {
-								outline: none;
-								border-bottom: 2px solid #646cff;
-							}
+						.p-dropdown {
+							width: 13rem;
 						}
 
-						.checkbox-wrapper {
+						.buttons-wrapper {
 							display: flex;
-							align-items: center;
+							flex-direction: column;
+							align-items: flex-start;
+							justify-content: center;
 							gap: 0.3rem;
 
-							.checkbox {
-								height: 1.1rem;
-								width: 1.1rem;
-								cursor: pointer;
-							}
-							label {
-								font-size: 1.1rem;
+							.checkbox-wrapper {
+								display: flex;
+								align-items: center;
+								gap: 0.3rem;
+								margin: 0 0.5rem;
+
+								.p- checkbox {
+									height: 1.1rem;
+									width: 1.1rem;
+									cursor: pointer;
+								}
+								label {
+									font-size: 1.1rem;
+								}
 							}
 						}
 					}
@@ -111,16 +129,118 @@
 
 				.cards-wrapper {
 					display: flex;
+					flex-wrap: wrap;
+					justify-content: center;
 					gap: 1.5rem;
-					margin-top: 1rem;
+					margin: 1rem 4rem 2rem;
 
-					.card {
+					.p-card {
+						display: flex;
+						flex-direction: column;
+						align-items: center;
 						width: 20rem;
+
+						img {
+							width: 100%;
+							border-radius: 0.8rem;
+							object-fit: cover;
+						}
+
+						.card-content {
+							width: 100%;
+							h2 {
+								font-size: 1.2rem;
+								font-weight: 500;
+								margin: 0.6rem 0 0;
+							}
+
+              h4 {
+                font-size: 1rem;
+								font-weight: 500;
+								margin: 0.2rem 0;
+              }
+
+							p {
+								font-size: 0.9rem;
+								margin: 0;
+							}
+
+							.details {
+								display: flex;
+								justify-content: space-between;
+								align-items: center;
+
+								.info {
+									.main {
+										display: flex;
+										align-items: center;
+										gap: 0.2rem;
+
+										span {
+											color: #36744c;
+										}
+									}
+								}
+
+								.features {
+									display: flex;
+									gap: 0.3rem;
+
+									img {
+										width: 1.5rem;
+										height: 1.5rem;
+										border-radius: 0;
+
+										&.ui-lib {
+											margin-top: 0.3rem;
+										}
+									}
+
+									.version {
+										display: flex;
+										align-items: center;
+										img {
+											object-fit: contain;
+											&.analog {
+												width: 2rem;
+												height: 2rem;
+												border-radius: 0;
+											}
+										}
+									}
+								}
+							}
+						}
 					}
 				}
-			}</style></head>
+			}
+
+			@media (max-width: 768px) {
+				.content[_ngcontent-ng-c3688202499] {
+					.filtering-actions {
+						flex-direction: column;
+						gap: 0;
+					}
+
+					.cards-wrapper {
+						flex-direction: column;
+						align-items: center;
+
+						.card {
+							width: 90vw;
+						}
+					}
+				}
+			}</style><style ng-app-id="ng">@layer primeng{.p-dropdown{display:inline-flex;cursor:pointer;position:relative;-webkit-user-select:none;user-select:none}.p-dropdown-clear-icon{position:absolute;top:50%;margin-top:-.5rem}.p-dropdown-trigger{display:flex;align-items:center;justify-content:center;flex-shrink:0}.p-dropdown-label{display:block;white-space:nowrap;overflow:hidden;flex:1 1 auto;width:1%;text-overflow:ellipsis;cursor:pointer}.p-dropdown-label-empty{overflow:hidden;opacity:0}input.p-dropdown-label{cursor:default}.p-dropdown .p-dropdown-panel{min-width:100%}.p-dropdown-items-wrapper{overflow:auto}.p-dropdown-item{cursor:pointer;font-weight:400;white-space:nowrap;position:relative;overflow:hidden}.p-dropdown-item-group{cursor:auto}.p-dropdown-items{margin:0;padding:0;list-style-type:none}.p-dropdown-filter{width:100%}.p-dropdown-filter-container{position:relative}.p-dropdown-filter-icon{position:absolute;top:50%;margin-top:-.5rem}.p-fluid .p-dropdown{display:flex}.p-fluid .p-dropdown .p-dropdown-label{width:1%}.p-float-label .p-dropdown .p-placeholder{opacity:0}}
+</style><style ng-app-id="ng">@layer primeng{.p-checkbox{display:inline-flex;cursor:pointer;-webkit-user-select:none;user-select:none;vertical-align:bottom;position:relative}.p-checkbox-disabled{cursor:default!important;pointer-events:none}.p-checkbox-box{display:flex;justify-content:center;align-items:center}p-checkbox{display:inline-flex;vertical-align:bottom;align-items:center}.p-checkbox-label{line-height:1}}
+</style><style ng-app-id="ng">@layer primeng{.p-overlay{position:absolute;top:0;left:0}.p-overlay-modal{display:flex;align-items:center;justify-content:center;position:fixed;top:0;left:0;width:100%;height:100%}.p-overlay-content{transform-origin:inherit}.p-overlay-modal>.p-overlay-content{z-index:1;width:90%}.p-overlay-top{align-items:flex-start}.p-overlay-top-start{align-items:flex-start;justify-content:flex-start}.p-overlay-top-end{align-items:flex-start;justify-content:flex-end}.p-overlay-bottom{align-items:flex-end}.p-overlay-bottom-start{align-items:flex-end;justify-content:flex-start}.p-overlay-bottom-end{align-items:flex-end;justify-content:flex-end}.p-overlay-left{justify-content:flex-start}.p-overlay-left-start{justify-content:flex-start;align-items:flex-start}.p-overlay-left-end{justify-content:flex-start;align-items:flex-end}.p-overlay-right{justify-content:flex-end}.p-overlay-right-start{justify-content:flex-end;align-items:flex-start}.p-overlay-right-end{justify-content:flex-end;align-items:flex-end}}
+</style><style ng-app-id="ng">@layer primeng{.p-card-header img{width:100%}}
+</style></head>
+
   <body><!--nghm-->
-    <app-root _nghost-ng-c582792440="" ng-version="17.3.9" ngh="2" ng-server-context="ssr-analog"><app-header _ngcontent-ng-c582792440="" _nghost-ng-c453601695="" ngh="0"><div _ngcontent-ng-c453601695="" class="header"><div _ngcontent-ng-c453601695="" class="logo"><img _ngcontent-ng-c453601695="" alt="" src="https://analogjs.org/img/logos/analog-logo.svg"><a _ngcontent-ng-c453601695="" routerlink="/" href="/"><h1 _ngcontent-ng-c453601695="">Built with Analog</h1></a></div></div></app-header><router-outlet _ngcontent-ng-c582792440=""></router-outlet><app-home _nghost-ng-c2311037558="" ngh="1"><div _ngcontent-ng-c2311037558="" class="content"><div _ngcontent-ng-c2311037558="" class="filtering"><form _ngcontent-ng-c2311037558="" id="filter-form" class="filtering-actions"><select _ngcontent-ng-c2311037558="" name="type" id="type" value="type"><option _ngcontent-ng-c2311037558="" selected="" hidden="" disabled="">Type</option><option _ngcontent-ng-c2311037558="" value="open-source">Open Source</option><option _ngcontent-ng-c2311037558="" value="productivity">Productivity</option><option _ngcontent-ng-c2311037558="" value="template">Template</option></select><select _ngcontent-ng-c2311037558="" name="angular-version" id="angular-version"><option _ngcontent-ng-c2311037558="" selected="" hidden="" disabled="">Angular Version</option><option _ngcontent-ng-c2311037558="" value="v15">v15 and up</option><option _ngcontent-ng-c2311037558="" value="v10-v15">v10 - v15</option><option _ngcontent-ng-c2311037558="" value="earlier-than-v10">earlier than v10</option></select><select _ngcontent-ng-c2311037558="" name="structure" id="structure"><option _ngcontent-ng-c2311037558="" selected="" hidden="" disabled="">Angular Structure</option><option _ngcontent-ng-c2311037558="" value="modules">Modules</option><option _ngcontent-ng-c2311037558="" value="standalone">Standalone</option></select><select _ngcontent-ng-c2311037558="" name="ui-lib" id="ui-lib"><option _ngcontent-ng-c2311037558="" selected="" hidden="" disabled="">UI Library</option><option _ngcontent-ng-c2311037558="" value="none">None</option><option _ngcontent-ng-c2311037558="" value="angular-material">Angular Material</option><option _ngcontent-ng-c2311037558="" value="primeng">PrimeNG</option><option _ngcontent-ng-c2311037558="" value="spartan">Spartan UI</option></select><div _ngcontent-ng-c2311037558="" class="checkbox-wrapper"><input _ngcontent-ng-c2311037558="" type="checkbox" name="checkbox" class="checkbox"><label _ngcontent-ng-c2311037558="" for="checkbox">Free</label></div><button _ngcontent-ng-c2311037558="" type="reset">Clear Filters</button></form><div _ngcontent-ng-c2311037558="" class="total"><p _ngcontent-ng-c2311037558="">Projects found: 100</p></div></div><div _ngcontent-ng-c2311037558="" class="cards-wrapper"><a _ngcontent-ng-c2311037558="" target="_blank" href="https://gemini.google.com/app?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/gemini.jpg" alt="Gemini"></div></a><a _ngcontent-ng-c2311037558="" target="_blank" href="https://buymeacoffee.com/zoaibkhan/e/254994?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/zoaib-themebuildercover.jpg" alt="Theme Builder App"></div></a><a _ngcontent-ng-c2311037558="" target="_blank" href="https://domains.google.com?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/google-domains.jpg" alt="Google Domains"></div></a><a _ngcontent-ng-c2311037558="" target="_blank" href="https://www.delta.com/eu/en?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/delta.jpg" alt="Delta Air Lines"></div></a><a _ngcontent-ng-c2311037558="" target="_blank" href="https://app.clickup.com?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/clickup.jpg" alt="Click Up"></div></a><a _ngcontent-ng-c2311037558="" target="_blank" href="https://www.klm.com?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/klm.jpg" alt="KLM"></div></a><a _ngcontent-ng-c2311037558="" target="_blank" href="https://techopensolve.com?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/techopensolve.jpg" alt="TechOpenSolve"></div></a><a _ngcontent-ng-c2311037558="" target="_blank" href="https://anguhashblog.com?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/anguhashblog.jpg" alt="AnguHashBlog"></div></a><a _ngcontent-ng-c2311037558="" target="_blank" href="https://www.paidlancer.dev?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/paidlancer.jpg" alt="Paidlancer"></div></a><a _ngcontent-ng-c2311037558="" target="_blank" href="https://angusciflix.monacodelisa.com?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/angusciflix.jpg" alt="AnguSciFlix"></div></a><a _ngcontent-ng-c2311037558="" target="_blank" href="https://users-my-api.monacodelisa.com?source=builtwithangular.dev"><div _ngcontent-ng-c2311037558="" class="card"><img _ngcontent-ng-c2311037558="" src="../assets/images/projects/users-my-rest-api.jpg" alt="Users"></div></a><!----></div></div></app-home><!----><app-footer _ngcontent-ng-c582792440="" _nghost-ng-c1385892751="" ngh="0"><div _ngcontent-ng-c1385892751="" class="footer"><div _ngcontent-ng-c1385892751="" class="social"></div><div _ngcontent-ng-c1385892751="" class="info"><div _ngcontent-ng-c1385892751="" class="links"><a _ngcontent-ng-c1385892751="" routerlink="/fqa" href="/fqa">FQA</a><a _ngcontent-ng-c1385892751="" routerlink="/about" href="/about">About</a></div><small _ngcontent-ng-c1385892751=""> This site is built with Analog </small></div></div></app-footer></app-root>
+    <app-root _nghost-ng-c582792440="" ng-version="18.0.0" ngh="9" ng-server-context="ssr-analog"><app-header _ngcontent-ng-c582792440="" _nghost-ng-c2629265650="" ngh="1"><p-toolbar _ngcontent-ng-c2629265650="" class="p-element" ngh="0"><div role="toolbar" data-pc-name="toolbar" class="p-toolbar p-component"><div _ngcontent-ng-c2629265650="" class="p-toolbar-group-start"><div _ngcontent-ng-c2629265650="" class="logo"><img _ngcontent-ng-c2629265650="" alt="" src="https://analogjs.org/img/logos/analog-logo.svg"><a _ngcontent-ng-c2629265650="" routerlink="/" href="/"><h1 _ngcontent-ng-c2629265650="">Built with Analog</h1></a></div></div><!----><!----><!----></div></p-toolbar></app-header><router-outlet _ngcontent-ng-c582792440=""></router-outlet><app-home _nghost-ng-c3688202499="" class="ng-star-inserted" ngh="8"><div _ngcontent-ng-c3688202499="" class="content"><div _ngcontent-ng-c3688202499="" class="filtering"><div _ngcontent-ng-c3688202499="" class="filtering-actions"><p-dropdown _ngcontent-ng-c3688202499="" optionlabel="name" placeholder="Category" class="p-element p-inputwrapper ng-untouched ng-pristine ng-valid p-inputwrapper-filled" ngh="4"><div id="pn_id_1" class="p-dropdown p-component p-inputwrapper p-inputwrapper-filled"><span role="combobox" pautofocus="" class="p-element p-dropdown-label p-inputtext p-placeholder ng-star-inserted" aria-disabled="false" aria-label="Category" aria-haspopup="listbox" aria-expanded="false" tabindex="0">Category<!----><!----><!----><!----></span><!----><!----><!----><!----><div role="button" aria-label="dropdown trigger" aria-haspopup="listbox" class="p-dropdown-trigger" aria-expanded="false" data-pc-section="trigger"><!----><chevrondownicon class="p-element p-icon-wrapper ng-star-inserted" ngh="2"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="p-dropdown-trigger-icon p-icon" aria-hidden="true"><path d="M7.01744 10.398C6.91269 10.3985 6.8089 10.378 6.71215 10.3379C6.61541 10.2977 6.52766 10.2386 6.45405 10.1641L1.13907 4.84913C1.03306 4.69404 0.985221 4.5065 1.00399 4.31958C1.02276 4.13266 1.10693 3.95838 1.24166 3.82747C1.37639 3.69655 1.55301 3.61742 1.74039 3.60402C1.92777 3.59062 2.11386 3.64382 2.26584 3.75424L7.01744 8.47394L11.769 3.75424C11.9189 3.65709 12.097 3.61306 12.2748 3.62921C12.4527 3.64535 12.6199 3.72073 12.7498 3.84328C12.8797 3.96582 12.9647 4.12842 12.9912 4.30502C13.0177 4.48162 12.9841 4.662 12.8958 4.81724L7.58083 10.1322C7.50996 10.2125 7.42344 10.2775 7.32656 10.3232C7.22968 10.3689 7.12449 10.3944 7.01744 10.398Z" fill="currentColor"></path></svg></chevrondownicon><!----><!----><!----><!----><!----><!----></div><p-overlay class="p-element ng-tns-c3756965041-0 ng-star-inserted" ngh="3"><!----></p-overlay></div></p-dropdown><p-dropdown _ngcontent-ng-c3688202499="" optionlabel="name" placeholder="Angular Version" class="p-element p-inputwrapper ng-untouched ng-pristine ng-valid p-inputwrapper-filled" ngh="4"><div id="pn_id_3" class="p-dropdown p-component p-inputwrapper p-inputwrapper-filled"><span role="combobox" pautofocus="" class="p-element p-dropdown-label p-inputtext p-placeholder ng-star-inserted" aria-disabled="false" aria-label="Angular Version" aria-haspopup="listbox" aria-expanded="false" tabindex="0">Angular Version<!----><!----><!----><!----></span><!----><!----><!----><!----><div role="button" aria-label="dropdown trigger" aria-haspopup="listbox" class="p-dropdown-trigger" aria-expanded="false" data-pc-section="trigger"><!----><chevrondownicon class="p-element p-icon-wrapper ng-star-inserted" ngh="2"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="p-dropdown-trigger-icon p-icon" aria-hidden="true"><path d="M7.01744 10.398C6.91269 10.3985 6.8089 10.378 6.71215 10.3379C6.61541 10.2977 6.52766 10.2386 6.45405 10.1641L1.13907 4.84913C1.03306 4.69404 0.985221 4.5065 1.00399 4.31958C1.02276 4.13266 1.10693 3.95838 1.24166 3.82747C1.37639 3.69655 1.55301 3.61742 1.74039 3.60402C1.92777 3.59062 2.11386 3.64382 2.26584 3.75424L7.01744 8.47394L11.769 3.75424C11.9189 3.65709 12.097 3.61306 12.2748 3.62921C12.4527 3.64535 12.6199 3.72073 12.7498 3.84328C12.8797 3.96582 12.9647 4.12842 12.9912 4.30502C13.0177 4.48162 12.9841 4.662 12.8958 4.81724L7.58083 10.1322C7.50996 10.2125 7.42344 10.2775 7.32656 10.3232C7.22968 10.3689 7.12449 10.3944 7.01744 10.398Z" fill="currentColor"></path></svg></chevrondownicon><!----><!----><!----><!----><!----><!----></div><p-overlay class="p-element ng-tns-c3756965041-1 ng-star-inserted" ngh="3"><!----></p-overlay></div></p-dropdown><p-dropdown _ngcontent-ng-c3688202499="" optionlabel="name" placeholder="Analog Version" class="p-element p-inputwrapper ng-untouched ng-pristine ng-valid p-inputwrapper-filled" ngh="4"><div id="pn_id_5" class="p-dropdown p-component p-inputwrapper p-inputwrapper-filled"><span role="combobox" pautofocus="" class="p-element p-dropdown-label p-inputtext p-placeholder ng-star-inserted" aria-disabled="false" aria-label="Analog Version" aria-haspopup="listbox" aria-expanded="false" tabindex="0">Analog Version<!----><!----><!----><!----></span><!----><!----><!----><!----><div role="button" aria-label="dropdown trigger" aria-haspopup="listbox" class="p-dropdown-trigger" aria-expanded="false" data-pc-section="trigger"><!----><chevrondownicon class="p-element p-icon-wrapper ng-star-inserted" ngh="2"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="p-dropdown-trigger-icon p-icon" aria-hidden="true"><path d="M7.01744 10.398C6.91269 10.3985 6.8089 10.378 6.71215 10.3379C6.61541 10.2977 6.52766 10.2386 6.45405 10.1641L1.13907 4.84913C1.03306 4.69404 0.985221 4.5065 1.00399 4.31958C1.02276 4.13266 1.10693 3.95838 1.24166 3.82747C1.37639 3.69655 1.55301 3.61742 1.74039 3.60402C1.92777 3.59062 2.11386 3.64382 2.26584 3.75424L7.01744 8.47394L11.769 3.75424C11.9189 3.65709 12.097 3.61306 12.2748 3.62921C12.4527 3.64535 12.6199 3.72073 12.7498 3.84328C12.8797 3.96582 12.9647 4.12842 12.9912 4.30502C13.0177 4.48162 12.9841 4.662 12.8958 4.81724L7.58083 10.1322C7.50996 10.2125 7.42344 10.2775 7.32656 10.3232C7.22968 10.3689 7.12449 10.3944 7.01744 10.398Z" fill="currentColor"></path></svg></chevrondownicon><!----><!----><!----><!----><!----><!----></div><p-overlay class="p-element ng-tns-c3756965041-2 ng-star-inserted" ngh="3"><!----></p-overlay></div></p-dropdown><p-dropdown _ngcontent-ng-c3688202499="" optionlabel="name" placeholder="UI Library" class="p-element p-inputwrapper ng-untouched ng-pristine ng-valid p-inputwrapper-filled" ngh="4"><div id="pn_id_7" class="p-dropdown p-component p-inputwrapper p-inputwrapper-filled"><span role="combobox" pautofocus="" class="p-element p-dropdown-label p-inputtext p-placeholder ng-star-inserted" aria-disabled="false" aria-label="UI Library" aria-haspopup="listbox" aria-expanded="false" tabindex="0">UI Library<!----><!----><!----><!----></span><!----><!----><!----><!----><div role="button" aria-label="dropdown trigger" aria-haspopup="listbox" class="p-dropdown-trigger" aria-expanded="false" data-pc-section="trigger"><!----><chevrondownicon class="p-element p-icon-wrapper ng-star-inserted" ngh="2"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="p-dropdown-trigger-icon p-icon" aria-hidden="true"><path d="M7.01744 10.398C6.91269 10.3985 6.8089 10.378 6.71215 10.3379C6.61541 10.2977 6.52766 10.2386 6.45405 10.1641L1.13907 4.84913C1.03306 4.69404 0.985221 4.5065 1.00399 4.31958C1.02276 4.13266 1.10693 3.95838 1.24166 3.82747C1.37639 3.69655 1.55301 3.61742 1.74039 3.60402C1.92777 3.59062 2.11386 3.64382 2.26584 3.75424L7.01744 8.47394L11.769 3.75424C11.9189 3.65709 12.097 3.61306 12.2748 3.62921C12.4527 3.64535 12.6199 3.72073 12.7498 3.84328C12.8797 3.96582 12.9647 4.12842 12.9912 4.30502C13.0177 4.48162 12.9841 4.662 12.8958 4.81724L7.58083 10.1322C7.50996 10.2125 7.42344 10.2775 7.32656 10.3232C7.22968 10.3689 7.12449 10.3944 7.01744 10.398Z" fill="currentColor"></path></svg></chevrondownicon><!----><!----><!----><!----><!----><!----></div><p-overlay class="p-element ng-tns-c3756965041-3 ng-star-inserted" ngh="3"><!----></p-overlay></div></p-dropdown><div _ngcontent-ng-c3688202499="" class="buttons-wrapper"><div _ngcontent-ng-c3688202499="" class="checkbox-wrapper"><p-checkbox _ngcontent-ng-c3688202499="" label="Free" name="free" class="p-element ng-untouched ng-pristine ng-valid" ngh="5"><div data-pc-name="checkbox" data-pc-section="root" class="p-checkbox p-component"><div class="p-hidden-accessible" data-pc-section="hiddenInputWrapper" data-p-hidden-accessible="true"><input type="checkbox" pautofocus="" class="p-element" value="undefined" name="free" aria-checked="false" data-pc-section="hiddenInput"></div><div class="p-checkbox-box" data-p-highlight="false" data-p-focused="false" data-pc-section="input" data-p-disabled="false"><!----></div></div><label data-pc-section="label" class="p-checkbox-label ng-star-inserted"> Free</label><!----></p-checkbox></div><div _ngcontent-ng-c3688202499="" class="checkbox-wrapper"><p-checkbox _ngcontent-ng-c3688202499="" label="3D" name="3D" class="p-element ng-untouched ng-pristine ng-valid" ngh="5"><div data-pc-name="checkbox" data-pc-section="root" class="p-checkbox p-component"><div class="p-hidden-accessible" data-pc-section="hiddenInputWrapper" data-p-hidden-accessible="true"><input type="checkbox" pautofocus="" class="p-element" value="undefined" name="3D" aria-checked="false" data-pc-section="hiddenInput"></div><div class="p-checkbox-box" data-p-highlight="false" data-p-focused="false" data-pc-section="input" data-p-disabled="false"><!----></div></div><label data-pc-section="label" class="p-checkbox-label ng-star-inserted"> 3D</label><!----></p-checkbox></div></div><p-button _ngcontent-ng-c3688202499="" label="Clear Filters" class="p-element" ngh="6"><button pripple="" pautofocus="" class="p-ripple p-element p-button p-component" type="button" data-pc-name="button" data-pc-section="root"><!----><!----><!----><!----><!----><!----><span class="p-button-label ng-star-inserted" data-pc-section="label">Clear Filters</span><!----><!----></button></p-button></div><div _ngcontent-ng-c3688202499="" class="total"><p _ngcontent-ng-c3688202499="" class="ng-star-inserted">All Projects: 8</p><!----><!----></div></div><div _ngcontent-ng-c3688202499="" class="cards-wrapper"><a _ngcontent-ng-c3688202499="" target="_blank" href="https://www.spartan.ng?source=builtwithanalog.dev" class="ng-star-inserted"><p-card _ngcontent-ng-c3688202499="" class="p-element" ngh="7"><div data-pc-name="card" class="p-card p-component"><!----><div class="p-card-body"><!----><!----><div class="p-card-content"><img _ngcontent-ng-c3688202499="" tooltipposition="bottom" class="p-element main-image" src="https://raw.githubusercontent.com/TechShowcase/images/main/projects/spartan-ui.jpg" alt="Spartan UI"><!----><div _ngcontent-ng-c3688202499="" class="card-content"><div _ngcontent-ng-c3688202499="" class="details"><div _ngcontent-ng-c3688202499="" class="info"><div _ngcontent-ng-c3688202499="" class="main"><h2 _ngcontent-ng-c3688202499="" class="ng-star-inserted">Spartan UI</h2><!----><!----></div><div _ngcontent-ng-c3688202499="" class="more"><h4 _ngcontent-ng-c3688202499="" tooltipposition="bottom" class="p-element">Open Source</h4><!----></div></div><div _ngcontent-ng-c3688202499="" class="features"><div _ngcontent-ng-c3688202499="" class="version"><img _ngcontent-ng-c3688202499="" src="https://raw.githubusercontent.com/TechShowcase/images/499181122a186d07a1ea115bdee6d5f206d6c6ab/icons/analog.svg" tooltipposition="top" class="p-element analog"><!----><img _ngcontent-ng-c3688202499="" src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/angular.svg" tooltipposition="top" class="p-element ng-star-inserted"><!----><!----><!----></div><div _ngcontent-ng-c3688202499="" class="ui"><img _ngcontent-ng-c3688202499="" src="https://raw.githubusercontent.com/TechShowcase/images/main/icons/spartan.png" tooltipposition="top" class="p-element ui-lib ng-star-inserted"><!----><!----><!----></div></div></div></div><!----></div><!----></div></div></p-card></a><a _ngcontent-ng-c3688202499="" target="_blank" href="https://anglebrackets.dev?source=builtwithanalog.dev" class="ng-star-inserted"><p-card _ngcontent-ng-c3688202499="" class="p-element" ngh="7"><div data-pc-name="card" class="p-card p-component"><!----><div class="p-card-body"><!----><!----><div class="p-card-content"><img _ngcontent-ng-c3688202499="" tooltipposition="bottom" class="p-element main-image" src="https://raw.githubusercontent.com/TechShowcase/images/main/projects/anglebrackets.jpg" alt="AngleBrackets"><!----><div _ngcontent-ng-c3688202499="" class="card-content"><div _ngcontent-ng-c3688202499="" class="details"><div _ngcontent-ng-c3688202499="" class="info"><div _ngcontent-ng-c3688202499="" class="main"><h2 _ngcontent-ng-c3688202499="" class="ng-star-inserted">AngleBrackets</h2><!----><!----></div><div _ngcontent-ng-c3688202499="" class="more"><h4 _ngcontent-ng-c3688202499="" tooltipposition="bottom" class="p-element">Personal Website</h4><!----></div></div><div _ngcontent-ng-c3688202499="" class="features"><div _ngcontent-ng-c3688202499="" class="version"><img _ngcontent-ng-c3688202499="" src="https://raw.githubusercontent.com/TechShowcase/images/499181122a186d07a1ea115bdee6d5f206d6c6ab/icons/analog.svg" tooltipposition="top" class="p-element analog"><!----><img _ngcontent-ng-c3688202499="" src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/angular.svg" tooltipposition="top" class="p-element ng-star-inserted"><!----><!----><!----></div><div _ngcontent-ng-c3688202499="" class="ui"><!----><!----></div></div></div></div><!----></div><!----></div></div></p-card></a><a _ngcontent-ng-c3688202499="" target="_blank" href="https://www.angularmacedonia.org?source=builtwithanalog.dev" class="ng-star-inserted"><p-card _ngcontent-ng-c3688202499="" class="p-element" ngh="7"><div data-pc-name="card" class="p-card p-component"><!----><div class="p-card-body"><!----><!----><div class="p-card-content"><img _ngcontent-ng-c3688202499="" tooltipposition="bottom" class="p-element main-image" src="https://raw.githubusercontent.com/TechShowcase/images/main/projects/angular-macedonia.jpg" alt="Angular Macedonia"><!----><div _ngcontent-ng-c3688202499="" class="card-content"><div _ngcontent-ng-c3688202499="" class="details"><div _ngcontent-ng-c3688202499="" class="info"><div _ngcontent-ng-c3688202499="" class="main"><h2 _ngcontent-ng-c3688202499="" class="ng-star-inserted">Angular Macedonia</h2><!----><!----></div><div _ngcontent-ng-c3688202499="" class="more"><h4 _ngcontent-ng-c3688202499="" tooltipposition="bottom" class="p-element">Community</h4><!----></div></div><div _ngcontent-ng-c3688202499="" class="features"><div _ngcontent-ng-c3688202499="" class="version"><img _ngcontent-ng-c3688202499="" src="https://raw.githubusercontent.com/TechShowcase/images/499181122a186d07a1ea115bdee6d5f206d6c6ab/icons/analog.svg" tooltipposition="top" class="p-element analog"><!----><img _ngcontent-ng-c3688202499="" src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/angular.svg" tooltipposition="top" class="p-element ng-star-inserted"><!----><!----><!----></div><div _ngcontent-ng-c3688202499="" class="ui"><!----><!----></div></div></div></div><!----></div><!----></div></div></p-card></a><a _ngcontent-ng-c3688202499="" target="_blank" href="https://mrrobot.dev?source=builtwithanalog.dev" class="ng-star-inserted"><p-card _ngcontent-ng-c3688202499="" class="p-element" ngh="7"><div data-pc-name="card" class="p-card p-component"><!----><div class="p-card-body"><!----><!----><div class="p-card-content"><img _ngcontent-ng-c3688202499="" tooltipposition="bottom" class="p-element main-image" src="https://raw.githubusercontent.com/TechShowcase/images/main/projects/mrrobot.jpg" alt="MrRobot"><!----><div _ngcontent-ng-c3688202499="" class="card-content"><div _ngcontent-ng-c3688202499="" class="details"><div _ngcontent-ng-c3688202499="" class="info"><div _ngcontent-ng-c3688202499="" class="main"><h2 _ngcontent-ng-c3688202499="" class="ng-star-inserted">MrRobot</h2><!----><!----></div><div _ngcontent-ng-c3688202499="" class="more"><h4 _ngcontent-ng-c3688202499="" tooltipposition="bottom" class="p-element">Personal Website</h4><!----></div></div><div _ngcontent-ng-c3688202499="" class="features"><div _ngcontent-ng-c3688202499="" class="version"><img _ngcontent-ng-c3688202499="" src="https://raw.githubusercontent.com/TechShowcase/images/499181122a186d07a1ea115bdee6d5f206d6c6ab/icons/analog.svg" tooltipposition="top" class="p-element analog"><!----><img _ngcontent-ng-c3688202499="" src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/angular.svg" tooltipposition="top" class="p-element ng-star-inserted"><!----><!----><!----></div><div _ngcontent-ng-c3688202499="" class="ui"><!----><!----></div></div></div></div><!----></div><!----></div></div></p-card></a><a _ngcontent-ng-c3688202499="" target="_blank" href="https://analog.anguhashblog.com?source=builtwithanalog.dev" class="ng-star-inserted"><p-card _ngcontent-ng-c3688202499="" class="p-element" ngh="7"><div data-pc-name="card" class="p-card p-component"><!----><div class="p-card-body"><!----><!----><div class="p-card-content"><img _ngcontent-ng-c3688202499="" tooltipposition="bottom" class="p-element main-image" src="https://raw.githubusercontent.com/TechShowcase/images/main/projects/analog-anguhashblog.jpg" alt="AnguHashBlog"><!----><div _ngcontent-ng-c3688202499="" class="card-content"><div _ngcontent-ng-c3688202499="" class="details"><div _ngcontent-ng-c3688202499="" class="info"><div _ngcontent-ng-c3688202499="" class="main"><h2 _ngcontent-ng-c3688202499="" class="ng-star-inserted">AnguHashBlog</h2><!----><!----></div><div _ngcontent-ng-c3688202499="" class="more"><h4 _ngcontent-ng-c3688202499="" tooltipposition="bottom" class="p-element">Open Source</h4><!----></div></div><div _ngcontent-ng-c3688202499="" class="features"><div _ngcontent-ng-c3688202499="" class="version"><img _ngcontent-ng-c3688202499="" src="https://raw.githubusercontent.com/TechShowcase/images/499181122a186d07a1ea115bdee6d5f206d6c6ab/icons/analog.svg" tooltipposition="top" class="p-element analog"><!----><img _ngcontent-ng-c3688202499="" src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/angular.svg" tooltipposition="top" class="p-element ng-star-inserted"><!----><!----><!----></div><div _ngcontent-ng-c3688202499="" class="ui"><!----><!----></div></div></div></div><!----></div><!----></div></div></p-card></a><a _ngcontent-ng-c3688202499="" target="_blank" href="https://angular-hub.com?source=builtwithanalog.dev" class="ng-star-inserted"><p-card _ngcontent-ng-c3688202499="" class="p-element" ngh="7"><div data-pc-name="card" class="p-card p-component"><!----><div class="p-card-body"><!----><!----><div class="p-card-content"><img _ngcontent-ng-c3688202499="" tooltipposition="bottom" class="p-element main-image" src="https://raw.githubusercontent.com/TechShowcase/images/main/projects/angular-hub.jpg" alt="Angular HUB"><!----><div _ngcontent-ng-c3688202499="" class="card-content"><div _ngcontent-ng-c3688202499="" class="details"><div _ngcontent-ng-c3688202499="" class="info"><div _ngcontent-ng-c3688202499="" class="main"><h2 _ngcontent-ng-c3688202499="" class="ng-star-inserted">Angular HUB</h2><!----><!----></div><div _ngcontent-ng-c3688202499="" class="more"><h4 _ngcontent-ng-c3688202499="" tooltipposition="bottom" class="p-element">Community</h4><!----></div></div><div _ngcontent-ng-c3688202499="" class="features"><div _ngcontent-ng-c3688202499="" class="version"><img _ngcontent-ng-c3688202499="" src="https://raw.githubusercontent.com/TechShowcase/images/499181122a186d07a1ea115bdee6d5f206d6c6ab/icons/analog.svg" tooltipposition="top" class="p-element analog"><!----><img _ngcontent-ng-c3688202499="" src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/angular.svg" tooltipposition="top" class="p-element ng-star-inserted"><!----><!----><!----></div><div _ngcontent-ng-c3688202499="" class="ui"><!----><img _ngcontent-ng-c3688202499="" src="https://raw.githubusercontent.com/TechShowcase/images/080dcd98dafae9552bf7b6f8f29afebdbc5a95c0/icons/primeng.svg" tooltipposition="top" class="p-element ui-lib ng-star-inserted"><!----><!----></div></div></div></div><!----></div><!----></div></div></p-card></a><a _ngcontent-ng-c3688202499="" target="_blank" href="https://pdfun.xyz?source=builtwithanalog.dev" class="ng-star-inserted"><p-card _ngcontent-ng-c3688202499="" class="p-element" ngh="7"><div data-pc-name="card" class="p-card p-component"><!----><div class="p-card-body"><!----><!----><div class="p-card-content"><img _ngcontent-ng-c3688202499="" tooltipposition="bottom" class="p-element main-image" src="https://raw.githubusercontent.com/TechShowcase/images/main/projects/pdfun.jpg" alt="PDFun"><!----><div _ngcontent-ng-c3688202499="" class="card-content"><div _ngcontent-ng-c3688202499="" class="details"><div _ngcontent-ng-c3688202499="" class="info"><div _ngcontent-ng-c3688202499="" class="main"><h2 _ngcontent-ng-c3688202499="" class="ng-star-inserted">PDFun</h2><!----><!----></div><div _ngcontent-ng-c3688202499="" class="more"><h4 _ngcontent-ng-c3688202499="" tooltipposition="bottom" class="p-element">Open Source</h4><!----></div></div><div _ngcontent-ng-c3688202499="" class="features"><div _ngcontent-ng-c3688202499="" class="version"><img _ngcontent-ng-c3688202499="" src="https://raw.githubusercontent.com/TechShowcase/images/499181122a186d07a1ea115bdee6d5f206d6c6ab/icons/analog.svg" tooltipposition="top" class="p-element analog"><!----><img _ngcontent-ng-c3688202499="" src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/angular.svg" tooltipposition="top" class="p-element ng-star-inserted"><!----><!----><!----></div><div _ngcontent-ng-c3688202499="" class="ui"><!----><img _ngcontent-ng-c3688202499="" src="https://raw.githubusercontent.com/TechShowcase/images/080dcd98dafae9552bf7b6f8f29afebdbc5a95c0/icons/primeng.svg" tooltipposition="top" class="p-element ui-lib ng-star-inserted"><!----><!----></div></div></div></div><!----></div><!----></div></div></p-card></a><a _ngcontent-ng-c3688202499="" target="_blank" href="https://angularbelgrade.org?source=builtwithanalog.dev" class="ng-star-inserted"><p-card _ngcontent-ng-c3688202499="" class="p-element" ngh="7"><div data-pc-name="card" class="p-card p-component"><!----><div class="p-card-body"><!----><!----><div class="p-card-content"><img _ngcontent-ng-c3688202499="" tooltipposition="bottom" class="p-element main-image" src="https://raw.githubusercontent.com/TechShowcase/images/main/projects/angular-belgrade.jpg" alt="Angular Belgrade"><!----><div _ngcontent-ng-c3688202499="" class="card-content"><div _ngcontent-ng-c3688202499="" class="details"><div _ngcontent-ng-c3688202499="" class="info"><div _ngcontent-ng-c3688202499="" class="main"><h2 _ngcontent-ng-c3688202499="" class="ng-star-inserted">Angular Belgrade</h2><!----><!----></div><div _ngcontent-ng-c3688202499="" class="more"><h4 _ngcontent-ng-c3688202499="" tooltipposition="bottom" class="p-element">Community</h4><!----></div></div><div _ngcontent-ng-c3688202499="" class="features"><div _ngcontent-ng-c3688202499="" class="version"><img _ngcontent-ng-c3688202499="" src="https://raw.githubusercontent.com/TechShowcase/images/499181122a186d07a1ea115bdee6d5f206d6c6ab/icons/analog.svg" tooltipposition="top" class="p-element analog"><!----><img _ngcontent-ng-c3688202499="" src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/angular.svg" tooltipposition="top" class="p-element ng-star-inserted"><!----><!----><!----></div><div _ngcontent-ng-c3688202499="" class="ui"><!----><!----></div></div></div></div><!----></div><!----></div></div></p-card></a><!----><!----><!----></div></div></app-home><!----><app-footer _ngcontent-ng-c582792440="" _nghost-ng-c3850962784="" ngh="2"><div _ngcontent-ng-c3850962784="" class="footer"><div _ngcontent-ng-c3850962784="" class="info"><div _ngcontent-ng-c3850962784="" class="links"><a _ngcontent-ng-c3850962784="" routerlink="/fqa" href="/fqa">FQA</a><a _ngcontent-ng-c3850962784="" routerlink="/about" href="/about">About</a><a _ngcontent-ng-c3850962784="" href="https://github.com/TechShowcase/builtwithanalog" target="_blank" class="github"><i _ngcontent-ng-c3850962784="" class="pi pi-github"></i></a></div><small _ngcontent-ng-c3850962784=""> This site is built with <a _ngcontent-ng-c3850962784="" href="https://analogjs.org/" target="_blank">Analog</a></small></div></div></app-footer></app-root>
+
   
 
-<script id="ng-state" type="application/json">{"176560544":{"b":[{"name":"Gemini","imageSrc":"../assets/images/projects/gemini.jpg","url":"https://gemini.google.com/app","category":"AI Language Model","version":"17.3.0","versionGroup":"v15 and up","structure":"Standalone","uiLib":"Angular Material","pricing":"Free","threeD":false,"developer":"Google"},{"name":"Theme Builder App","imageSrc":"../assets/images/projects/zoaib-themebuildercover.jpg","url":"https://buymeacoffee.com/zoaibkhan/e/254994","category":"Template","version":"18 rc","versionGroup":"v15 and up","structure":"Standalone","uiLib":"Angular Material","pricing":"One-time Fee","threeD":false,"developer":"Zoaib Khan"},{"name":"Google Domains","imageSrc":"../assets/images/projects/google-domains.jpg","url":"https://domains.google.com","category":"AI Language Model","version":"","versionGroup":"v15 and up","structure":"Modular","uiLib":"Angular Material","pricing":"Free","threeD":false,"developer":"Google"},{"name":"Delta Air Lines","imageSrc":"../assets/images/projects/delta.jpg","url":"https://www.delta.com/eu/en","category":"Travel","version":"","versionGroup":"v15 and up","structure":"Modular","uiLib":"None","pricing":"Free","threeD":false,"developer":"Google"},{"name":"Click Up","imageSrc":"../assets/images/projects/clickup.jpg","url":"https://app.clickup.com","category":"Productivity","version":"17.3.0","versionGroup":"v15 and up","structure":"Standalone","uiLib":"None","pricing":"Free","threeD":false,"developer":"Google"},{"name":"KLM","imageSrc":"../assets/images/projects/klm.jpg","url":"https://www.klm.com","category":"Travel","version":"17.3.0","versionGroup":"v15 and up","structure":"Standalone","uiLib":"None","pricing":"Free","threeD":false,"developer":"Google"},{"name":"TechOpenSolve","imageSrc":"../assets/images/projects/techopensolve.jpg","url":"https://techopensolve.com","category":"Open Source","version":"17.3.0","versionGroup":"v15 and up","structure":"Standalone","uiLib":"Angular Material","pricing":"Free","threeD":false,"developer":"Esther White"},{"name":"AnguHashBlog","imageSrc":"../assets/images/projects/anguhashblog.jpg","url":"https://anguhashblog.com","category":"Open Source","version":"17.3.0","versionGroup":"v15 and up","structure":"Standalone","uiLib":"Angular Material, PrimeNG","pricing":"Free","threeD":false,"developer":"Esther White"},{"name":"Paidlancer","imageSrc":"../assets/images/projects/paidlancer.jpg","url":"https://www.paidlancer.dev","category":"Platform","version":"17.2.0","versionGroup":"v15 and up","structure":"Standalone","uiLib":"Angular Material","pricing":"Subscription","threeD":false,"developer":"Esther White"},{"name":"AnguSciFlix","imageSrc":"../assets/images/projects/angusciflix.jpg","url":"https://angusciflix.monacodelisa.com","category":"Entertainment","version":"17.2.0","versionGroup":"v15 and up","structure":"Standalone","uiLib":"Angular Material","pricing":"Free","threeD":false,"developer":"Esther White"},{"name":"Users","imageSrc":"../assets/images/projects/users-my-rest-api.jpg","url":"https://users-my-api.monacodelisa.com","category":"Template","version":"17.2.0","versionGroup":"v15 and up","structure":"Standalone","uiLib":"Angular Material","pricing":"One-time Fee","threeD":false,"developer":"Esther White"}],"h":{},"s":200,"st":"OK","u":"https://builtwithanalog.dev/api/projects","rt":"json"},"__nghData__":[{},{"t":{"50":"t0"},"c":{"50":[{"i":"t0","r":1,"x":11}]}},{"c":{"1":[{"i":"c2311037558","r":1}]}}]}</script></body></html>
+
+<script id="ng-state" type="application/json">{"176560544":{"b":[{"name":"Spartan UI","imageSrc":"https://raw.githubusercontent.com/TechShowcase/images/main/projects/spartan-ui.jpg","url":"https://www.spartan.ng","category":"Open Source","version":"17.3.0","versionGroup":"v15 and up","analogVersion":"1.2.2","uiLib":"Spartan UI","pricing":"Free","threeD":false,"developer":"Robin Goetz"},{"name":"AngleBrackets","imageSrc":"https://raw.githubusercontent.com/TechShowcase/images/main/projects/anglebrackets.jpg","url":"https://anglebrackets.dev","category":"Personal Website","version":"17.3.0","versionGroup":"v15 and up","analogVersion":"1.3.1","uiLib":"None","pricing":"Free","threeD":false,"developer":"Duncan Faulkner"},{"name":"Angular Macedonia","imageSrc":"https://raw.githubusercontent.com/TechShowcase/images/main/projects/angular-macedonia.jpg","url":"https://www.angularmacedonia.org","category":"Community","version":"17.2.0","versionGroup":"v15 and up","analogVersion":"0.2.0","uiLib":"None","pricing":"Free","threeD":false,"developer":"Angular Macedonia"},{"name":"MrRobot","imageSrc":"https://raw.githubusercontent.com/TechShowcase/images/main/projects/mrrobot.jpg","url":"https://mrrobot.dev","category":"Personal Website","version":"17.3.2","versionGroup":"v15 and up","analogVersion":"1.2.0","uiLib":"None","pricing":"Free","threeD":false,"developer":"Luis Castro"},{"name":"AnguHashBlog","imageSrc":"https://raw.githubusercontent.com/TechShowcase/images/main/projects/analog-anguhashblog.jpg","url":"https://analog.anguhashblog.com","category":"Open Source","version":"17.3.0","versionGroup":"v15 and up","analogVersion":"1.2.0","uiLib":"None","pricing":"Free","threeD":false,"developer":"Esther White"},{"name":"Angular HUB","imageSrc":"https://raw.githubusercontent.com/TechShowcase/images/main/projects/angular-hub.jpg","url":"https://angular-hub.com","category":"Community","version":"18.0.0","versionGroup":"v15 and up","analogVersion":"1.4.0","uiLib":"PrimeNG","pricing":"Free","threeD":false,"developer":"Gerome Grignon"},{"name":"PDFun","imageSrc":"https://raw.githubusercontent.com/TechShowcase/images/main/projects/pdfun.jpg","url":"https://pdfun.xyz","category":"Open Source","version":"18.0.0","versionGroup":"v15 and up","analogVersion":"1.3.1","uiLib":"PrimeNG","pricing":"Free","threeD":false,"developer":"Dale Nguyen"},{"name":"Angular Belgrade","imageSrc":"https://raw.githubusercontent.com/TechShowcase/images/main/projects/angular-belgrade.jpg","url":"https://angularbelgrade.org","category":"Community","version":"16.2.2","versionGroup":"v15 and up","analogVersion":"0.2.0","uiLib":"None","pricing":"Free","threeD":false,"developer":"Angular Belgrade"}],"h":{},"s":200,"st":"OK","u":"https://builtwithanalog.dev/api/projects","rt":"json"},"__nghData__":[{"n":{"2":"0fn"},"t":{"2":"t0","3":"t1","4":"t2"},"c":{"2":[],"3":[],"4":[]}},{"n":{"1":"0f2"}},{},{"t":{"0":"t15"},"c":{"0":[]}},{"t":{"2":"t3","3":"t7","4":"t8","6":"t9","7":"t10"},"c":{"2":[{"i":"t3","r":2,"c":{"0":[],"2":[{"i":"t4","r":2,"e":{"0":1}}],"3":[],"4":[]},"t":{"2":"t4","3":"t5","4":"t6"}}],"3":[],"4":[],"6":[{"i":"t10","r":6,"t":{"0":"t11","1":"t14"},"c":{"0":[{"i":"t11","r":4,"e":{"0":3},"t":{"1":"t12","2":"t13"},"c":{"1":[],"2":[{"i":"t13","r":1}]}}],"1":[]}}],"7":[]},"d":[11]},{"t":{"5":"t16","6":"t17"},"c":{"5":[],"6":[{"i":"t17","r":1}]}},{"n":{"2":"0f"},"t":{"2":"t18","3":"t19","4":"t20","5":"t23","6":"t24"},"c":{"2":[],"3":[],"4":[{"i":"t20","r":3,"e":{"0":2},"t":{"1":"t21","2":"t22"},"c":{"1":[],"2":[]}}],"5":[{"i":"t23","r":1}],"6":[]}},{"t":{"1":"t29","3":"t30","4":"t31","7":"t32","8":"t33"},"c":{"1":[],"3":[],"4":[],"7":[],"8":[]},"n":{"7":"5fn3"}},{"t":{"14":"t25","15":"t26","17":"t27","18":"t40"},"c":{"14":[{"i":"t25","r":1}],"15":[],"17":[{"i":"t27","r":9,"t":{"1":"t28"},"c":{"1":[{"i":"t28","r":1,"n":{"2":"1f2nfn2f"},"c":{"2":[],"7":[{"i":"t34","r":1}],"8":[],"10":[],"14":[],"15":[{"i":"t36","r":2,"c":{"0":[]}}],"16":[],"18":[{"i":"t38","r":2,"c":{"0":[]}}],"19":[]},"t":{"7":"t34","8":"t35","15":"t36","16":"t37","18":"t38","19":"t39"}},{"i":"t28","r":1,"n":{"2":"1f2nfn2f"},"c":{"2":[],"7":[{"i":"t34","r":1}],"8":[],"10":[],"14":[],"15":[{"i":"t36","r":2,"c":{"0":[]}}],"16":[],"18":[],"19":[]},"t":{"7":"t34","8":"t35","15":"t36","16":"t37","18":"t38","19":"t39"},"x":4},{"i":"t28","r":1,"n":{"2":"1f2nfn2f"},"c":{"2":[],"7":[{"i":"t34","r":1}],"8":[],"10":[],"14":[],"15":[{"i":"t36","r":2,"c":{"0":[]}}],"16":[],"18":[],"19":[{"i":"t39","r":2,"c":{"0":[]}}]},"t":{"7":"t34","8":"t35","15":"t36","16":"t37","18":"t38","19":"t39"},"x":2},{"i":"t28","r":1,"n":{"2":"1f2nfn2f"},"c":{"2":[],"7":[{"i":"t34","r":1}],"8":[],"10":[],"14":[],"15":[{"i":"t36","r":2,"c":{"0":[]}}],"16":[],"18":[],"19":[]},"t":{"7":"t34","8":"t35","15":"t36","16":"t37","18":"t38","19":"t39"}}]}}],"18":[]}},{"c":{"1":[{"i":"c3688202499","r":1}]}}]}</script></body></html>
