@@ -64,7 +64,7 @@ import { TooltipModule } from 'primeng/tooltip';
 						</div>
 						<div class="checkbox-wrapper">
 							<p-checkbox
-								[(ngModel)]="thereDElements"
+								[(ngModel)]="threeDElements"
 								label="3D"
 								[binary]="true"
 								name="3D"
@@ -413,7 +413,7 @@ export default class HomeComponent implements OnInit, OnChanges {
 	selectedAnalogVersion: { name: "" } = { name: "" };
 	selectedUIlib: { name: "" } = { name: "" };
 	showFree: boolean = false;
-	thereDElements: boolean = false;
+	threeDElements: boolean = false;
 	http = inject(HttpClient);
 
 	ngOnInit(): void {
@@ -477,7 +477,7 @@ export default class HomeComponent implements OnInit, OnChanges {
 				(this.selectedVersionGroup.name === "" ||
 					project.versionGroup === this.selectedVersionGroup.name) &&
 				(!this.showFree || project.pricing === "Free") &&
-				(!this.thereDElements || project.thereD === true)
+				(!this.threeDElements || project.threeD === true)
 			);
 		});
 	}
@@ -489,7 +489,7 @@ export default class HomeComponent implements OnInit, OnChanges {
 		this.selectedUIlib = { name: "" };
 		this.selectedVersionGroup = { name: "" };
 		this.showFree = false;
-		this.thereDElements = false;
+		this.threeDElements = false;
 	}
 
 	isVersion16OrAbove(version: string): boolean {
