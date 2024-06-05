@@ -8,7 +8,7 @@ export interface Project {
 	analogVersion: string;
 	uiLib: string;
 	pricing: string;
-	thereD?: boolean;
+	threeD?: boolean;
 	developer: string;
 	created?: string;
 	maintained?: boolean;
