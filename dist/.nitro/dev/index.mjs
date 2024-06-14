@@ -3,21 +3,21 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { mkdirSync } from 'node:fs';
 import { parentPort, threadId } from 'node:worker_threads';
-import { provider, isWindows } from 'file://D:/Estee/Programming/My-Open-Source/TechShowcase/builtwithanalog/node_modules/std-env/dist/index.mjs';
-import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, createEvent, fetchWithEvent, getRequestHeader, eventHandler, setHeaders, sendRedirect, proxyRequest, setResponseStatus, setResponseHeader, send, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, createError, getRouterParam, getQuery as getQuery$1, readBody } from 'file://D:/Estee/Programming/My-Open-Source/TechShowcase/builtwithanalog/node_modules/h3/dist/index.mjs';
-import { createFetch as createFetch$1, Headers as Headers$1 } from 'file://D:/Estee/Programming/My-Open-Source/TechShowcase/builtwithanalog/node_modules/ofetch/dist/node.mjs';
-import destr from 'file://D:/Estee/Programming/My-Open-Source/TechShowcase/builtwithanalog/node_modules/destr/dist/index.mjs';
-import { createCall, createFetch } from 'file://D:/Estee/Programming/My-Open-Source/TechShowcase/builtwithanalog/node_modules/unenv/runtime/fetch/index.mjs';
-import { createHooks } from 'file://D:/Estee/Programming/My-Open-Source/TechShowcase/builtwithanalog/node_modules/hookable/dist/index.mjs';
-import { klona } from 'file://D:/Estee/Programming/My-Open-Source/TechShowcase/builtwithanalog/node_modules/klona/dist/index.mjs';
-import { snakeCase } from 'file://D:/Estee/Programming/My-Open-Source/TechShowcase/builtwithanalog/node_modules/scule/dist/index.mjs';
-import defu, { defuFn } from 'file://D:/Estee/Programming/My-Open-Source/TechShowcase/builtwithanalog/node_modules/defu/dist/defu.mjs';
-import { hash } from 'file://D:/Estee/Programming/My-Open-Source/TechShowcase/builtwithanalog/node_modules/ohash/dist/index.mjs';
-import { parseURL, withoutBase, joinURL, getQuery, withQuery } from 'file://D:/Estee/Programming/My-Open-Source/TechShowcase/builtwithanalog/node_modules/ufo/dist/index.mjs';
-import { createStorage, prefixStorage } from 'file://D:/Estee/Programming/My-Open-Source/TechShowcase/builtwithanalog/node_modules/unstorage/dist/index.mjs';
-import unstorage_47drivers_47fs from 'file://D:/Estee/Programming/My-Open-Source/TechShowcase/builtwithanalog/node_modules/unstorage/drivers/fs.mjs';
-import { toRouteMatcher, createRouter } from 'file://D:/Estee/Programming/My-Open-Source/TechShowcase/builtwithanalog/node_modules/radix3/dist/index.mjs';
-import _FskY57 from 'file:///D:/Estee/Programming/My-Open-Source/TechShowcase/builtwithanalog/node_modules/@analogjs/vite-plugin-nitro/src/lib/runtime/api-middleware.mjs';
+import { provider, isWindows } from 'file://D:/Estee/Programming/My-Open-Source/BuiltWithAnalog/builtwithanalog/node_modules/std-env/dist/index.mjs';
+import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, createEvent, fetchWithEvent, getRequestHeader, eventHandler, setHeaders, sendRedirect, proxyRequest, setResponseStatus, setResponseHeader, send, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, createError, getRouterParam, getQuery as getQuery$1, readBody } from 'file://D:/Estee/Programming/My-Open-Source/BuiltWithAnalog/builtwithanalog/node_modules/h3/dist/index.mjs';
+import { createFetch as createFetch$1, Headers as Headers$1 } from 'file://D:/Estee/Programming/My-Open-Source/BuiltWithAnalog/builtwithanalog/node_modules/ofetch/dist/node.mjs';
+import destr from 'file://D:/Estee/Programming/My-Open-Source/BuiltWithAnalog/builtwithanalog/node_modules/destr/dist/index.mjs';
+import { createCall, createFetch } from 'file://D:/Estee/Programming/My-Open-Source/BuiltWithAnalog/builtwithanalog/node_modules/unenv/runtime/fetch/index.mjs';
+import { createHooks } from 'file://D:/Estee/Programming/My-Open-Source/BuiltWithAnalog/builtwithanalog/node_modules/hookable/dist/index.mjs';
+import { klona } from 'file://D:/Estee/Programming/My-Open-Source/BuiltWithAnalog/builtwithanalog/node_modules/klona/dist/index.mjs';
+import { snakeCase } from 'file://D:/Estee/Programming/My-Open-Source/BuiltWithAnalog/builtwithanalog/node_modules/scule/dist/index.mjs';
+import defu, { defuFn } from 'file://D:/Estee/Programming/My-Open-Source/BuiltWithAnalog/builtwithanalog/node_modules/defu/dist/defu.mjs';
+import { hash } from 'file://D:/Estee/Programming/My-Open-Source/BuiltWithAnalog/builtwithanalog/node_modules/ohash/dist/index.mjs';
+import { parseURL, withoutBase, joinURL, getQuery, withQuery } from 'file://D:/Estee/Programming/My-Open-Source/BuiltWithAnalog/builtwithanalog/node_modules/ufo/dist/index.mjs';
+import { createStorage, prefixStorage } from 'file://D:/Estee/Programming/My-Open-Source/BuiltWithAnalog/builtwithanalog/node_modules/unstorage/dist/index.mjs';
+import unstorage_47drivers_47fs from 'file://D:/Estee/Programming/My-Open-Source/BuiltWithAnalog/builtwithanalog/node_modules/unstorage/drivers/fs.mjs';
+import { toRouteMatcher, createRouter } from 'file://D:/Estee/Programming/My-Open-Source/BuiltWithAnalog/builtwithanalog/node_modules/radix3/dist/index.mjs';
+import _1Dx4NW from 'file:///D:/Estee/Programming/My-Open-Source/BuiltWithAnalog/builtwithanalog/node_modules/@analogjs/vite-plugin-nitro/src/lib/runtime/api-middleware.mjs';
 
 function getEnv(key, opts) {
   const envKey = snakeCase(key).toUpperCase();
@@ -108,7 +108,7 @@ new Proxy(/* @__PURE__ */ Object.create(null), {
   }
 });
 
-const serverAssets = [{"baseName":"server","dir":"D:/Estee/Programming/My-Open-Source/TechShowcase/builtwithanalog/src/server/assets"}];
+const serverAssets = [{"baseName":"server","dir":"D:/Estee/Programming/My-Open-Source/BuiltWithAnalog/builtwithanalog/src/server/assets"}];
 
 const assets = createStorage();
 
@@ -120,11 +120,11 @@ const storage = createStorage({});
 
 storage.mount('/assets', assets);
 
-storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"D:\\Estee\\Programming\\My-Open-Source\\TechShowcase\\builtwithanalog","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"D:\\Estee\\Programming\\My-Open-Source\\TechShowcase\\builtwithanalog\\src\\server","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"D:\\Estee\\Programming\\My-Open-Source\\TechShowcase\\builtwithanalog\\dist\\.nitro","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"D:\\Estee\\Programming\\My-Open-Source\\TechShowcase\\builtwithanalog\\dist\\.nitro\\cache","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"D:\\Estee\\Programming\\My-Open-Source\\TechShowcase\\builtwithanalog\\.data\\kv","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"D:\\Estee\\Programming\\My-Open-Source\\BuiltWithAnalog\\builtwithanalog","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"D:\\Estee\\Programming\\My-Open-Source\\BuiltWithAnalog\\builtwithanalog\\src\\server","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"D:\\Estee\\Programming\\My-Open-Source\\BuiltWithAnalog\\builtwithanalog\\dist\\.nitro","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"D:\\Estee\\Programming\\My-Open-Source\\BuiltWithAnalog\\builtwithanalog\\dist\\.nitro\\cache","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"D:\\Estee\\Programming\\My-Open-Source\\BuiltWithAnalog\\builtwithanalog\\.data\\kv","ignore":["**/node_modules/**","**/.git/**"]}));
 
 function useStorage(base = "") {
   return base ? prefixStorage(storage, base) : storage;
@@ -633,13 +633,13 @@ function renderHTMLError(error) {
 `;
 }
 
-const _lazy_YifxHs = () => Promise.resolve().then(function () { return projects_get$1; });
-const _lazy_eVR5kI = () => Promise.resolve().then(function () { return hello$1; });
+const _lazy_qJJzMf = () => Promise.resolve().then(function () { return projects_get$1; });
+const _lazy_R8AAQo = () => Promise.resolve().then(function () { return hello$1; });
 
 const handlers = [
-  { route: '/projects', handler: _lazy_YifxHs, lazy: true, middleware: false, method: "get" },
-  { route: '/v1/hello', handler: _lazy_eVR5kI, lazy: true, middleware: false, method: undefined },
-  { route: '', handler: _FskY57, lazy: false, middleware: true, method: undefined }
+  { route: '/projects', handler: _lazy_qJJzMf, lazy: true, middleware: false, method: "get" },
+  { route: '/v1/hello', handler: _lazy_R8AAQo, lazy: true, middleware: false, method: undefined },
+  { route: '', handler: _1Dx4NW, lazy: false, middleware: true, method: undefined }
 ];
 
 function createNitroApp() {
