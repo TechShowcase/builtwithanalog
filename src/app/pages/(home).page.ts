@@ -118,19 +118,19 @@ import { TooltipModule } from 'primeng/tooltip';
 									<div class="version">
 										<img
 											class="analog"
-											src="https://raw.githubusercontent.com/TechShowcase/images/499181122a186d07a1ea115bdee6d5f206d6c6ab/icons/analog.svg"
+											src="/icons/analog.svg"
                       pTooltip="{{ project.analogVersion }}"
                       tooltipPosition="top"
 										/>
 										@if (isVersion16OrAbove(project.version)) {
 										<img
-											src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/angular.svg"
+											src="/icons/angular.svg"
                       pTooltip="{{ project.version }}"
                       tooltipPosition="top"
 										/>
 										} @else {
 										<img
-											src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/angular-old.svg"
+											src="/angular-old.svg"
                       pTooltip="{{ project.version }}"
                       tooltipPosition="top"
 										/>
@@ -140,14 +140,14 @@ import { TooltipModule } from 'primeng/tooltip';
 										@if (project.uiLib.includes('Spartan UI')) {
 										<img
 											class="ui-lib"
-											src="https://raw.githubusercontent.com/TechShowcase/images/main/icons/spartan.png"
+											src="/icons/spartan.png"
                       pTooltip="{{ project.uiLib }}"
                       tooltipPosition="top"
 										/>
 										} @if (project.uiLib.includes('PrimeNG')) {
 										<img
 											class="ui-lib"
-											src="https://raw.githubusercontent.com/TechShowcase/images/080dcd98dafae9552bf7b6f8f29afebdbc5a95c0/icons/primeng.svg"
+											src="/icons/primeng.svg"
                       pTooltip="{{ project.uiLib }}"
                       tooltipPosition="top"
 										/>
@@ -193,19 +193,19 @@ import { TooltipModule } from 'primeng/tooltip';
 									<div class="version">
 										<img
 											class="analog"
-											src="https://raw.githubusercontent.com/TechShowcase/images/499181122a186d07a1ea115bdee6d5f206d6c6ab/icons/analog.svg"
+											src="/icons/analog.svg"
                       pTooltip="{{ project.analogVersion }}"
                       tooltipPosition="top"
 										/>
 										@if (isVersion16OrAbove(project.version)) {
 										<img
-											src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/angular.svg"
+											src="/icons/angular.svg"
                       pTooltip="{{ project.version }}"
                       tooltipPosition="top"
 										/>
 										} @else {
 										<img
-											src="https://raw.githubusercontent.com/TechShowcase/images/7dd89ae90f574df816661d4fba76ba971c277a26/icons/angular-old.svg"
+											src="/icons/angular-old.svg"
                       pTooltip="{{ project.uiLib }}"
                       tooltipPosition="top"
 										/>
@@ -215,14 +215,14 @@ import { TooltipModule } from 'primeng/tooltip';
 										@if (project.uiLib.includes('Spartan UI')) {
 										<img
 											class="spartan"
-											src="https://raw.githubusercontent.com/TechShowcase/images/main/icons/spartan.png"
+											src="/icons/spartan.png"
                       pTooltip="{{ project.uiLib }}"
                       tooltipPosition="top"
 										/>
 										} @if (project.uiLib.includes('PrimeNG')) {
 										<img
 											class="spartan"
-											src="https://raw.githubusercontent.com/TechShowcase/images/080dcd98dafae9552bf7b6f8f29afebdbc5a95c0/icons/primeng.svg"
+											src="/icons/primeng.svg"
                       pTooltip="{{ project.uiLib }}"
                       tooltipPosition="top"
 										/>
