@@ -9,29 +9,19 @@ import { CardModule } from "primeng/card";
 		<div class="content">
 			<h1>About</h1>
 			<p-card>
-				<h2>builtwithanalog.dev</h2>
-				<p>is part of the</p>
-				<a href="https://github.com/TechShowcase" target="_blank">
-					<h2>TechShowcase GitHub Organization.</h2>
+				<a href="https://github.com/BuiltWithAnalog" target="_blank">
+					<h2>BuiltWithAnalog</h2>
 				</a>
 				<p>
-        TechShowcase is an open source project dedicated to showcasing various projects built with our favorite technologies. All code within TechShowcase is public, promoting transparency and collaboration within the developer community.
+        BuiltWithAnalog is an open source project dedicated to showcasing various projects built with <a href="https://analogjs.org" target="_blank">AnalogJS</a>. All code within BuiltWithAnalog is public, promoting transparency and collaboration within the developer community.
 				</p>
 				<p>
-					TechShowcase features two main repositories, each with its own
-					dedicated website:
+					BuiltWithAnalog features one main repository:
 				</p>
 				<ul>
 					<li>
-						Built with Angular -
-						<a href="https://builtwithangular.dev" target="_blank"
-							>builtwithangular.dev</a
-						>
-					</li>
-					<li>
-						Built with Analog -
-						<a href="https://builtwithanalog.dev" target="_blank"
-							>builtwithanalog.dev</a
+						<a href="https://github.com/BuiltWithAnalog/builtwithanalog" target="_blank"
+							>builtwithanalog</a
 						>
 					</li>
 				</ul>
@@ -52,7 +42,7 @@ import { CardModule } from "primeng/card";
 				<p>
 					This website itself is built with Analog, demonstrating the power and
 					versatility of the Analog framework. We're continuously improving and
-					expanding our platform to better serve the needs of the Angular &
+					expanding our platform to better serve the needs of the
 					Analog community.
 				</p>
 				<p>

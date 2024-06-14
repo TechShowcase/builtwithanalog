@@ -12,14 +12,28 @@ import { RouterLink } from "@angular/router";
 					<a routerLink="/fqa">FQA</a>
 					<a routerLink="/about">About</a>
 					<a
-						class="github"
-						href="https://github.com/TechShowcase/builtwithanalog"
+						class="social"
+						href="https://github.com/BuiltWithAnalog/builtwithanalog"
 						target="_blank"
 					>
 						<i class="pi pi-github"></i>
 					</a>
+					<a
+						class="social"
+						href="https://x.com/builtwithanalog"
+						target="_blank"
+					>
+						<i class="pi pi-twitter"></i>
+					</a>
+					<a
+						class="social"
+						href="https://www.linkedin.com/company/builtwithanalog"
+						target="_blank"
+					>
+						<i class="pi pi-linkedin"></i>
+					</a>
 				</div>
-				<small> This site is built with <a href="https://analogjs.org/" target="_blank">Analog</a> </small>
+				<small> This site is built with <a href="https://analogjs.org/" target="_blank">Analog</a></small>
 			</div>
 		</div>
 	`,
@@ -41,7 +55,7 @@ import { RouterLink } from "@angular/router";
 							font-weight: 600;
 							text-transform: uppercase;
 
-							&.github {
+							&.social {
 								font-size: 1.2rem;
 								line-height: 1.2rem;
 								height: 1.2rem;
