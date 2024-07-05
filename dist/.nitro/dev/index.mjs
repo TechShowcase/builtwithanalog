@@ -966,7 +966,7 @@ const projects_get = defineEventHandler(() => [
     developer: "Angular Belgrade"
   },
   {
-    name: "Angular Downloads Tracker",
+    name: "Downloads Tracker",
     imageSrc: "/images/projects/angular-download-tracker.jpg",
     url: "https://angular-download-tracker.vercel.app/",
     category: "Productivity",
@@ -976,7 +976,7 @@ const projects_get = defineEventHandler(() => [
     uiLib: "None",
     pricing: "Free",
     threeD: false,
-    developer: ""
+    developer: "Kevin"
   }
 ]);
 
