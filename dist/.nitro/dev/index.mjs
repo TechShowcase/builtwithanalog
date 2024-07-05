@@ -964,6 +964,19 @@ const projects_get = defineEventHandler(() => [
     pricing: "Free",
     threeD: false,
     developer: "Angular Belgrade"
+  },
+  {
+    name: "Angular Downloads Tracker",
+    imageSrc: "/images/projects/angular-download-tracker.jpg",
+    url: "https://angular-download-tracker.vercel.app/",
+    category: "Productivity",
+    version: "17.3.5",
+    versionGroup: "v15 and up",
+    analogVersion: "",
+    uiLib: "None",
+    pricing: "Free",
+    threeD: false,
+    developer: ""
   }
 ]);
 

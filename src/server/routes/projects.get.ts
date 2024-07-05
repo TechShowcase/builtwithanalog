@@ -3,8 +3,7 @@ import { defineEventHandler } from "h3";
 export default defineEventHandler(() => [
 	{
 		name: "Spartan UI",
-		imageSrc:
-			"/images/projects/spartan-ui.jpg",
+		imageSrc: "/images/projects/spartan-ui.jpg",
 		url: "https://www.spartan.ng",
 		category: "Open Source",
 		version: "17.3.0",
@@ -17,8 +16,7 @@ export default defineEventHandler(() => [
 	},
 	{
 		name: "AngleBrackets",
-		imageSrc:
-			"/images/projects/anglebrackets.jpg",
+		imageSrc: "/images/projects/anglebrackets.jpg",
 		url: "https://anglebrackets.dev",
 		category: "Personal Website",
 		version: "17.3.0",
@@ -31,8 +29,7 @@ export default defineEventHandler(() => [
 	},
 	{
 		name: "Angular Macedonia",
-		imageSrc:
-			"/images/projects/angular-macedonia.jpg",
+		imageSrc: "/images/projects/angular-macedonia.jpg",
 		url: "https://www.angularmacedonia.org",
 		category: "Community",
 		version: "17.2.0",
@@ -45,8 +42,7 @@ export default defineEventHandler(() => [
 	},
 	{
 		name: "MrRobot",
-		imageSrc:
-			"/images/projects/mrrobot.jpg",
+		imageSrc: "/images/projects/mrrobot.jpg",
 		url: "https://mrrobot.dev",
 		category: "Personal Website",
 		version: "17.3.2",
@@ -59,8 +55,7 @@ export default defineEventHandler(() => [
 	},
 	{
 		name: "AnguHashBlog",
-		imageSrc:
-			"/images/projects/analog-anguhashblog.jpg",
+		imageSrc: "/images/projects/analog-anguhashblog.jpg",
 		url: "https://analog.anguhashblog.com",
 		category: "Open Source",
 		version: "17.3.0",
@@ -73,8 +68,7 @@ export default defineEventHandler(() => [
 	},
 	{
 		name: "Angular HUB",
-		imageSrc:
-			"/images/projects/angular-hub.jpg",
+		imageSrc: "/images/projects/angular-hub.jpg",
 		url: "https://angular-hub.com",
 		category: "Community",
 		version: "18.0.0",
@@ -87,8 +81,7 @@ export default defineEventHandler(() => [
 	},
 	{
 		name: "PDFun",
-		imageSrc:
-			"/images/projects/pdfun.jpg",
+		imageSrc: "/images/projects/pdfun.jpg",
 		url: "https://pdfun.xyz",
 		category: "Open Source",
 		version: "18.0.0",
@@ -101,8 +94,7 @@ export default defineEventHandler(() => [
 	},
 	{
 		name: "Angular Belgrade",
-		imageSrc:
-			"/images/projects/angular-belgrade.jpg",
+		imageSrc: "/images/projects/angular-belgrade.jpg",
 		url: "https://angularbelgrade.org",
 		category: "Community",
 		version: "16.2.2",
@@ -113,4 +105,17 @@ export default defineEventHandler(() => [
 		threeD: false,
 		developer: "Angular Belgrade",
 	},
+	{
+		name: "Angular Downloads Tracker",
+		imageSrc: "/images/projects/angular-download-tracker.jpg",
+		url: "https://angular-download-tracker.vercel.app/",
+		category: "Productivity",
+		version: "17.3.5",
+		versionGroup: "v15 and up",
+    analogVersion: "",
+		uiLib: "None",
+		pricing: "Free",
+		threeD: false,
+		developer: "",
+	}
 ]);
