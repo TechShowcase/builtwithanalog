@@ -85,7 +85,7 @@ import { TooltipModule } from 'primeng/tooltip';
 			<div class="cards-wrapper">
 				@if (!filterApplied) { @for (project of projects; track project) {
 				<a href="{{ project.url }}?source=builtwithanalog.dev" target="_blank">
-					<p-card>
+					<p-card class="home">
 						<img
 							class="main-image"
 							src="{{ project.imageSrc }}"
@@ -312,7 +312,6 @@ import { TooltipModule } from 'primeng/tooltip';
 
 						img {
 							width: 100%;
-							border-radius: 0.8rem;
 							object-fit: cover;
               margin-bottom: 0.1rem;
 						}
@@ -349,12 +348,12 @@ import { TooltipModule } from 'primeng/tooltip';
 
 								.features {
 									display: flex;
+                  padding: 0 0.5rem 0.5rem;
 									gap: 0.3rem;
 
 									img {
 										width: 1.5rem;
 										height: 1.5rem;
-										border-radius: 0;
 
 										&.ui-lib {
 											margin-top: 0.3rem;
@@ -369,7 +368,6 @@ import { TooltipModule } from 'primeng/tooltip';
 											&.analog {
 												width: 2rem;
 												height: 2rem;
-												border-radius: 0;
 											}
 										}
 									}

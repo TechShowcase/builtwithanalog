@@ -4,29 +4,29 @@
 @import "primeicons/primeicons.css";
 
 :root {
-	font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-	font-size: 16px;
-	line-height: 24px;
-	font-weight: 400;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
 
-	color-scheme: light dark;
-	color: #eaeaeade;
-	background-color: #2d2d2d;
+  color-scheme: light dark;
+  color: #eaeaeade;
+  background-color: #2d2d2d;
 
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-text-size-adjust: 100%;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
-	display: flex;
-	place-items: center;
-	min-width: 320px;
-	min-height: 100vh;
-	overflow-x: hidden;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 a,
@@ -37,22 +37,34 @@ h2 {
   text-decoration: inherit;
 }
 
-.p-card {
-	border-radius: 1rem;
-	box-shadow: 0 0 0.5rem #00000065;
+p-card {
+  &.home {
+    .p-card-body {
+      padding: 0;
+      border-radius: 0.8rem;
+      border: 0.3rem solid #49454e;
+      overflow: hidden;
 
-  &:hover {
-    background-color: #111827;
-    box-shadow: 0 0.1rem 0.3rem #000000b7;
+      &:hover {
+        background-color: #2b354b;
+        box-shadow: 0 0.1rem 0.3rem #000000b7;
+        border-color: #797ddc;
 
-    .main-image {
-      box-shadow: 0 0.1rem 0.5rem #000000be;
+        .main-image {
+          box-shadow: 0 0.1rem 0.5rem #000000be;
+        }
+      }
+    }
+
+    .card-content {
+      padding: 0 1rem 0.7rem;
     }
   }
+}
 
-  .main-image {
-    box-shadow: 0 0.1rem 0.5rem #00000070;
-  }
+.p-card {
+  border-radius: 1rem;
+  box-shadow: 0 0 0.5rem #00000065;
 
   .p-card-content {
     padding: 0;
@@ -69,10 +81,10 @@ h2 {
 }
 
 .footer {
-	display: flex;
-	width: 100%;
-	padding: 0.5rem 0;
-	background-color: #1f2937;
+  display: flex;
+  width: 100%;
+  padding: 0.5rem 0;
+  background-color: #1f2937;
 }
 
 .p-tooltip {
@@ -87,33 +99,112 @@ h2 {
 /* Light mode */
 @media (prefers-color-scheme: light) {
 
-	:root {
-		color: #213547;
-		background-color: #ffffff;
-	}
-	a:hover {
-		color: #747bff;
-	}
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
 
-	.header,
-	.footer {
-		background-color: #eaeaea;
-	}
+  a:hover {
+    color: #747bff;
+  }
 
-	.card {
-		background-color: #eaeaea;
-	}
+  span,
+  chevrondownicon {
+    color: #333;
+  }
 
-	.card:hover {
-		background-color: #dfe2e9;
-		box-shadow: 0 0.1rem 0.3rem #000000a2;
-	}
+  .p-toolbar {
+    background-color: #eaeaea;
+    border-color: #d7d7d7;
+  }
 
-	.card .main-image {
-		box-shadow: 0 0.1rem 0.5rem #00000070;
-	}
+  .p-dropdown {
+    background-color: #eaeaea;
+    border-color: #d7d7d7;
 
-	select {
-		background-color: #eaeaea;
-	}
+    .p-dropdown-panel {
+      background: #eaeaea;
+      border-color: #d7d7d7;
+
+      li {
+        &:hover {
+          background-color: #d7d7d7;
+        }
+      }
+
+      .p-focus {
+        background-color: #d7d7d7;
+      }
+    }
+  }
+
+  .p-checkbox-box {
+    background-color: #eaeaea;
+    border-color: #d7d7d7;
+  }
+
+  p-card {
+    &.home {
+      .p-card-body {
+        padding: 0;
+        border-radius: 0.8rem;
+        border: 0.3rem solid #ffffff;
+        overflow: hidden;
+
+        &:hover {
+          background-color: #dadada;
+          box-shadow: 0 0.1rem 0.3rem #000000b7;
+          border-color: #a78bfa;
+
+          .main-image {
+            box-shadow: 0 0.1rem 0.5rem #000000be;
+          }
+        }
+      }
+
+      .card-content {
+        padding: 0 1rem 0.7rem;
+      }
+    }
+  }
+
+  .p-card {
+    background-color: #eaeaea;
+    color: #333;
+
+    &:hover {
+      background-color: #dfe2e9;
+      box-shadow: 0 0.1rem 0.3rem #000000a2;
+    }
+  }
+
+  .card .main-image {
+    box-shadow: 0 0.1rem 0.5rem #00000070;
+  }
+
+  select {
+    background-color: #eaeaea;
+  }
+
+  .p-accordion-content {
+    background-color: #eaeaea;
+    border-color: #d7d7d7;
+    color: #333;
+  }
+
+  .p-accordion-tab {
+    a {
+      background-color: #e5e5e5;
+      border-color: #d7d7d7;
+      color: #333;
+
+      &:hover {
+        background-color: #d7d7d7;
+      }
+    }
+  }
+
+  .footer {
+    background-color: #eaeaea;
+  }
 }
