@@ -106,7 +106,7 @@ export default defineEventHandler(() => [
 		developer: "Angular Belgrade",
 	},
 	{
-		name: "Angular Downloads Tracker",
+		name: "Downloads Tracker",
 		imageSrc: "/images/projects/angular-download-tracker.jpg",
 		url: "https://angular-download-tracker.vercel.app/",
 		category: "Productivity",
@@ -116,6 +116,6 @@ export default defineEventHandler(() => [
 		uiLib: "None",
 		pricing: "Free",
 		threeD: false,
-		developer: "",
+		developer: "Kevin",
 	}
 ]);
