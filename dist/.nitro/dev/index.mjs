@@ -915,8 +915,8 @@ const projects_get = defineEventHandler(() => [
   },
   {
     name: "AnguHashBlog",
-    imageSrc: "/images/projects/analog-anguhashblog.jpg",
-    url: "https://analog.anguhashblog.com",
+    imageSrc: "/images/projects/analog--material-anguhashblog.jpg",
+    url: "https://analogmaterial.anguhashblog.com/",
     category: "Open Source",
     version: "17.3.0",
     versionGroup: "v15 and up",
@@ -977,6 +977,71 @@ const projects_get = defineEventHandler(() => [
     pricing: "Free",
     threeD: false,
     developer: "Kevin"
+  },
+  {
+    name: "Monorepo X",
+    imageSrc: "/images/projects/monorepox.jpg",
+    url: "https://monorepox.com/workshop",
+    category: "Personal Website",
+    version: "16.2.11",
+    versionGroup: "v15 and up",
+    analogVersion: "",
+    uiLib: "PrimeNG",
+    pricing: "Free",
+    threeD: false,
+    developer: "Stefan Haas"
+  },
+  {
+    name: "Hapax Legomenon",
+    imageSrc: "/images/projects/hapax-legomenon.jpg",
+    url: "https://elanna.me/",
+    category: "Personal Website",
+    version: "17.0.5",
+    versionGroup: "v15 and up",
+    analogVersion: "",
+    uiLib: "",
+    pricing: "Free",
+    threeD: false,
+    developer: "Elanna Grossman"
+  },
+  {
+    name: "Tuzuper",
+    imageSrc: "/images/projects/tuzuper.jpg",
+    url: "https://elanna.me/",
+    category: "Shopping",
+    version: "17.3.5",
+    versionGroup: "v15 and up",
+    analogVersion: "",
+    uiLib: "",
+    pricing: "Free",
+    threeD: false,
+    developer: "El_vlad99"
+  },
+  {
+    name: "Jay Bell",
+    imageSrc: "/images/projects/jaybell.jpg",
+    url: "https://jaybell.me/",
+    category: "Personal Website",
+    version: "17.3.5",
+    versionGroup: "v15 and up",
+    analogVersion: "",
+    uiLib: "",
+    pricing: "Free",
+    threeD: false,
+    developer: "Jay Cooper Bell"
+  },
+  {
+    name: "Open Plumbing",
+    imageSrc: "/images/projects/open-plumbing.jpg",
+    url: "https://open.plumbing/",
+    category: "Company Website",
+    version: "18.0.3",
+    versionGroup: "v15 and up",
+    analogVersion: "",
+    uiLib: "",
+    pricing: "Free",
+    threeD: false,
+    developer: "Ryann"
   }
 ]);
 
