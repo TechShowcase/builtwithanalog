@@ -160,7 +160,7 @@ import { TooltipModule } from 'primeng/tooltip';
 				</a>
 				} } @else { @for (project of filteredProjects; track project) {
 				<a href="{{ project.url }}?source=builtwithanalog.dev" target="_blank">
-					<p-card>
+					<p-card class="home">
 						<img
 							class="main-image"
 							src="{{ project.imageSrc }}"
