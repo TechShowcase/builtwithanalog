@@ -55,7 +55,7 @@ export default defineEventHandler(() => [
 	},
 	{
 		name: "AnguHashBlog",
-		imageSrc: "/images/projects/analog--material-anguhashblog.jpg",
+		imageSrc: "/images/projects/analog-material-anguhashblog.jpg",
 		url: "https://analogmaterial.anguhashblog.com/",
 		category: "Open Source",
 		version: "17.3.0",
