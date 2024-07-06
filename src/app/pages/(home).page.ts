@@ -389,8 +389,8 @@ import { TooltipModule } from 'primeng/tooltip';
 						flex-direction: column;
 						align-items: center;
 
-						.card {
-							width: 90vw;
+						.p-card {
+							width: 80vw;
 						}
 					}
 				}
