@@ -88,6 +88,17 @@ import { CardModule } from "primeng/card";
 					}
 				}
 			}
+
+			@media (max-width: 768px) {
+				.content {
+					.p-card {
+						width: 80vw;
+					}
+          .p-card-body {
+            padding: 0;
+          }
+				}
+			}
 		`,
 	],
 })

@@ -20,7 +20,9 @@ import { AccordionModule } from "primeng/accordion";
 						projects that are freely available to the community.
 					</p>
 					<p>
-						Additionally, if you have a project that you intend to sell, we are going to be working on making it possible to list those projects as well. Stay tuned for updates!
+						Additionally, if you have a project that you intend to sell, we are
+						going to be working on making it possible to list those projects as
+						well. Stay tuned for updates!
 					</p>
 				</p-accordionTab>
 				<p-accordionTab
@@ -98,6 +100,14 @@ import { AccordionModule } from "primeng/accordion";
 
 				.p-accordion {
 					width: 50vw;
+				}
+			}
+			@media (max-width: 768px) {
+				.content {
+					.p-accordion {
+						width: 80vw;
+            margin-bottom: 2rem;
+					}
 				}
 			}
 		`,
