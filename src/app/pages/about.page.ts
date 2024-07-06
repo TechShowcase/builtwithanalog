@@ -4,7 +4,7 @@ import { CardModule } from "primeng/card";
 
 @Component({
 	standalone: true,
-  imports: [CardModule],
+	imports: [CardModule],
 	template: `
 		<div class="content">
 			<h1>About</h1>
@@ -13,41 +13,42 @@ import { CardModule } from "primeng/card";
 					<h2>BuiltWithAnalog</h2>
 				</a>
 				<p>
-        BuiltWithAnalog is an open source project dedicated to showcasing various projects built with <a href="https://analogjs.org" target="_blank">AnalogJS</a>. All code within BuiltWithAnalog is public, promoting transparency and collaboration within the developer community.
+					BuiltWithAnalog is an open source project dedicated to showcasing
+					various projects built with
+					<a href="https://analogjs.org" target="_blank">AnalogJS</a>. All code
+					within BuiltWithAnalog is public, promoting transparency and
+					collaboration within the developer community.
 				</p>
-				<p>
-					BuiltWithAnalog features one main repository:
-				</p>
+				<p>BuiltWithAnalog features one main repository:</p>
 				<ul>
 					<li>
-						<a href="https://github.com/BuiltWithAnalog/builtwithanalog" target="_blank"
+						<a
+							href="https://github.com/BuiltWithAnalog/builtwithanalog"
+							target="_blank"
 							>builtwithanalog</a
 						>
 					</li>
 				</ul>
 				<p>
-					BuiltWithAnalog is a curated showcase of AnalogJS projects contributed
-					by the community. Whether you're a seasoned developer or just starting
-					with Analog, this platform is designed to make it easy for you to
-					showcase your projects and for others to discover them.
+					The primary focus of BuiltWithAnalog is to showcase open-source
+					projects and projects built by indie developers using AnalogJS.. We
+					believe that by showcasing these projects, we can inspire others to
+					create and innovate.
 				</p>
 				<p>
-					But BuiltWithAnalog is more than just a showcase. It's also a platform
-					where developers can market their Analog apps. We believe in
-					empowering developers by providing more opportunities to monetize
-					their creations. So, if you have a remarkable Analog app that you've
-					built and you're looking for ways to make it profitable, Built with
-					Analog is the place for you.
+					Whether you're a seasoned developer or just starting with Analog, this
+					platform is designed to make it easy for you to showcase your projects
+					and for others to discover them.
 				</p>
 				<p>
 					This website itself is built with Analog, demonstrating the power and
 					versatility of the Analog framework. We're continuously improving and
-					expanding our platform to better serve the needs of the
-					Analog community.
+					expanding our platform to better serve the needs of the Analog
+					community.
 				</p>
 				<p>
 					Join us in celebrating the creativity and innovation of Analog
-					developers around the world. Explore, showcase, and market your Analog
+					developers around the world. Explore, showcase, and maybe even market your Analog
 					projects on builtwithanalog.dev today!
 				</p>
 			</p-card>
