@@ -30,10 +30,10 @@ import { CardModule } from "primeng/card";
 					</li>
 				</ul>
 				<p>
-					The primary focus of BuiltWithAnalog is to showcase open-source
-					projects and projects built by indie developers using AnalogJS.. We
-					believe that by showcasing these projects, we can inspire others to
-					create and innovate.
+					The main purpose of BuiltWithAnalog is to help developers find Analog
+					open-source projects, Analog apps built by indie developers, and to
+					serve as a source of inspiration. We believe that by showcasing these
+					projects, we can inspire others to create and innovate.
 				</p>
 				<p>
 					Whether you're a seasoned developer or just starting with Analog, this
@@ -48,8 +48,8 @@ import { CardModule } from "primeng/card";
 				</p>
 				<p>
 					Join us in celebrating the creativity and innovation of Analog
-					developers around the world. Explore, showcase, and maybe even market your Analog
-					projects on builtwithanalog.dev today!
+					developers around the world. Explore, showcase, and maybe even market
+					your Analog projects on builtwithanalog.dev today!
 				</p>
 			</p-card>
 		</div>
