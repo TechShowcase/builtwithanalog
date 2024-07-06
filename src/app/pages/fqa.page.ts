@@ -20,9 +20,7 @@ import { AccordionModule } from "primeng/accordion";
 						projects that are freely available to the community.
 					</p>
 					<p>
-						Additionally, if you have a project that you intend to sell, we also
-						support showcasing these. For projects with a price, there is a
-						one-time listing fee.
+						Additionally, if you have a project that you intend to sell, we are going to be working on making it possible to list those projects as well. Stay tuned for updates!
 					</p>
 				</p-accordionTab>
 				<p-accordionTab
@@ -32,7 +30,7 @@ import { AccordionModule } from "primeng/accordion";
 						Submitting your project for showcase is simple! Just head over to
 						our GitHub organization and navigate to the
 						<a
-							href="https://github.com/orgs/TechShowcase/discussions"
+							href="https://github.com/orgs/BuiltWithAnalog/discussions/1"
 							target="_blank"
 							>Discussions</a
 						>
