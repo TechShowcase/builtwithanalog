@@ -869,7 +869,7 @@ const projects_get = defineEventHandler(() => [
     version: "17.3.0",
     versionGroup: "v15 and up",
     analogVersion: "1.2.2",
-    uiLib: "Spartan UI",
+    uiLib: "Spartan UI, Tailwind CSS",
     pricing: "Free",
     threeD: false,
     developer: "Robin Goetz"
@@ -895,7 +895,7 @@ const projects_get = defineEventHandler(() => [
     version: "17.2.0",
     versionGroup: "v15 and up",
     analogVersion: "0.2.0",
-    uiLib: "None",
+    uiLib: "Tailwind CSS",
     pricing: "Free",
     threeD: false,
     developer: "Angular Macedonia"
@@ -908,7 +908,7 @@ const projects_get = defineEventHandler(() => [
     version: "17.3.2",
     versionGroup: "v15 and up",
     analogVersion: "1.2.0",
-    uiLib: "None",
+    uiLib: "Tailwind CSS",
     pricing: "Free",
     threeD: false,
     developer: "Luis Castro"
@@ -934,7 +934,7 @@ const projects_get = defineEventHandler(() => [
     version: "18.0.0",
     versionGroup: "v15 and up",
     analogVersion: "1.4.0",
-    uiLib: "PrimeNG",
+    uiLib: "PrimeNG, Tailwind CSS",
     pricing: "Free",
     threeD: false,
     developer: "Gerome Grignon"
@@ -947,7 +947,7 @@ const projects_get = defineEventHandler(() => [
     version: "18.0.0",
     versionGroup: "v15 and up",
     analogVersion: "1.3.1",
-    uiLib: "PrimeNG",
+    uiLib: "PrimeNG, Tailwind CSS",
     pricing: "Free",
     threeD: false,
     developer: "Dale Nguyen"
@@ -986,7 +986,7 @@ const projects_get = defineEventHandler(() => [
     version: "16.2.11",
     versionGroup: "v15 and up",
     analogVersion: "1.2.0",
-    uiLib: "PrimeNG",
+    uiLib: "PrimeNG, Tailwind CSS",
     pricing: "Free",
     threeD: false,
     developer: "Stefan Haas"
@@ -999,7 +999,7 @@ const projects_get = defineEventHandler(() => [
     version: "17.0.5",
     versionGroup: "v15 and up",
     analogVersion: "1.2.0",
-    uiLib: "None",
+    uiLib: "Tailwind CSS",
     pricing: "Free",
     threeD: false,
     developer: "Elanna Grossman"
@@ -1012,7 +1012,7 @@ const projects_get = defineEventHandler(() => [
     version: "17.3.5",
     versionGroup: "v15 and up",
     analogVersion: "1.2.0",
-    uiLib: "None",
+    uiLib: "Tailwind CSS",
     pricing: "Free",
     threeD: false,
     developer: "El_vlad99"
@@ -1025,7 +1025,7 @@ const projects_get = defineEventHandler(() => [
     version: "17.3.5",
     versionGroup: "v15 and up",
     analogVersion: "1.2.0",
-    uiLib: "None",
+    uiLib: "Tailwind CSS",
     pricing: "Free",
     threeD: false,
     developer: "Jay Cooper Bell"
@@ -1038,10 +1038,23 @@ const projects_get = defineEventHandler(() => [
     version: "18.0.3",
     versionGroup: "v15 and up",
     analogVersion: "1.2.0",
-    uiLib: "None",
+    uiLib: "Tailwind CSS",
     pricing: "Free",
     threeD: false,
     developer: "Ryann"
+  },
+  {
+    name: "NG Rome",
+    imageSrc: "/images/projects/ngrome.jpg",
+    url: "https://ngrome.io/",
+    category: "Company Website",
+    version: "18.0.0",
+    versionGroup: "v15 and up",
+    analogVersion: "1.2.0",
+    uiLib: "Tailwind CSS",
+    pricing: "Free",
+    threeD: false,
+    developer: "NG Rome"
   }
 ]);
 
