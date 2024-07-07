@@ -16,7 +16,6 @@ closes #
 - [ ] ✅ Test
 - [ ] 🤖 Build
 - [ ] 🔁 CI
-- [ ] 📦 Chore (Release)
 - [ ] ⏩ Revert
 
 ## Mobile & Desktop Screenshots/Recordings

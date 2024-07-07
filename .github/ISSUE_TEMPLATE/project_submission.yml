@@ -63,15 +63,6 @@ body:
       required: true
 
   - type: checkboxes
-    id: awareness
-    attributes:
-      label: I am aware that if the project is not free to use, there will be a fee to feature it on BuiltWithAnalog
-      description: Terms will be discussed after the project is reviewed and approved
-      options:
-        - label: "Yes I am aware"
-        - label: 'No'
-
-  - type: checkboxes
     id: assistance
     attributes:
       label: I would be willing to submit a PR to add the project to BuiltWithAnalog, if approved

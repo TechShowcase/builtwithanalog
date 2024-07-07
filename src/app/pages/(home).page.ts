@@ -7,7 +7,7 @@ import { DropdownModule } from "primeng/dropdown";
 import { CardModule } from "primeng/card";
 import { ButtonModule } from "primeng/button";
 import { CheckboxModule } from "primeng/checkbox";
-import { TooltipModule } from 'primeng/tooltip';
+import { TooltipModule } from "primeng/tooltip";
 
 @Component({
 	selector: "app-home",
@@ -18,7 +18,7 @@ import { TooltipModule } from 'primeng/tooltip';
 		CardModule,
 		ButtonModule,
 		CheckboxModule,
-    TooltipModule
+		TooltipModule,
 	],
 	template: `
 		<div class="content">
@@ -90,8 +90,8 @@ import { TooltipModule } from 'primeng/tooltip';
 							class="main-image"
 							src="{{ project.imageSrc }}"
 							alt="{{ project.name }}"
-              pTooltip="by {{ project.developer }}"
-              tooltipPosition="bottom"
+							pTooltip="by {{ project.developer }}"
+							tooltipPosition="bottom"
 						/>
 						<div class="card-content">
 							<div class="details">
@@ -119,20 +119,20 @@ import { TooltipModule } from 'primeng/tooltip';
 										<img
 											class="analog"
 											src="/icons/analog.svg"
-                      pTooltip="{{ project.analogVersion }}"
-                      tooltipPosition="top"
+											pTooltip="{{ project.analogVersion }}"
+											tooltipPosition="top"
 										/>
 										@if (isVersion16OrAbove(project.version)) {
 										<img
 											src="/icons/angular.svg"
-                      pTooltip="{{ project.version }}"
-                      tooltipPosition="top"
+											pTooltip="{{ project.version }}"
+											tooltipPosition="top"
 										/>
 										} @else {
 										<img
 											src="/angular-old.svg"
-                      pTooltip="{{ project.version }}"
-                      tooltipPosition="top"
+											pTooltip="{{ project.version }}"
+											tooltipPosition="top"
 										/>
 										}
 									</div>
@@ -141,15 +141,22 @@ import { TooltipModule } from 'primeng/tooltip';
 										<img
 											class="ui-lib"
 											src="/icons/spartan.png"
-                      pTooltip="{{ project.uiLib }}"
-                      tooltipPosition="top"
+											pTooltip="Spartan UI"
+											tooltipPosition="top"
 										/>
 										} @if (project.uiLib.includes('PrimeNG')) {
 										<img
 											class="ui-lib"
 											src="/icons/primeng.svg"
-                      pTooltip="{{ project.uiLib }}"
-                      tooltipPosition="top"
+											pTooltip="PrimeNG"
+											tooltipPosition="top"
+										/>
+										} @if (project.uiLib.includes('Tailwind CSS')) {
+										<img
+											class="ui-lib"
+											src="/icons/tailwind.svg"
+											pTooltip="Tailwind CSS"
+											tooltipPosition="top"
 										/>
 										}
 									</div>
@@ -165,8 +172,8 @@ import { TooltipModule } from 'primeng/tooltip';
 							class="main-image"
 							src="{{ project.imageSrc }}"
 							alt="{{ project.name }}"
-              pTooltip="by {{ project.developer }}"
-              tooltipPosition="bottom"
+							pTooltip="by {{ project.developer }}"
+							tooltipPosition="bottom"
 						/>
 						<div class="card-content">
 							<div class="details">
@@ -194,37 +201,44 @@ import { TooltipModule } from 'primeng/tooltip';
 										<img
 											class="analog"
 											src="/icons/analog.svg"
-                      pTooltip="{{ project.analogVersion }}"
-                      tooltipPosition="top"
+											pTooltip="{{ project.analogVersion }}"
+											tooltipPosition="top"
 										/>
 										@if (isVersion16OrAbove(project.version)) {
 										<img
 											src="/icons/angular.svg"
-                      pTooltip="{{ project.version }}"
-                      tooltipPosition="top"
+											pTooltip="{{ project.version }}"
+											tooltipPosition="top"
 										/>
 										} @else {
 										<img
 											src="/icons/angular-old.svg"
-                      pTooltip="{{ project.uiLib }}"
-                      tooltipPosition="top"
+											pTooltip="{{ project.uiLib }}"
+											tooltipPosition="top"
 										/>
 										}
 									</div>
 									<div class="ui">
 										@if (project.uiLib.includes('Spartan UI')) {
 										<img
-											class="spartan"
+											class="ui-lib"
 											src="/icons/spartan.png"
-                      pTooltip="{{ project.uiLib }}"
-                      tooltipPosition="top"
+											pTooltip="Spartan UI"
+											tooltipPosition="top"
 										/>
 										} @if (project.uiLib.includes('PrimeNG')) {
 										<img
-											class="spartan"
+											class="ui-lib"
 											src="/icons/primeng.svg"
-                      pTooltip="{{ project.uiLib }}"
-                      tooltipPosition="top"
+											pTooltip="PrimeNG"
+											tooltipPosition="top"
+										/>
+										} @if (project.uiLib.includes('Tailwind CSS')) {
+										<img
+											class="ui-lib"
+											src="/icons/tailwind.svg"
+											pTooltip="Tailwind CSS"
+											tooltipPosition="top"
 										/>
 										}
 									</div>
@@ -313,7 +327,7 @@ import { TooltipModule } from 'primeng/tooltip';
 						img {
 							width: 100%;
 							object-fit: cover;
-              margin-bottom: 0.1rem;
+							margin-bottom: 0.1rem;
 						}
 
 						.card-content {
@@ -348,7 +362,7 @@ import { TooltipModule } from 'primeng/tooltip';
 
 								.features {
 									display: flex;
-                  padding: 0 0.5rem 0.5rem;
+									padding: 0 0.5rem 0.5rem;
 									gap: 0.3rem;
 
 									img {
@@ -437,8 +451,6 @@ export default class HomeComponent implements OnInit, OnChanges {
 			});
 	}
 
-  // this is related to the content not loading after I return from visiting one of the pages
-  // I tried ngAfterViewInit, but both options are not resolving it
 	ngOnChanges(): void {
 		this.filterApplied = false;
 		this.http
