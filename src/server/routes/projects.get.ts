@@ -197,7 +197,7 @@ export default defineEventHandler(() => [
 		developer: "NG Rome",
 	},
  	{
-		name: "Pierre Bouillon's Portfolio",
+		name: "Pierre's Portfolio",
 		imageSrc: "/images/projects/pbouillon.jpg",
 		url: "https://pbouillon.github.io",
 		category: "Personal Website",
