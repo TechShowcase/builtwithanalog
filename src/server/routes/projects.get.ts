@@ -196,4 +196,17 @@ export default defineEventHandler(() => [
 		threeD: false,
 		developer: "NG Rome",
 	},
+ 	{
+		name: "Pierre Bouillon's Portfolio",
+		imageSrc: "/images/projects/pbouillon.jpg",
+		url: "https://pbouillon.github.io",
+		category: "Personal Website",
+		version: "18.0.0",
+		versionGroup: "v15 and up",
+		analogVersion: "1.5.0",
+		uiLib: "Tailwind CSS",
+		pricing: "Free",
+		threeD: false,
+		developer: "Pierre Bouillon",
+	},
 ]);
