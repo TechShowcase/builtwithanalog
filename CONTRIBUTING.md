@@ -129,6 +129,8 @@ If the issue you are working on is an approved request for adding a new project 
 
 3. Ensure the project details are correctly formatted and include all necessary information as per the existing entries.
 
+* Please keep project title's minimal around 15 characters so it doesn't spill on the next line, usually there is no need for that and there is already a tooltip that chows the full developer's name
+
 4. If some data is missing, collect the data before submitting the PR. PRs for projects with missing data will not be accepted.
 
 5. Double-check that the JSON syntax is correct to avoid breaking the data structure.
