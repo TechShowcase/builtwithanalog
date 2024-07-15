@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import {
   Component,
+  computed,
   effect,
   inject,
   model,
@@ -18,6 +19,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
 import { Filter, FilterComponent } from '../components/filter.component';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-home',
@@ -35,204 +37,111 @@ import { Filter, FilterComponent } from '../components/filter.component';
     <div class="content">
       <div class="filtering">
         <app-filter
-          [analogVersions]="analogVersions"
-          [angularVersions]="versionGroup"
-          [projectCategories]="categories"
-          [uiLibs]="projectsUIlib"
+          [analogVersions]="analogVersions()"
+          [angularVersions]="versionGroup()"
+          [projectCategories]="categories()"
+          [uiLibs]="projectsUIlib()"
           [(ngModel)]="filter"
         />
 
         <div class="total">
-          @if (!filterApplied) {
-            <p>All Projects: {{ projects.length }}</p>
+          @if (!isFilterActive()) {
+            <p>All Projects: {{ projects().length }}</p>
           } @else {
-            <p>Projects found: {{ filteredProjects.length }}</p>
+            <p>Projects found: {{ filteredProjects().length }}</p>
           }
         </div>
       </div>
       <div class="cards-wrapper">
-        @if (!filterApplied) {
-          @for (project of projects; track project) {
-            <a
-              href="{{ project.url }}?source=builtwithanalog.dev"
-              target="_blank"
-            >
-              <p-card class="home">
-                <img
-                  class="main-image"
-                  src="{{ project.imageSrc }}"
-                  alt="{{ project.name }}"
-                  pTooltip="by {{ project.developer }}"
-                  tooltipPosition="bottom"
-                />
-                <div class="card-content">
-                  <div class="details">
-                    <div class="info">
-                      <div class="main">
-                        @if (
-                          project.category.includes('Open Source') ||
-                          project.pricing === 'Free'
-                        ) {
-                          <h2>{{ project.name }}</h2>
-                        } @else {
-                          <span
-                            class="material-symbols-outlined"
-                            title="{{ project.pricing }}"
-                          >
-                            paid
-                          </span>
-                          <h2>{{ project.name }}</h2>
-                        }
-                      </div>
-                      <div class="more">
-                        <p>{{ project.category }}</p>
-                      </div>
+        @for (project of filteredProjects(); track project) {
+          <a
+            href="{{ project.url }}?source=builtwithanalog.dev"
+            target="_blank"
+          >
+            <p-card class="home">
+              <img
+                class="main-image"
+                src="{{ project.imageSrc }}"
+                alt="{{ project.name }}"
+                pTooltip="by {{ project.developer }}"
+                tooltipPosition="bottom"
+              />
+              <div class="card-content">
+                <div class="details">
+                  <div class="info">
+                    <div class="main">
+                      @if (
+                        project.category.includes('Open Source') ||
+                        project.pricing === 'Free'
+                      ) {
+                        <h2>{{ project.name }}</h2>
+                      } @else {
+                        <span
+                          class="material-symbols-outlined"
+                          title="{{ project.pricing }}"
+                        >
+                          paid
+                        </span>
+                        <h2>{{ project.name }}</h2>
+                      }
                     </div>
-                    <div class="features">
-                      <div class="version">
+                    <div class="more">
+                      <p>{{ project.category }}</p>
+                    </div>
+                  </div>
+                  <div class="features">
+                    <div class="version">
+                      <img
+                        class="analog"
+                        src="/icons/analog.svg"
+                        pTooltip="{{ project.analogVersion }}"
+                        tooltipPosition="top"
+                      />
+                      @if (isVersion16OrAbove(project.version)) {
                         <img
-                          class="analog"
-                          src="/icons/analog.svg"
-                          pTooltip="{{ project.analogVersion }}"
+                          src="/icons/angular.svg"
+                          pTooltip="{{ project.version }}"
                           tooltipPosition="top"
                         />
-                        @if (isVersion16OrAbove(project.version)) {
-                          <img
-                            src="/icons/angular.svg"
-                            pTooltip="{{ project.version }}"
-                            tooltipPosition="top"
-                          />
-                        } @else {
-                          <img
-                            src="/angular-old.svg"
-                            pTooltip="{{ project.version }}"
-                            tooltipPosition="top"
-                          />
-                        }
-                      </div>
-                      <div class="ui">
-                        @if (project.uiLib.includes('Spartan UI')) {
-                          <img
-                            class="ui-lib"
-                            src="/icons/spartan.png"
-                            pTooltip="Spartan UI"
-                            tooltipPosition="top"
-                          />
-                        }
-                        @if (project.uiLib.includes('PrimeNG')) {
-                          <img
-                            class="ui-lib"
-                            src="/icons/primeng.svg"
-                            pTooltip="PrimeNG"
-                            tooltipPosition="top"
-                          />
-                        }
-                        @if (project.uiLib.includes('Tailwind CSS')) {
-                          <img
-                            class="ui-lib"
-                            src="/icons/tailwind.svg"
-                            pTooltip="Tailwind CSS"
-                            tooltipPosition="top"
-                          />
-                        }
-                      </div>
+                      } @else {
+                        <img
+                          src="/angular-old.svg"
+                          pTooltip="{{ project.version }}"
+                          tooltipPosition="top"
+                        />
+                      }
+                    </div>
+                    <div class="ui">
+                      @if (project.uiLib.includes('Spartan UI')) {
+                        <img
+                          class="ui-lib"
+                          src="/icons/spartan.png"
+                          pTooltip="Spartan UI"
+                          tooltipPosition="top"
+                        />
+                      }
+                      @if (project.uiLib.includes('PrimeNG')) {
+                        <img
+                          class="ui-lib"
+                          src="/icons/primeng.svg"
+                          pTooltip="PrimeNG"
+                          tooltipPosition="top"
+                        />
+                      }
+                      @if (project.uiLib.includes('Tailwind CSS')) {
+                        <img
+                          class="ui-lib"
+                          src="/icons/tailwind.svg"
+                          pTooltip="Tailwind CSS"
+                          tooltipPosition="top"
+                        />
+                      }
                     </div>
                   </div>
                 </div>
-              </p-card>
-            </a>
-          }
-        } @else {
-          @for (project of filteredProjects; track project) {
-            <a
-              href="{{ project.url }}?source=builtwithanalog.dev"
-              target="_blank"
-            >
-              <p-card class="home">
-                <img
-                  class="main-image"
-                  src="{{ project.imageSrc }}"
-                  alt="{{ project.name }}"
-                  pTooltip="by {{ project.developer }}"
-                  tooltipPosition="bottom"
-                />
-                <div class="card-content">
-                  <div class="details">
-                    <div class="info">
-                      <div class="main">
-                        @if (
-                          project.category.includes('Open Source') ||
-                          project.pricing === 'Free'
-                        ) {
-                          <h2>{{ project.name }}</h2>
-                        } @else {
-                          <span
-                            class="material-symbols-outlined"
-                            title="{{ project.pricing }}"
-                          >
-                            paid
-                          </span>
-                          <h2>{{ project.name }}</h2>
-                        }
-                      </div>
-                      <div class="more">
-                        <p>{{ project.category }}</p>
-                      </div>
-                    </div>
-                    <div class="features">
-                      <div class="version">
-                        <img
-                          class="analog"
-                          src="/icons/analog.svg"
-                          pTooltip="{{ project.analogVersion }}"
-                          tooltipPosition="top"
-                        />
-                        @if (isVersion16OrAbove(project.version)) {
-                          <img
-                            src="/icons/angular.svg"
-                            pTooltip="{{ project.version }}"
-                            tooltipPosition="top"
-                          />
-                        } @else {
-                          <img
-                            src="/icons/angular-old.svg"
-                            pTooltip="{{ project.uiLib }}"
-                            tooltipPosition="top"
-                          />
-                        }
-                      </div>
-                      <div class="ui">
-                        @if (project.uiLib.includes('Spartan UI')) {
-                          <img
-                            class="ui-lib"
-                            src="/icons/spartan.png"
-                            pTooltip="Spartan UI"
-                            tooltipPosition="top"
-                          />
-                        }
-                        @if (project.uiLib.includes('PrimeNG')) {
-                          <img
-                            class="ui-lib"
-                            src="/icons/primeng.svg"
-                            pTooltip="PrimeNG"
-                            tooltipPosition="top"
-                          />
-                        }
-                        @if (project.uiLib.includes('Tailwind CSS')) {
-                          <img
-                            class="ui-lib"
-                            src="/icons/tailwind.svg"
-                            pTooltip="Tailwind CSS"
-                            tooltipPosition="top"
-                          />
-                        }
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </p-card>
-            </a>
-          }
+              </div>
+            </p-card>
+          </a>
         }
       </div>
     </div>
@@ -364,24 +273,37 @@ import { Filter, FilterComponent } from '../components/filter.component';
     `,
   ],
 })
-export default class HomeComponent implements OnInit, OnChanges {
-  projects: Project[] = [];
-  filteredProjects: Project[] = [];
-  categories: string[] = [];
-  versionGroup: string[] = [];
-  analogVersions: string[] = [];
-  projectsUIlib: string[] = [];
-  filterApplied: boolean = false;
-  selectedCategory: string | null = null;
-  selectedVersionGroup: string | null = null;
-  selectedAnalogVersion: string | null = null;
-  selectedUIlib: string | null = null;
-  showFree: boolean | null = null;
-  threeDElements: boolean | null = null;
-
-  http = inject(HttpClient);
+export default class HomeComponent {
+  readonly #http = inject(HttpClient);
   readonly #route = inject(ActivatedRoute);
   readonly #router = inject(Router);
+
+  readonly projects = toSignal(
+    this.#http.get<Project[]>('https://builtwithanalog.dev/api/projects'),
+    { initialValue: [] },
+  );
+
+  readonly categories = computed(() => {
+    const projects = this.projects();
+    return [...new Set(projects.map((project) => project.category))];
+  });
+
+  readonly versionGroup = computed(() => {
+    const projects = this.projects();
+    return [...new Set(projects.map((project) => project.versionGroup))];
+  });
+
+  readonly analogVersions = computed(() => {
+    const projects = this.projects();
+    return [...new Set(projects.map((project) => project.analogVersion))];
+  });
+
+  readonly projectsUIlib = computed(() => {
+    const projects = this.projects();
+    return [
+      ...new Set(projects.map((project) => project.uiLib.split(', ')).flat()),
+    ];
+  });
 
   readonly filter = model<Filter>({
     analogVersion: null,
@@ -392,110 +314,39 @@ export default class HomeComponent implements OnInit, OnChanges {
     isFree: null,
   });
 
-  constructor() {
-    const syncFiltersEffect = effect(() => {
-      const filter = this.filter();
-      untracked(() => this.updateFilter(filter));
-    });
-  }
+  readonly filteredProjects = computed(() => {
+    const projects = this.projects();
+    const filter = this.filter();
 
-  ngOnInit(): void {
-    this.filterApplied = false;
-    this.http
-      .get<Project[]>('https://builtwithanalog.dev/api/projects')
-      .subscribe((projects) => {
-        this.projects = projects;
-        this.categories = Array.from(
-          new Set(this.projects.map((project) => project.category)),
-        );
-
-        this.versionGroup = Array.from(
-          new Set(this.projects.map((project) => project.versionGroup)),
-        );
-
-        this.analogVersions = Array.from(
-          new Set(this.projects.map((project) => project.analogVersion)),
-        );
-
-        this.projectsUIlib = Array.from(
-          new Set(
-            this.projects.map((project) => project.uiLib.split(', ')).flat(),
-          ),
-        );
-
-        this.#seedFilter();
-      });
-  }
-
-  ngOnChanges(): void {
-    this.filterApplied = false;
-    this.http
-      .get<Project[]>('https://builtwithanalog.dev/api/projects')
-      .subscribe((projects) => {
-        this.projects = projects;
-        this.categories = Array.from(
-          new Set(this.projects.map((project) => project.category)),
-        ).map((category) => ({ name: category }));
-        this.versionGroup = Array.from(
-          new Set(this.projects.map((project) => project.versionGroup)),
-        ).map((versionGroup) => ({ name: versionGroup }));
-        this.analogVersions = Array.from(
-          new Set(this.projects.map((project) => project.analogVersion)),
-        ).map((analogVersion) => ({ name: analogVersion }));
-        this.projectsUIlib = Array.from(
-          new Set(
-            this.projects.map((project) => project.uiLib.split(', ')).flat(),
-          ),
-        ).map((uiLib) => ({ name: uiLib }));
-      });
-  }
-
-  applyFilter(): void {
-    this.filterApplied = true;
-    this.filteredProjects = this.projects.filter((project) => {
+    return projects.filter((project) => {
       return (
-        (this.selectedCategory === null ||
-          project.category === this.selectedCategory) &&
-        (this.selectedAnalogVersion === null ||
-          project.analogVersion === this.selectedAnalogVersion) &&
-        (this.selectedUIlib === null ||
-          project.uiLib.split(', ').includes(this.selectedUIlib)) &&
-        (this.selectedVersionGroup === null ||
-          project.versionGroup === this.selectedVersionGroup) &&
-        (this.showFree === null || this.showFree
+        (filter.category === null || project.category === filter.category) &&
+        (filter.analogVersion === null ||
+          project.analogVersion === filter.analogVersion) &&
+        (filter.uiLib === null ||
+          project.uiLib.split(', ').includes(filter.uiLib)) &&
+        (filter.versionGroup === null ||
+          project.versionGroup === filter.versionGroup) &&
+        (filter.isFree === null || filter.isFree
           ? project.pricing === 'Free'
           : project.pricing !== 'Free') &&
-        (this.threeDElements === null || project.threeD === this.threeDElements)
+        (filter.isUsing3D === null || project.threeD === filter.isUsing3D)
       );
     });
-  }
+  });
 
-  clearFilters(): void {
-    this.filterApplied = false;
-    this.selectedCategory = { name: '' };
-    this.selectedAnalogVersion = { name: '' };
-    this.selectedUIlib = { name: '' };
-    this.selectedVersionGroup = { name: '' };
-    this.showFree = false;
-    this.threeDElements = false;
-  }
+  readonly isFilterActive = computed(() => {
+    const filter = this.filter();
+    return Object.values(filter).some((value) => value !== null);
+  });
 
-  updateFilter(filter: Filter): void {
-    this.selectedAnalogVersion = filter.analogVersion;
-    this.selectedCategory = filter.category;
-    this.selectedUIlib = filter.uiLib;
-    this.selectedVersionGroup = filter.versionGroup;
-    this.threeDElements = filter.isUsing3D;
-    this.showFree = filter.isFree;
+  constructor() {
+    this.#seedFilter();
 
-    this.applyFilter();
-    this.#updateQueryParams(filter);
-
-    const hasAnyFilterBeenSet = Object.values(filter).some(
-      (filter) => filter !== null,
-    );
-
-    this.filterApplied = hasAnyFilterBeenSet;
+    const syncFilterWithQueryParams = effect(() => {
+      const filter = this.filter();
+      untracked(() => this.#updateQueryParams(filter));
+    });
   }
 
   #seedFilter(): void {
