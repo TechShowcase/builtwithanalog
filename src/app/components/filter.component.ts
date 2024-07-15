@@ -129,6 +129,12 @@ export interface Filter {
         }
       }
     }
+
+    @media (max-width: 768px) {
+      #filter-form {
+        flex-direction: column;
+      }
+    }
   `,
   providers: [
     {
@@ -168,7 +174,7 @@ export class FilterComponent implements ControlValueAccessor {
     this.filterForm.valueChanges
       .pipe(
         takeUntilDestroyed(),
-        map(() => this.filterForm.getRawValue())
+        map(() => this.filterForm.getRawValue()),
       )
       .subscribe((filter) => {
         this.changed(filter);

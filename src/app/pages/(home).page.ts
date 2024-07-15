@@ -255,11 +255,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
       @media (max-width: 768px) {
         .content {
-          .filtering-actions {
-            flex-direction: column;
-            gap: 0;
-          }
-
           .cards-wrapper {
             flex-direction: column;
             align-items: center;
