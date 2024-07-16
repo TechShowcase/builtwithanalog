@@ -1007,7 +1007,7 @@ const projects_get = defineEventHandler(() => [
   {
     name: "Tuzuper",
     imageSrc: "/images/projects/tuzuper.jpg",
-    url: "https://elanna.me/",
+    url: "https://tuzuper.com/",
     category: "Shopping",
     version: "17.3.5",
     versionGroup: "v15 and up",
