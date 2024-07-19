@@ -9,7 +9,7 @@ import { CardModule } from "primeng/card";
 		<div class="content">
 			<h1>About</h1>
 			<p-card>
-				<a href="https://github.com/BuiltWithAnalog" target="_blank">
+				<a href="https://github.com/TechShowcase/builtwithanalog" target="_blank">
 					<h2>BuiltWithAnalog</h2>
 				</a>
 				<p>
@@ -19,11 +19,11 @@ import { CardModule } from "primeng/card";
 					within BuiltWithAnalog is public, promoting transparency and
 					collaboration within the developer community.
 				</p>
-				<p>BuiltWithAnalog features one main repository:</p>
+
 				<ul>
 					<li>
 						<a
-							href="https://github.com/BuiltWithAnalog/builtwithanalog"
+							href="https://github.com/TechShowcase/builtwithanalog"
 							target="_blank"
 							>builtwithanalog</a
 						>
@@ -51,6 +51,7 @@ import { CardModule } from "primeng/card";
 					developers around the world. Explore, showcase, and maybe even market
 					your Analog projects on builtwithanalog.dev today!
 				</p>
+        <p>BuiltWithAnalog is one of the main repos in the <br> <a href="https://github.com/TechShowcase" target="_blank">TechShowcase GitHub Organization</a></p>
 			</p-card>
 		</div>
 	`,
