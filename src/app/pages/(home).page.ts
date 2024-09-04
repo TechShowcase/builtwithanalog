@@ -1,41 +1,69 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
 import {
-  Component,
-  computed,
-  effect,
-  inject,
-  model,
-  OnChanges,
-  OnInit,
-  untracked,
-} from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Project } from '../models/project';
+	Component,
+	computed,
+	effect,
+	inject,
+	model,
+	OnChanges,
+	OnInit,
+	untracked,
+} from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { Project } from "../models/project";
 
-import { ActivatedRoute, Router } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
-import { CheckboxModule } from 'primeng/checkbox';
-import { DropdownModule } from 'primeng/dropdown';
-import { TooltipModule } from 'primeng/tooltip';
-import { Filter, FilterComponent } from '../components/filter.component';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, Router } from "@angular/router";
+import { ButtonModule } from "primeng/button";
+import { CardModule } from "primeng/card";
+import { CheckboxModule } from "primeng/checkbox";
+import { DropdownModule } from "primeng/dropdown";
+import { TooltipModule } from "primeng/tooltip";
+import { Filter, FilterComponent } from "../components/filter.component";
+import { toSignal } from "@angular/core/rxjs-interop";
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    FormsModule,
-    DropdownModule,
-    CardModule,
-    ButtonModule,
-    CheckboxModule,
-    TooltipModule,
-    FilterComponent,
-  ],
-  template: `
-    <div class="content">
-      <div class="filtering">
+	selector: "app-home",
+	standalone: true,
+	imports: [
+		FormsModule,
+		DropdownModule,
+		CardModule,
+		ButtonModule,
+		CheckboxModule,
+		TooltipModule,
+		FilterComponent,
+	],
+	template: `
+		<div class="content">
+			<div class="new-info">
+				<p>
+					BuiltWithAnalog was an open-source project started by
+					<a href="https://github.com/monacodelisa" target="_blank"
+						>Esther White</a
+					>
+					with the goal of featuring projects built using
+					<a href="https://analogjs.org/" target="_blank">AnalogJS</a>.
+				</p>
+				<p>
+					Despite valuable contributions from <a href="https://github.com/TechShowcase/builtwithanalog/pulls?q=is%3Apr+is%3Aclosed+assignee%3ApBouillon" target="_blank">Pierre Bouillon</a>, <a href="https://github.com/TechShowcase/builtwithanalog/pulls?q=is%3Apr+is%3Aclosed+assignee%3Adalenguyen" target="_blank">Dale Nguyen</a> and <a href="https://analogjs.org/" target="_blank">Gerome
+					Grignon</a>, the associated GitHub repo is now <a href="https://github.com/TechShowcase/builtwithanalog" target="_blank">archived</a>, meaning it will no longer be
+					updated but will remain accessible so that past contributions are
+					preserved and visible.
+				</p>
+				<p>
+					The reason for archiving is that the new <a href="https://builtwithangular.dev/" target="_blank">builtwithangular.dev</a> website
+					now offers advanced filtering options, allowing users to easily search
+					for <strong>Analog</strong> projects.
+				</p>
+				<p-card>
+					<h2>
+						If you'd like to see featured projects or submit your own,<br />
+						please head over to <a href="https://builtwithangular.dev/" target="_blank">BuiltWithAngular.dev</a>
+					</h2>
+				</p-card>
+				<p>Thank you for your support!</p>
+			</div>
+			<!-- <div class="filtering">
         <app-filter
           [analogVersions]="analogVersions()"
           [angularVersions]="versionGroup()"
@@ -143,238 +171,264 @@ import { toSignal } from '@angular/core/rxjs-interop';
             </p-card>
           </a>
         }
-      </div>
-    </div>
-  `,
-  styles: [
-    `
-      .content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        min-height: 80vh;
-        margin: 1rem;
+      </div> -->
+		</div>
+	`,
+	styles: [
+		`
+			.content {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: flex-start;
+				min-height: 70vh;
+				margin: 1rem;
 
-        .filtering {
-          display: flex;
-          flex-direction: column;
-          margin-top: 1.5rem;
+				.new-info {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					width: 50vw;
+					padding: 2rem 0;
 
-          .total {
-            display: flex;
-            justify-content: center;
-            padding: 0.5rem;
+					p {
+						font-size: 1.1rem;
+						line-height: 1.7rem;
+						text-align: center;
+						margin: 0.5rem;
+					}
 
-            p {
-              font-size: 1rem;
-            }
-          }
-        }
+					p-card {
+						margin: 2rem 0;
+						h2 {
+              font-size: 1.3rem;
+							line-height: 2rem;
+							text-align: center;
+              padding: 0 2rem;
+						}
+					}
+				}
 
-        .cards-wrapper {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 1.5rem;
-          margin: 1rem 4rem 2rem;
+				.filtering {
+					display: flex;
+					flex-direction: column;
+					margin-top: 1.5rem;
 
-          .p-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 20rem;
+					.total {
+						display: flex;
+						justify-content: center;
+						padding: 0.5rem;
 
-            img {
-              width: 100%;
-              object-fit: cover;
-              margin-bottom: 0.1rem;
-            }
+						p {
+							font-size: 1rem;
+						}
+					}
+				}
 
-            .card-content {
-              width: 100%;
-              h2 {
-                font-size: 1.1rem;
-                font-weight: 500;
-                margin: 0.6rem 0 0;
-              }
+				.cards-wrapper {
+					display: flex;
+					flex-wrap: wrap;
+					justify-content: center;
+					gap: 1.5rem;
+					margin: 1rem 4rem 2rem;
 
-              p {
-                font-size: 0.9rem;
-                margin: 0;
-              }
+					.p-card {
+						display: flex;
+						flex-direction: column;
+						align-items: center;
+						width: 20rem;
 
-              .details {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+						img {
+							width: 100%;
+							object-fit: cover;
+							margin-bottom: 0.1rem;
+						}
 
-                .info {
-                  .main {
-                    display: flex;
-                    align-items: center;
-                    gap: 0.2rem;
+						.card-content {
+							width: 100%;
+							h2 {
+								font-size: 1.1rem;
+								font-weight: 500;
+								margin: 0.6rem 0 0;
+							}
 
-                    span {
-                      color: #36744c;
-                    }
-                  }
-                }
+							p {
+								font-size: 0.9rem;
+								margin: 0;
+							}
 
-                .features {
-                  display: flex;
-                  padding: 0 0.5rem 0.5rem;
-                  gap: 0.3rem;
+							.details {
+								display: flex;
+								justify-content: space-between;
+								align-items: center;
 
-                  img {
-                    width: 1.5rem;
-                    height: 1.5rem;
+								.info {
+									.main {
+										display: flex;
+										align-items: center;
+										gap: 0.2rem;
 
-                    &.ui-lib {
-                      margin-top: 0.3rem;
-                    }
-                  }
+										span {
+											color: #36744c;
+										}
+									}
+								}
 
-                  .version {
-                    display: flex;
-                    align-items: center;
-                    img {
-                      object-fit: contain;
-                      &.analog {
-                        width: 2rem;
-                        height: 2rem;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+								.features {
+									display: flex;
+									padding: 0 0.5rem 0.5rem;
+									gap: 0.3rem;
 
-      @media (max-width: 768px) {
-        .content {
-          .cards-wrapper {
-            flex-direction: column;
-            align-items: center;
+									img {
+										width: 1.5rem;
+										height: 1.5rem;
 
-            .p-card {
-              width: 80vw;
-            }
-          }
-        }
-      }
-    `,
-  ],
+										&.ui-lib {
+											margin-top: 0.3rem;
+										}
+									}
+
+									.version {
+										display: flex;
+										align-items: center;
+										img {
+											object-fit: contain;
+											&.analog {
+												width: 2rem;
+												height: 2rem;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+			@media (max-width: 768px) {
+				.content {
+					.cards-wrapper {
+						flex-direction: column;
+						align-items: center;
+
+						.p-card {
+							width: 80vw;
+						}
+					}
+				}
+			}
+		`,
+	],
 })
 export default class HomeComponent {
-  readonly #http = inject(HttpClient);
-  readonly #route = inject(ActivatedRoute);
-  readonly #router = inject(Router);
+	readonly #http = inject(HttpClient);
+	readonly #route = inject(ActivatedRoute);
+	readonly #router = inject(Router);
 
-  readonly projects = toSignal(
-    this.#http.get<Project[]>('https://builtwithanalog.dev/api/projects'),
-    { initialValue: [] },
-  );
+	readonly projects = toSignal(
+		this.#http.get<Project[]>("https://builtwithanalog.dev/api/projects"),
+		{ initialValue: [] }
+	);
 
-  readonly categories = computed(() => {
-    const projects = this.projects();
-    return [...new Set(projects.map((project) => project.category))];
-  });
+	readonly categories = computed(() => {
+		const projects = this.projects();
+		return [...new Set(projects.map((project) => project.category))];
+	});
 
-  readonly versionGroup = computed(() => {
-    const projects = this.projects();
-    return [...new Set(projects.map((project) => project.versionGroup))];
-  });
+	readonly versionGroup = computed(() => {
+		const projects = this.projects();
+		return [...new Set(projects.map((project) => project.versionGroup))];
+	});
 
-  readonly analogVersions = computed(() => {
-    const projects = this.projects();
-    return [...new Set(projects.map((project) => project.analogVersion))];
-  });
+	readonly analogVersions = computed(() => {
+		const projects = this.projects();
+		return [...new Set(projects.map((project) => project.analogVersion))];
+	});
 
-  readonly projectsUIlib = computed(() => {
-    const projects = this.projects();
-    return [
-      ...new Set(projects.map((project) => project.uiLib.split(', ')).flat()),
-    ];
-  });
+	readonly projectsUIlib = computed(() => {
+		const projects = this.projects();
+		return [
+			...new Set(projects.map((project) => project.uiLib.split(", ")).flat()),
+		];
+	});
 
-  readonly filter = model<Filter>({
-    analogVersion: null,
-    category: null,
-    uiLib: null,
-    versionGroup: null,
-    isUsing3D: null,
-    isFree: null,
-  });
+	readonly filter = model<Filter>({
+		analogVersion: null,
+		category: null,
+		uiLib: null,
+		versionGroup: null,
+		isUsing3D: null,
+		isFree: null,
+	});
 
-  readonly filteredProjects = computed(() => {
-    const projects = this.projects();
-    const filter = this.filter();
+	readonly filteredProjects = computed(() => {
+		const projects = this.projects();
+		const filter = this.filter();
 
-    return projects.filter((project) => {
-      return (
-        (filter.category === null || project.category === filter.category) &&
-        (filter.analogVersion === null ||
-          project.analogVersion === filter.analogVersion) &&
-        (filter.uiLib === null ||
-          project.uiLib.split(', ').includes(filter.uiLib)) &&
-        (filter.versionGroup === null ||
-          project.versionGroup === filter.versionGroup) &&
-        (filter.isFree === null || filter.isFree
-          ? project.pricing === 'Free'
-          : project.pricing !== 'Free') &&
-        (filter.isUsing3D === null || project.threeD === filter.isUsing3D)
-      );
-    });
-  });
+		return projects.filter((project) => {
+			return (
+				(filter.category === null || project.category === filter.category) &&
+				(filter.analogVersion === null ||
+					project.analogVersion === filter.analogVersion) &&
+				(filter.uiLib === null ||
+					project.uiLib.split(", ").includes(filter.uiLib)) &&
+				(filter.versionGroup === null ||
+					project.versionGroup === filter.versionGroup) &&
+				(filter.isFree === null || filter.isFree
+					? project.pricing === "Free"
+					: project.pricing !== "Free") &&
+				(filter.isUsing3D === null || project.threeD === filter.isUsing3D)
+			);
+		});
+	});
 
-  readonly isFilterActive = computed(() => {
-    const filter = this.filter();
-    return Object.values(filter).some((value) => value !== null);
-  });
+	readonly isFilterActive = computed(() => {
+		const filter = this.filter();
+		return Object.values(filter).some((value) => value !== null);
+	});
 
-  constructor() {
-    this.#seedFilter();
+	constructor() {
+		this.#seedFilter();
 
-    const syncFilterWithQueryParams = effect(() => {
-      const filter = this.filter();
-      untracked(() => this.#updateQueryParams(filter));
-    });
-  }
+		const syncFilterWithQueryParams = effect(() => {
+			const filter = this.filter();
+			untracked(() => this.#updateQueryParams(filter));
+		});
+	}
 
-  #seedFilter(): void {
-    const queryParams = this.#route.snapshot.queryParams;
+	#seedFilter(): void {
+		const queryParams = this.#route.snapshot.queryParams;
 
-    const asBoolean = (param: 'true' | 'false' | null) =>
-      param === 'true' ? true : param === 'false' ? false : null;
+		const asBoolean = (param: "true" | "false" | null) =>
+			param === "true" ? true : param === "false" ? false : null;
 
-    const filter: Filter = {
-      analogVersion: queryParams['analogVersion'] ?? null,
-      category: queryParams['category'] ?? null,
-      uiLib: queryParams['uiLib'] ?? null,
-      versionGroup: queryParams['versionGroup'] ?? null,
-      isUsing3D: asBoolean(queryParams['isUsing3D']),
-      isFree: asBoolean(queryParams['isFree']),
-    };
+		const filter: Filter = {
+			analogVersion: queryParams["analogVersion"] ?? null,
+			category: queryParams["category"] ?? null,
+			uiLib: queryParams["uiLib"] ?? null,
+			versionGroup: queryParams["versionGroup"] ?? null,
+			isUsing3D: asBoolean(queryParams["isUsing3D"]),
+			isFree: asBoolean(queryParams["isFree"]),
+		};
 
-    this.filter.set(filter);
-  }
+		this.filter.set(filter);
+	}
 
-  #updateQueryParams(filter: Filter): void {
-    const queryParams = Object.entries(filter)
-      .filter(([, value]) => value !== null)
-      .reduce((x, [k, v]) => ({ ...x, [k]: v }), {});
+	#updateQueryParams(filter: Filter): void {
+		const queryParams = Object.entries(filter)
+			.filter(([, value]) => value !== null)
+			.reduce((x, [k, v]) => ({ ...x, [k]: v }), {});
 
-    this.#router.navigate([], {
-      relativeTo: this.#route,
-      queryParams: queryParams,
-    });
-  }
+		this.#router.navigate([], {
+			relativeTo: this.#route,
+			queryParams: queryParams,
+		});
+	}
 
-  isVersion16OrAbove(version: string): boolean {
-    const majorVersion = parseInt(version.split('.')[0], 10);
-    return majorVersion >= 16;
-  }
+	isVersion16OrAbove(version: string): boolean {
+		const majorVersion = parseInt(version.split(".")[0], 10);
+		return majorVersion >= 16;
+	}
 }

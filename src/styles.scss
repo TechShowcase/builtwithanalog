@@ -33,11 +33,20 @@ a,
 h1,
 h2 {
   font-weight: 500;
-  color: #797ddc;
+  color: #8386d9;
   text-decoration: inherit;
 }
 
 p-card {
+  h2 {
+    a {
+      color: #8b8ee2;
+
+      &:hover {
+        color: #747bff;
+      }
+    }
+  }
   &.home {
     .p-card-body {
       padding: 0;

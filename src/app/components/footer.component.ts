@@ -9,8 +9,8 @@ import { RouterLink } from "@angular/router";
 		<div class="footer">
 			<div class="info">
 				<div class="links">
-					<a routerLink="/fqa">FQA</a>
-					<a routerLink="/about">About</a>
+					<!-- <a routerLink="/fqa">FQA</a>
+					<a routerLink="/about">About</a> -->
 					<a
 						class="social"
 						href="https://github.com/BuiltWithAnalog/builtwithanalog"
