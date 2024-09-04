@@ -45,20 +45,42 @@ import { toSignal } from "@angular/core/rxjs-interop";
 					<a href="https://analogjs.org/" target="_blank">AnalogJS</a>.
 				</p>
 				<p>
-					Despite valuable contributions from <a href="https://github.com/TechShowcase/builtwithanalog/pulls?q=is%3Apr+is%3Aclosed+assignee%3ApBouillon" target="_blank">Pierre Bouillon</a>, <a href="https://github.com/TechShowcase/builtwithanalog/pulls?q=is%3Apr+is%3Aclosed+assignee%3Adalenguyen" target="_blank">Dale Nguyen</a> and <a href="https://analogjs.org/" target="_blank">Gerome
-					Grignon</a>, the associated GitHub repo is now <a href="https://github.com/TechShowcase/builtwithanalog" target="_blank">archived</a>, meaning it will no longer be
-					updated but will remain accessible so that past contributions are
-					preserved and visible.
+					Despite valuable contributions from
+					<a
+						href="https://github.com/TechShowcase/builtwithanalog/pulls?q=is%3Apr+is%3Aclosed+assignee%3ApBouillon"
+						target="_blank"
+						>Pierre Bouillon</a
+					>,
+					<a
+						href="https://github.com/TechShowcase/builtwithanalog/pulls?q=is%3Apr+is%3Aclosed+assignee%3Adalenguyen"
+						target="_blank"
+						>Dale Nguyen</a
+					>
+					and
+					<a href="https://analogjs.org/" target="_blank">Gerome Grignon</a>,
+					the associated GitHub repo is now
+					<a
+						href="https://github.com/TechShowcase/builtwithanalog"
+						target="_blank"
+						>archived</a
+					>, meaning it will no longer be updated but will remain accessible so
+					that past contributions are preserved and visible.
 				</p>
 				<p>
-					The reason for archiving is that the new <a href="https://builtwithangular.dev/" target="_blank">builtwithangular.dev</a> website
-					now offers advanced filtering options, allowing users to easily search
-					for <strong>Analog</strong> projects.
+					The reason for archiving is that the new
+					<a href="https://builtwithangular.dev/" target="_blank"
+						>builtwithangular.dev</a
+					>
+					website now offers advanced filtering options, allowing users to
+					easily search for <strong>Analog</strong> projects.
 				</p>
 				<p-card>
 					<h2>
 						If you'd like to see featured projects or submit your own,<br />
-						please head over to <a href="https://builtwithangular.dev/" target="_blank">BuiltWithAngular.dev</a>
+						please head over to
+						<a href="https://builtwithangular.dev/" target="_blank"
+							>BuiltWithAngular.dev</a
+						>
 					</h2>
 				</p-card>
 				<p>Thank you for your support!</p>
@@ -202,10 +224,10 @@ import { toSignal } from "@angular/core/rxjs-interop";
 					p-card {
 						margin: 2rem 0;
 						h2 {
-              font-size: 1.3rem;
+							font-size: 1.3rem;
 							line-height: 2rem;
 							text-align: center;
-              padding: 0 2rem;
+							padding: 0 2rem;
 						}
 					}
 				}
